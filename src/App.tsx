@@ -9,29 +9,12 @@ export function MaxoLanding() {
 
   // Trigger transition at 8s and SLOW the video instead of freezing
   useEffect(() => {
-    const v = videoRef.current;
-
-    const slow1 = setTimeout(() => {
-      const vid = videoRef.current;
-      if (vid) {
-        try { vid.playbackRate = 0.35; } catch (e) { console.error(e); }
-      }
-    }, 7000);
-
     const toNavbar = setTimeout(() => {
       setIsPreloading(false);
-      const vid = videoRef.current;
-      if (vid) {
-        try { vid.playbackRate = 0.15; } catch (e) { console.error(e); }
-      }
-    }, 8000);
+    }, 5000);
 
     return () => {
-      clearTimeout(slow1);
       clearTimeout(toNavbar);
-      if (v) {
-        try { v.playbackRate = 1; } catch {}
-      }
     };
   }, []);
 
@@ -47,7 +30,7 @@ export function MaxoLanding() {
         autoPlay
         muted
         playsInline
-        src="/133077-755975090_medium.mp4" // Ensure this path is correct
+        src="public/MAXO_1.mp4" // Ensure this path is correct
         style={{
           position: 'fixed',
           top: 0,
@@ -56,6 +39,20 @@ export function MaxoLanding() {
           height: '100%',
           objectFit: 'cover', // This is what removes black bars
           zIndex: 0
+        }}
+      />
+
+      {/* Persistent dark overlay above video for contrast */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.35)',
+          zIndex: 10,
+          pointerEvents: 'none',
         }}
       />
 
