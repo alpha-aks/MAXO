@@ -1,10 +1,35 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, Search, X, Users, Target, Award, Heart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 
-export default function AboutUs({ navigateTo }: { navigateTo: (page: string) => void }) {
+export default function AboutUs() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Helper to navigate to a named page used by menu and footer
+  const navigateTo = (page: string) => {
+    switch (page) {
+      case 'about':
+        navigate('/about');
+        break;
+      case 'work':
+        navigate('/work');
+        break;
+      case 'future':
+        navigate('/future');
+        break;
+      case 'news':
+        navigate('/news');
+        break;
+      case 'contact':
+        navigate('/contact');
+        break;
+      default:
+        navigate('/');
+    }
+  };
 
   const values = [
     {
@@ -84,7 +109,7 @@ export default function AboutUs({ navigateTo }: { navigateTo: (page: string) => 
         {/* Logo */}
         <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
           <button 
-            onClick={() => navigateTo('home')}
+            onClick={() => navigate('/')}
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
           >
             <h1 style={{
@@ -408,7 +433,7 @@ export default function AboutUs({ navigateTo }: { navigateTo: (page: string) => 
         </div>
       </section>
 
-      <Footer navigateTo={navigateTo} />
+      <Footer />
     </div>
   );
 }
