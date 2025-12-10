@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Menu, Search, X, Lightbulb, Zap, Globe, Cpu, Leaf, Users } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';

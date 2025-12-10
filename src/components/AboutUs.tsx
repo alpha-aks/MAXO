@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Menu, Search, X, Users, Target, Award, Heart } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Footer from './Footer';
@@ -15,29 +15,6 @@ export default function AboutUs() {
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
-
-  // Helper to navigate to a named page used by menu and footer
-  const navigateTo = (page: string) => {
-    switch (page) {
-      case 'about':
-        navigate('/about');
-        break;
-      case 'work':
-        navigate('/work');
-        break;
-      case 'future':
-        navigate('/future');
-        break;
-      case 'news':
-        navigate('/news');
-        break;
-      case 'contact':
-        navigate('/contact');
-        break;
-      default:
-        navigate('/');
-    }
-  };
 
   const values = [
     {
