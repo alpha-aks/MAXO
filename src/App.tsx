@@ -23,15 +23,52 @@ export function MaxoLanding() {
   // const location = useLocation();
   // const navigate = useNavigate();
 
-  // Trigger transition at 8s and SLOW the video instead of freezing
+  // Trigger transition when assets are loaded
   useEffect(() => {
-    const toNavbar = setTimeout(() => {
-      setIsPreloading(false);
-    }, 5000);
+    // Pause video initially to "freeze" until loaded
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
 
-    return () => {
-      clearTimeout(toNavbar);
-    };
+    // 1. Wait for Video to be ready
+    const videoPromise = new Promise((resolve) => {
+      const video = videoRef.current;
+      if (!video) {
+        resolve(true);
+        return;
+      }
+      if (video.readyState >= 3) {
+        resolve(true);
+      } else {
+        const handleCanPlay = () => resolve(true);
+        video.addEventListener('canplaythrough', handleCanPlay, { once: true });
+        video.addEventListener('error', () => resolve(true), { once: true });
+      }
+    });
+
+    // 2. Wait for Window load (images, scripts, etc.)
+    const windowLoadPromise = new Promise((resolve) => {
+      if (document.readyState === 'complete') {
+        resolve(true);
+      } else {
+        window.addEventListener('load', () => resolve(true), { once: true });
+      }
+    });
+
+    // Wait for assets to load
+    Promise.all([videoPromise, windowLoadPromise]).then(() => {
+      // Once loaded, play video and start the 5s timer (configured with video)
+      if (videoRef.current) {
+        videoRef.current.play().catch(() => {
+          // Handle autoplay block if necessary
+        });
+      }
+      
+      setTimeout(() => {
+        setIsPreloading(false);
+      }, 5000);
+    });
+
   }, []);
 
   // Detect mobile to switch to side-drawer behavior
@@ -61,7 +98,6 @@ export function MaxoLanding() {
       ----------------------------------------------------- */}
       <video
         ref={videoRef}
-        autoPlay
         muted
         playsInline
         src="/MAXO_1.mp4" // Vercel/Vite public assets must use root path
