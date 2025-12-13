@@ -61,9 +61,12 @@ export default function AboutModern({ isMobile }: { isMobile: boolean }) {
       padding: isMobile ? '60px 20px' : '128px 96px',
       overflow: 'hidden',
       borderTop: '1px solid rgba(0,0,0,0.05)',
-      position: 'relative'
+      position: 'relative',
+      minHeight: isMobile ? '100vh' : 'auto',
+      display: isMobile ? 'flex' : 'block',
+      alignItems: 'center'
     }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
         
         <div style={{
           display: 'grid',
@@ -73,8 +76,8 @@ export default function AboutModern({ isMobile }: { isMobile: boolean }) {
         }}>
           
           {/* --- LEFT COLUMN: CARD SWAP --- */}
-          <div style={{ position: 'relative', height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-             <CardSwap width={isMobile ? 300 : 400} height={isMobile ? 400 : 500} cardDistance={40} verticalDistance={50}>
+          <div style={{ position: 'relative', height: isMobile ? '340px' : '600px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+             <CardSwap width={isMobile ? 360 : 400} height={isMobile ? 200 : 500} cardDistance={40} verticalDistance={50}>
                 <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop')" }} />
                 <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop')" }} />
                 <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2670&auto=format&fit=crop')" }} />
@@ -133,47 +136,45 @@ export default function AboutModern({ isMobile }: { isMobile: boolean }) {
                   </div>
                 </div>
 
-                {/* Stats Grid */}
+                {/* Stats Grid - Hidden on Mobile */}
+                {!isMobile && (
                 <motion.div variants={fadeInUpVariant} style={{ 
                   display: 'grid', 
-                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', 
-                  gap: isMobile ? '24px' : '32px', 
+                  gridTemplateColumns: 'repeat(3, 1fr)', 
+                  gap: '32px', 
                   borderTop: '1px solid rgba(0,0,0,0.1)', 
-                  paddingTop: isMobile ? '32px' : '48px', 
+                  paddingTop: '48px', 
                   marginTop: '16px' 
                 }}>
                   {/* Stat 1 */}
                   <div>
-                    <h3 style={{ fontSize: isMobile ? '32px' : '60px', fontWeight: 'bold', marginBottom: '8px', display: 'flex', margin: 0 }}>
-                      <AnimatedCounter from={0} to={120} /><span style={{ fontSize: isMobile ? '18px' : '24px', verticalAlign: 'top', color: '#9ca3af' }}>+</span>
+                    <h3 style={{ fontSize: '60px', fontWeight: 'bold', marginBottom: '8px', display: 'flex', margin: 0 }}>
+                      <AnimatedCounter from={0} to={120} /><span style={{ fontSize: '24px', verticalAlign: 'top', color: '#9ca3af' }}>+</span>
                     </h3>
                     <p style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6b7280', margin: 0 }}>Projects</p>
                   </div>
                   {/* Stat 2 */}
                   <div style={{ 
-                    borderLeft: isMobile ? 'none' : '1px solid rgba(0,0,0,0.1)', 
-                    paddingLeft: isMobile ? '0' : '32px',
-                    borderTop: isMobile ? '1px solid rgba(0,0,0,0.1)' : 'none',
-                    paddingTop: isMobile ? '24px' : '0'
+                    borderLeft: '1px solid rgba(0,0,0,0.1)', 
+                    paddingLeft: '32px'
                   }}>
-                    <h3 style={{ fontSize: isMobile ? '32px' : '60px', fontWeight: 'bold', marginBottom: '8px', display: 'flex', margin: 0 }}>
-                      <AnimatedCounter from={0} to={85} /><span style={{ fontSize: isMobile ? '18px' : '24px', verticalAlign: 'top', color: '#9ca3af' }}>+</span>
+                    <h3 style={{ fontSize: '60px', fontWeight: 'bold', marginBottom: '8px', display: 'flex', margin: 0 }}>
+                      <AnimatedCounter from={0} to={85} /><span style={{ fontSize: '24px', verticalAlign: 'top', color: '#9ca3af' }}>+</span>
                     </h3>
                     <p style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6b7280', margin: 0 }}>Happy Clients</p>
                   </div>
                   {/* Stat 3 */}
                   <div style={{ 
-                    borderLeft: isMobile ? 'none' : '1px solid rgba(0,0,0,0.1)', 
-                    paddingLeft: isMobile ? '0' : '32px',
-                    borderTop: isMobile ? '1px solid rgba(0,0,0,0.1)' : 'none',
-                    paddingTop: isMobile ? '24px' : '0'
+                    borderLeft: '1px solid rgba(0,0,0,0.1)', 
+                    paddingLeft: '32px'
                   }}>
-                    <h3 style={{ fontSize: isMobile ? '32px' : '60px', fontWeight: 'bold', marginBottom: '8px', display: 'flex', margin: 0 }}>
+                    <h3 style={{ fontSize: '60px', fontWeight: 'bold', marginBottom: '8px', display: 'flex', margin: 0 }}>
                       <AnimatedCounter from={0} to={42} />
                     </h3>
                     <p style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6b7280', margin: 0 }}>Design Awards</p>
                   </div>
                 </motion.div>
+                )}
                 
 
             </motion.div>
