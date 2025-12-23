@@ -186,7 +186,7 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
           zIndex: 40,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           padding: isMobile ? '20px 24px' : '30px 60px',
         }}
       >

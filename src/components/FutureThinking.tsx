@@ -172,7 +172,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
           zIndex: 40,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           padding: isMobile ? '20px 24px' : '30px 60px',
         }}
       >
