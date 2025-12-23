@@ -3,7 +3,6 @@ import finalLogo from '../assets/finalemaxologo.png';
 import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
 import { ArrowUpRight, Award, Users, Building, Target } from 'lucide-react';
 import TiltedCard, { Orb } from './TiltedCard';
-import BenoyMenu from './BenoyMenu';
 import './AboutUs.css';
 
 // Easing curves for premium feel
@@ -56,7 +55,6 @@ const AnimatedCounter = ({ from, to, suffix = "" }: { from: number; to: number; 
 };
 
 export default function AboutUs() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
   const containerRef = useRef(null);
   const heroRef = useRef(null);
@@ -137,88 +135,7 @@ export default function AboutUs() {
   return (
     <div ref={containerRef} className="about-container">
       
-      {/* Left shutter on desktop; right hamburger on mobile */}
-      {!isMobile ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          style={{
-            position: 'fixed',
-            left: 0,
-            top: 0,
-            bottom: 0,
-            width: '40px',
-            backgroundColor: '#000',
-            zIndex: 45,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRight: '1px solid rgba(255, 255, 255, 0.1)',
-          }}
-        >
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              padding: 0,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px',
-            }}
-            className="hover:opacity-70 transition-opacity"
-          >
-            <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
-            <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
-          </button>
-        </motion.div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          style={{
-            position: 'fixed',
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: '48px',
-            backgroundColor: 'transparent',
-            zIndex: 60,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'auto',
-          }}
-        >
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open menu"
-            style={{
-              background: 'rgba(0,0,0,0.6)',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              padding: '10px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '6px',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '50%',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-            }}
-            className="hover:opacity-70 transition-opacity"
-          >
-            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-          </button>
-        </motion.div>
-      )}
+      {/* Left shutter/hamburger moved to App.tsx (global) */}
 
       {/* Navbar with MAXO Logo */}
       <motion.div
@@ -244,40 +161,15 @@ export default function AboutUs() {
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
             style={{
-              width: isMobile ? '80px' : '90px',
+              width: isMobile ? '100px' : '140px',
               height: 'auto',
             }}
           />
         </a>
-        {isMobile && (
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open menu"
-            style={{
-              background: 'rgba(0,0,0,0.6)',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              padding: '10px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '6px',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '50%',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              marginLeft: '12px'
-            }}
-            className="hover:opacity-70 transition-opacity"
-          >
-            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-          </button>
-        )}
+        {/* Mobile hamburger moved to global App.tsx to avoid duplicates */}
       </motion.div>
 
-      <BenoyMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      
 
       {/* Hero Section */}
       <section ref={heroRef} className="about-hero">

@@ -72,7 +72,7 @@ export default function BenoyMenu({ isOpen, onClose }: BenoyMenuProps) {
                 <img
                   src={finalLogo}
                   alt="MAXO Logo"
-                  style={{ width: '90px', height: 'auto', display: 'block', marginBottom: '60px' }}
+                  style={{ width: '160px', height: 'auto', display: 'block', marginBottom: '60px' }}
                 />
               </div>
 

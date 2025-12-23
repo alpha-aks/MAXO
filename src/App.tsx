@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { Search } from 'lucide-react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import BenoyMenu from './components/BenoyMenu';
 import finalLogo from './assets/finalemaxologo.png';
 import ArchitectContact from './components/ArchitectContact';
@@ -208,7 +208,7 @@ export function MaxoLanding() {
           alt="MAXO"
           layoutId="brand-logo"
           style={{
-            width: isPreloading ? (isMobile ? '220px' : '340px') : (isMobile ? '60px' : '90px'),
+            width: isPreloading ? (isMobile ? '220px' : '340px') : (isMobile ? '100px' : '140px'),
             height: 'auto',
           }}
         />
@@ -255,19 +255,17 @@ export function MaxoLanding() {
                 <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
               </button>
             </motion.div>
-          ) : (
+            ) : (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               style={{
                 position: 'fixed',
-                right: 0,
-                top: 0,
-                bottom: 0,
-                width: '48px',
+                top: '16px',
+                right: '16px',
                 backgroundColor: 'transparent',
-                zIndex: 60,
+                zIndex: 999,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -444,6 +442,9 @@ function AppRoutes() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
+      {/* Global header shown on all pages except landing (/) */}
+      <HeaderWrapper />
+
       <Routes>
         <Route path="/" element={<MaxoLanding />} />
         <Route path="/about" element={<AboutUs />} />
@@ -471,6 +472,70 @@ export default function App() {
     <Router>
       <AppRoutes />
     </Router>
+  );
+}
+
+// HeaderWrapper placed at module bottom to keep AppRoutes focused
+function HeaderWrapper() {
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+
+  useEffect(() => {
+    const update = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  // Don't show on landing page since MaxoLanding has its own header/hamburger
+  if (location.pathname === '/') return null;
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        style={{ position: 'fixed', top: isMobile ? '16px' : '20px', left: isMobile ? '24px' : '40px', zIndex: 60 }}
+      >
+        <a href="/" style={{ display: 'block' }}>
+          <motion.img src={finalLogo} alt="MAXO" layoutId="brand-logo" style={{ width: isMobile ? '100px' : '140px', height: 'auto' }} />
+        </a>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.05 }}
+        style={{ position: 'fixed', top: '16px', right: '16px', zIndex: 999 }}
+      >
+        <button
+          onClick={() => setIsMenuOpen(true)}
+          aria-label="Open menu"
+          style={{
+            background: 'rgba(0,0,0,0.6)',
+            border: 'none',
+            color: 'white',
+            cursor: 'pointer',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '6px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '50%',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+          }}
+        >
+          <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+          <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+          <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+        </button>
+      </motion.div>
+
+      <BenoyMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+    </>
   );
 }
 
