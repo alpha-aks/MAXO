@@ -278,16 +278,18 @@ export function MaxoLanding() {
                 onClick={() => setIsMenuOpen(true)}
                 aria-label="Open menu"
                 style={{
-                  background: 'transparent',
+                  background: 'rgba(0,0,0,0.6)',
                   border: 'none',
                   color: 'white',
                   cursor: 'pointer',
-                  padding: '8px',
+                  padding: '10px',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '4px',
+                  gap: '6px',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  borderRadius: '50%',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
                 }}
                 className="hover:opacity-70 transition-opacity"
               >
