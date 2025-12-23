@@ -344,11 +344,37 @@ export default function OurWork({ navigateTo: _navigateTo }: OurWorkProps) {
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
             style={{
-              width: isMobile ? '60px' : '90px',
+              width: isMobile ? '80px' : '90px',
               height: 'auto',
             }}
           />
         </a>
+        {isMobile && (
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+            style={{
+              background: 'rgba(0,0,0,0.6)',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '10px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              marginLeft: '12px'
+            }}
+            className="hover:opacity-70 transition-opacity"
+          >
+            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+          </button>
+        )}
       </motion.div>
 
       <BenoyMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
