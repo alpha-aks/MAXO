@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import finalLogo from '../assets/finalemaxologo.png';
 import { motion } from 'framer-motion';
 import { Lightbulb, Zap, Globe, Cpu, Leaf, Users } from 'lucide-react';
 import Footer from './Footer';
@@ -134,7 +135,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
       >
         <a href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
           <motion.img
-            src="/src/assets/finalemaxologo.png"
+            src={finalLogo}
             alt="MAXO"
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}

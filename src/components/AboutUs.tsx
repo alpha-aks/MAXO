@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import finalLogo from '../assets/finalemaxologo.png';
 import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
 import { ArrowUpRight, Award, Users, Building, Target } from 'lucide-react';
 import TiltedCard, { Orb } from './TiltedCard';
@@ -193,7 +194,7 @@ export default function AboutUs() {
       >
         <a href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
           <motion.img
-            src="/src/assets/finalemaxologo.png"
+            src={finalLogo}
             alt="MAXO"
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}

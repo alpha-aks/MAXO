@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import finalLogo from '../assets/finalemaxologo.png';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Send } from 'lucide-react';
 import Footer from './Footer';
@@ -116,7 +117,7 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
       >
         <a href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
           <motion.img
-            src="/src/assets/finalemaxologo.png"
+            src={finalLogo}
             alt="MAXO"
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}

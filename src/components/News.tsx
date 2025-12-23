@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import finalLogo from '../assets/finalemaxologo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ArrowRight, Tag } from 'lucide-react';
 import Footer from './Footer';
@@ -148,7 +149,7 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
       >
         <a href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
           <motion.img
-            src="/src/assets/finalemaxologo.png"
+            src={finalLogo}
             alt="MAXO"
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}

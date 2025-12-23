@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // import { Search } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import BenoyMenu from './components/BenoyMenu';
+import finalLogo from './assets/finalemaxologo.png';
 import ArchitectContact from './components/ArchitectContact';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
@@ -167,7 +168,7 @@ export function MaxoLanding() {
         transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
       >
         <motion.img
-          src="/src/assets/finalemaxologo.png"
+          src={finalLogo}
           alt="MAXO"
           layoutId="brand-logo"
           style={{

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import finalLogo from '../assets/finalemaxologo.png';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
@@ -293,7 +294,7 @@ export default function OurWork({ navigateTo: _navigateTo }: OurWorkProps) {
       >
         <a href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
           <motion.img
-            src="/src/assets/finalemaxologo.png"
+            src={finalLogo}
             alt="MAXO"
             layoutId="brand-logo"
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import finalLogo from '../assets/finalemaxologo.png';
 
 interface BenoyMenuProps {
   isOpen: boolean;
@@ -69,7 +70,7 @@ export default function BenoyMenu({ isOpen, onClose }: BenoyMenuProps) {
               {/* Logo - Top Left */}
               <div style={{ marginBottom: '40px' }}>
                 <img
-                  src="/src/assets/finalemaxologo.png"
+                  src={finalLogo}
                   alt="MAXO Logo"
                   style={{ width: '90px', height: 'auto', display: 'block', marginBottom: '60px' }}
                 />
