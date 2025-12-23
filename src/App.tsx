@@ -195,7 +195,7 @@ export function MaxoLanding() {
           bottom: isPreloading ? 0 : 'auto',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: isPreloading ? 'center' : 'flex-start',
+          justifyContent: isPreloading ? 'center' : (isMobile ? 'flex-start' : 'center'),
           zIndex: 50,
           pointerEvents: 'none',
           height: isPreloading ? '100vh' : 'auto',

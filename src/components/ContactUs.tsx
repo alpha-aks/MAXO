@@ -156,7 +156,7 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
           zIndex: 40,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: isMobile ? 'flex-start' : 'center',
           padding: isMobile ? '20px 24px' : '30px 60px',
         }}
       >

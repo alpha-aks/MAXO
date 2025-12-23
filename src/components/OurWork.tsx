@@ -333,7 +333,7 @@ export default function OurWork({ navigateTo: _navigateTo }: OurWorkProps) {
           zIndex: 40,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: isMobile ? 'flex-start' : 'center',
           padding: isMobile ? '20px 24px' : '30px 60px',
         }}
       >
