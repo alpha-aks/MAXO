@@ -1,0 +1,69 @@
+import { useNavigate } from 'react-router-dom';
+import './projects.css';
+
+const Healthcare = () => {
+  const navigate = useNavigate();
+
+  const projectItem = [
+    { id: 1, title: "Hospitals & Medical Centers", slug: "hospitals-medical", links: [{ id: 1 }, { id: 2 }], image: "https://images.unsplash.com/photo-1631217314830-4f8217c53cc8?w=600&h=400&fit=crop" },
+    { id: 2, title: "Clinics & Wellness Centers", slug: "clinics-wellness", links: [{ id: 1 }, { id: 2 }], image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" },
+    { id: 3, title: "Diagnostic Centers", slug: "diagnostic-centers", links: [{ id: 1 }, { id: 2 }], image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&h=400&fit=crop" },
+    { id: 4, title: "Medical Laboratories", slug: "medical-labs", links: [{ id: 1 }, { id: 2 }], image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop" },
+  ];
+
+  const handleImageClick = (item: typeof projectItem[0]) => {
+    navigate('/allproject', { 
+      state: { 
+        project: { 
+          ...item, 
+          category: 'Healthcare Facilities'
+        } 
+      } 
+    });
+  };
+
+  return (
+    <div className="project-page">
+      <button 
+        onClick={() => navigate(-1)} 
+        className="back-button"
+      >
+        ← Back
+      </button>
+
+      <section className="project-section">
+        <div className="section-header">
+          <h1 className="section-title">Healthcare Facilities</h1>
+        </div>
+        
+        <div className="projects-grid">
+          {projectItem.map((item) => (
+            <div className="project-card-wrapper" key={item.id}>
+              <div className="project-card-label">
+                <span className="label-dot" />
+                <h2 className="label-title">
+                  {item.title}
+                </h2>
+              </div>
+              
+              <div 
+                className="project-card-image"
+                onClick={() => handleImageClick(item)}
+                style={{ cursor: 'pointer' }}
+              >
+                <img 
+                  src={item.image}
+                  alt={item.title}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+      
+      </section>
+    </div>
+  );
+};
+
+export default Healthcare;
