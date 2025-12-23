@@ -81,6 +81,42 @@ export function MaxoLanding() {
     return () => window.removeEventListener('resize', update);
   }, []);
 
+  // Prevent page scrolling while preloader/video is active
+  useEffect(() => {
+    const prevent = (e: Event) => {
+      // allow pointer events inside overlays but block default scrolling
+      e.preventDefault();
+    };
+
+    if (isPreloading) {
+      // hide overflow on document and body
+      try {
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      } catch (err) {
+        // ignore in SSR or restricted environments
+      }
+      document.addEventListener('touchmove', prevent, { passive: false });
+      document.addEventListener('wheel', prevent, { passive: false });
+    } else {
+      try {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      } catch (err) {}
+      document.removeEventListener('touchmove', prevent as EventListener);
+      document.removeEventListener('wheel', prevent as EventListener);
+    }
+
+    return () => {
+      try {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      } catch (err) {}
+      document.removeEventListener('touchmove', prevent as EventListener);
+      document.removeEventListener('wheel', prevent as EventListener);
+    };
+  }, [isPreloading]);
+
   return (
     <div style={{ position: 'relative', width: '100%', backgroundColor: 'black', color: 'white', fontFamily: 'sans-serif', minHeight: '100vh' }}>
       
