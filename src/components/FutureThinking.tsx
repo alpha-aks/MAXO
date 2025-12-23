@@ -78,43 +78,86 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
 
   return (
     <div style={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
-      {/* Black Left Shutter Bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-        style={{
-          position: 'fixed',
-          left: 0,
-          top: 0,
-          bottom: 0,
-          width: isMobile ? '30px' : '40px',
-          backgroundColor: '#000',
-          zIndex: 45,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRight: '1px solid rgba(255, 255, 255, 0.1)',
-        }}
-      >
-        <button
-          onClick={() => setIsMenuOpen(true)}
+      {/* Left shutter on desktop; right hamburger on mobile */}
+      {!isMobile ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           style={{
-            background: 'transparent',
-            border: 'none',
-            color: 'white',
-            cursor: 'pointer',
-            padding: 0,
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: '40px',
+            backgroundColor: '#000',
+            zIndex: 45,
             display: 'flex',
             alignItems: 'center',
-            gap: '4px',
+            justifyContent: 'center',
+            borderRight: '1px solid rgba(255, 255, 255, 0.1)',
           }}
-          className="hover:opacity-70 transition-opacity"
         >
-          <span style={{ width: '2px', height: isMobile ? '18px' : '20px', backgroundColor: 'white' }} />
-          <span style={{ width: '2px', height: isMobile ? '18px' : '20px', backgroundColor: 'white' }} />
-        </button>
-      </motion.div>
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: 0,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+            }}
+            className="hover:opacity-70 transition-opacity"
+          >
+            <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
+            <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
+          </button>
+        </motion.div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          style={{
+            position: 'fixed',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: '48px',
+            backgroundColor: 'transparent',
+            zIndex: 60,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'auto',
+          }}
+        >
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '8px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '4px',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            className="hover:opacity-70 transition-opacity"
+          >
+            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+            <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+          </button>
+        </motion.div>
+      )}
 
       {/* Navbar with MAXO Logo */}
       <motion.div
