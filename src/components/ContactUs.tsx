@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Send } from 'lucide-react';
 import Footer from './Footer';
@@ -6,7 +6,7 @@ import BenoyMenu from './BenoyMenu';
 
 export default function ContactUs({ navigateTo }: { navigateTo: (page: string) => void }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const [isMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,13 +16,7 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
     projectType: ''
   });
 
-  const menuItems = [
-    { label: 'About', ariaLabel: 'About', link: '/about' },
-    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
-    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
-    { label: 'News', ariaLabel: 'News', link: '/news' },
-    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
-  ];
+  // menuItems removed (not used in this component)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

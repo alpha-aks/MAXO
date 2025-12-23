@@ -131,13 +131,7 @@ export default function AboutUs() {
     }
   ];
 
-  const menuItems = [
-    { label: 'About', ariaLabel: 'About', link: '/about' },
-    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
-    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
-    { label: 'News', ariaLabel: 'News', link: '/news' },
-    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
-  ];
+  // menuItems removed (not used in this component)
 
   return (
     <div ref={containerRef} className="about-container">

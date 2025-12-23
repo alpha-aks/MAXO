@@ -122,7 +122,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                 fontFamily: "'Playfair Display', 'Georgia', serif",
               }}
             >
-              {menuItems.map((item, idx) => (
+              {menuItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}

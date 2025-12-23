@@ -187,7 +187,7 @@ export default function OurWork({ navigateTo: _navigateTo }: OurWorkProps) {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
-  const [activeProject, setActiveProject] = useState<number | null>(null);
+  // activeProject state removed (not used)
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   
   useEffect(() => {
@@ -197,13 +197,7 @@ export default function OurWork({ navigateTo: _navigateTo }: OurWorkProps) {
     return () => window.removeEventListener('resize', update);
   }, []);
 
-  const menuItems = [
-    { label: 'About', ariaLabel: 'About', link: '/about' },
-    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
-    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
-    { label: 'News', ariaLabel: 'News', link: '/news' },
-    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
-  ];
+  // menuItems removed (not used in this component)
 
   // Redirect handler for each project
   const handleRedirect = (item: typeof projectItems[0]) => {
