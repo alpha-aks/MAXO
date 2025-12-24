@@ -168,37 +168,39 @@ export default function BenoyMenu({ isOpen, onClose }: BenoyMenuProps) {
               </div>
             </div>
 
-            {/* Right Content Area */}
-            <div style={{ width: '33.333%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '50px 48px 30px 48px' }}>
-              {/* Top Right - Contact Locations */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <h3 style={{ fontSize: '11px', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'Inter, Arial, sans-serif' }}>
-                  Contact
-                </h3>
-                <p style={{ fontSize: '14px', fontWeight: 300, lineHeight: '1.8', opacity: 0.8, fontFamily: 'Inter, Arial, sans-serif' }}>
-                  {locations}
-                </p>
-              </div>
+            {/* Right Content Area - hidden on mobile */}
+            {!isMobile && (
+              <div style={{ width: '33.333%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '50px 48px 30px 48px' }}>
+                {/* Top Right - Contact Locations */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <h3 style={{ fontSize: '11px', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'Inter, Arial, sans-serif' }}>
+                    Contact
+                  </h3>
+                  <p style={{ fontSize: '14px', fontWeight: 300, lineHeight: '1.8', opacity: 0.8, fontFamily: 'Inter, Arial, sans-serif' }}>
+                    {locations}
+                  </p>
+                </div>
 
-              {/* Bottom Right - Terms, Privacy & Marketing Links */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '12px', fontWeight: 300, fontFamily: 'Inter, Arial, sans-serif' }}>
-                <a href="#" style={{ color: '#fff', textDecoration: 'none', transition: 'opacity 0.3s' }}
-                   onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
-                   onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
-                  Terms and Conditions
-                </a>
-                <a href="#" style={{ color: '#fff', textDecoration: 'none', transition: 'opacity 0.3s' }}
-                   onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
-                   onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
-                  Privacy Policy
-                </a>
-                <a href="mailto:marketing@benoy.com" style={{ color: '#fff', textDecoration: 'none', transition: 'opacity 0.3s' }}
-                   onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
-                   onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
-                  Marketing and Press enquiries
-                </a>
+                {/* Bottom Right - Terms, Privacy & Marketing Links */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '12px', fontWeight: 300, fontFamily: 'Inter, Arial, sans-serif' }}>
+                  <a href="#" style={{ color: '#fff', textDecoration: 'none', transition: 'opacity 0.3s' }}
+                     onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
+                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
+                    Terms and Conditions
+                  </a>
+                  <a href="#" style={{ color: '#fff', textDecoration: 'none', transition: 'opacity 0.3s' }}
+                     onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
+                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
+                    Privacy Policy
+                  </a>
+                  <a href="mailto:marketing@benoy.com" style={{ color: '#fff', textDecoration: 'none', transition: 'opacity 0.3s' }}
+                     onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
+                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
+                    Marketing and Press enquiries
+                  </a>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </motion.div>
         </>
