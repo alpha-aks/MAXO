@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import finalLogo from '../assets/finalemaxologo.png';
 
 interface BenoyMenuProps {
@@ -25,6 +26,15 @@ export default function BenoyMenu({ isOpen, onClose }: BenoyMenuProps) {
 
   const locations = 'Dubai / Hong Kong / London / Mumbai / Nottinghamshire / Shanghai / Singapore';
 
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+
+  useEffect(() => {
+    const update = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
@@ -39,7 +49,7 @@ export default function BenoyMenu({ isOpen, onClose }: BenoyMenuProps) {
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 100,
+              zIndex: 9998,
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
             }}
           />
@@ -51,18 +61,43 @@ export default function BenoyMenu({ isOpen, onClose }: BenoyMenuProps) {
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             style={{
               position: 'fixed',
-              left: '40px',
+              left: isMobile ? 0 : '40px',
               top: 0,
               bottom: 0,
-              width: 'calc(75% - 40px)',
-              zIndex: 101,
+              width: isMobile ? '100%' : 'calc(75% - 40px)',
+              zIndex: 9999,
               backgroundColor: '#000',
               color: '#fff',
               fontFamily: 'system-ui, -apple-system, sans-serif',
-              borderRight: '1px solid rgba(255, 255, 255, 0.1)',
-              overflow: 'hidden',
+              borderRight: isMobile ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch' as any,
             }}
           >
+          {/* Close button for mobile/fullscreen */}
+          {isMobile && (
+            <button
+              onClick={onClose}
+              aria-label="Close menu"
+              style={{
+                position: 'absolute',
+                top: 16,
+                right: 16,
+                zIndex: 10000,
+                background: 'transparent',
+                border: 'none',
+                color: '#fff',
+                padding: 8,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
           {/* Main Container with Grid Layout */}
           <div style={{ position: 'relative', minHeight: '100%', width: '100%', display: 'flex' }}>
             {/* Left Content Area - Full Height Grid */}
