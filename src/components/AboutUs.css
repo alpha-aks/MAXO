@@ -2,6 +2,7 @@
 
 /* Base container styles */
 .about-container {
+  position: relative;
   background-color: #0a0a0a;
   min-height: 100vh;
   box-sizing: border-box;

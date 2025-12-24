@@ -1,74 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import WireframeTower from './WireframeTower';
-import './AboutUs.css';
-
-export default function AboutUs() {
-  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 1024);
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth < 1024);
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  return (
-    <main style={{ background: '#ffffff', color: '#000' }}>
-      {/* Responsive About MAXO section */}
-      <section style={{ width: '100%', minHeight: isMobile ? 'auto' : '70vh', padding: '48px 20px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: 24, alignItems: 'stretch' }}>
-
-            {/* Left: Text content */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{ flex: isMobile ? '0 0 auto' : '0 0 42%', display: 'flex', alignItems: 'flex-start' }}
-            >
-              <div>
-                <div style={{ fontSize: 12, letterSpacing: '0.15em', fontWeight: 700, marginBottom: 8 }}>WHO WE ARE</div>
-                <h1 style={{ fontSize: 40, margin: '8px 0 16px' }}>About MAXO.</h1>
-                <p style={{ fontSize: 16, lineHeight: 1.6, color: '#111', maxWidth: 520 }}>
-                  We are a forward-thinking architecture studio committed to transforming spaces into meaningful experiences. Blending innovation with timeless aesthetics.
-                </p>
-
-                <div style={{ display: 'flex', gap: 20, marginTop: 24, flexWrap: 'wrap' }}>
-                  <div style={{ minWidth: 120 }}>
-                    <div style={{ fontSize: 22, fontWeight: 800 }}>120+</div>
-                    <div style={{ fontSize: 12, opacity: 0.8 }}>PROJECTS</div>
-                  </div>
-                  <div style={{ minWidth: 120 }}>
-                    <div style={{ fontSize: 22, fontWeight: 800 }}>85+</div>
-                    <div style={{ fontSize: 12, opacity: 0.8 }}>HAPPY CLIENTS</div>
-                  </div>
-                  <div style={{ minWidth: 120 }}>
-                    <div style={{ fontSize: 22, fontWeight: 800 }}>42</div>
-                    <div style={{ fontSize: 12, opacity: 0.8 }}>DESIGN AWARDS</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right: Wireframe Tower */}
-            <div style={{ flex: isMobile ? '0 0 auto' : '0 0 58%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
-              <div style={{ width: '100%', height: isMobile ? '50vh' : '80vh', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                <WireframeTower />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
 import { useRef, useEffect, useState } from 'react';
 import finalLogo from '../assets/finalemaxologo.png';
 import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
 import { ArrowUpRight, Award, Users, Building, Target } from 'lucide-react';
 import TiltedCard, { Orb } from './TiltedCard';
-import WireframeTower from './WireframeTower';
 import './AboutUs.css';
 
 // Easing curves for premium feel
@@ -81,54 +15,63 @@ const fadeInUp = {
 };
 
 const staggerContainer = {
-      {/* About MAXO Section (Wireframe Tower) */}
-      <section ref={heroRef} className="about-maxo-section" style={{ background: '#ffffff', color: '#000' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {/* Responsive layout: stack on mobile, split on lg+ */}
-            <div style={{ display: 'flex', flexDirection: 'column' }} className="lg:flex lg:flex-row lg:items-start lg:justify-between">
-              {/* Left: Text content */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                style={{ width: '100%' }}
-                className="lg:w-5/12"
-              >
-                <div style={{ padding: '28px 20px' }}>
-                  <div style={{ fontSize: 12, letterSpacing: '0.15em', fontWeight: 600, marginBottom: 8 }}>WHO WE ARE</div>
-                  <h2 style={{ fontSize: 40, margin: '8px 0 16px', lineHeight: 1.05 }}>About MAXO.</h2>
-                  <p style={{ fontSize: 16, color: '#111', marginBottom: 20, maxWidth: 560 }}>
-                    We are a forward-thinking architecture studio committed to transforming spaces into meaningful experiences. Blending innovation with timeless aesthetics.
-                  </p>
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+};
 
-                  <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-                    <div style={{ minWidth: 140 }}>
-                      <div style={{ fontSize: 20, fontWeight: 700 }}>120+</div>
-                      <div style={{ fontSize: 12, opacity: 0.8 }}>PROJECTS</div>
-                    </div>
-                    <div style={{ minWidth: 140 }}>
-                      <div style={{ fontSize: 20, fontWeight: 700 }}>85+</div>
-                      <div style={{ fontSize: 12, opacity: 0.8 }}>HAPPY CLIENTS</div>
-                    </div>
-                    <div style={{ minWidth: 140 }}>
-                      <div style={{ fontSize: 20, fontWeight: 700 }}>42</div>
-                      <div style={{ fontSize: 12, opacity: 0.8 }}>DESIGN AWARDS</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+const maskReveal = {
+  hidden: { y: "110%", opacity: 0 },
+  visible: { y: "0%", opacity: 1, transition }
+};
 
-              {/* Right: Wireframe Tower */}
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }} className="lg:w-7/12">
-                <div style={{ width: '100%', height: '50vh', maxHeight: 720, minHeight: 300, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                  <WireframeTower className="w-full h-full" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+const lineReveal = {
+  hidden: { scaleX: 0, originX: 0 },
+  visible: { scaleX: 1, transition: { duration: 1.2, ease: [0.77, 0, 0.175, 1] as const } }
+};
+
+// Animated counter component
+const AnimatedCounter = ({ from, to, suffix = "" }: { from: number; to: number; suffix?: string }) => {
+  const count = useMotionValue(from);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [displayValue, setDisplayValue] = useState(from);
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, to, { duration: 2.5, ease: "easeOut" });
+      return controls.stop;
+    }
+  }, [isInView, count, to]);
+
+  useEffect(() => {
+    rounded.on("change", (v) => setDisplayValue(v));
+  }, [rounded]);
+
+  return <span ref={ref}>{displayValue}{suffix}</span>;
+};
+
+export default function AboutUs() {
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const containerRef = useRef(null);
+  const heroRef = useRef(null);
+  const storyRef = useRef(null);
+  const statsRef = useRef(null);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const width = window.innerWidth;
       setIsTablet(width >= 768 && width < 1024);
     };
     checkDevice();

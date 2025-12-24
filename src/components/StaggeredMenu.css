@@ -289,10 +289,11 @@
   }
   
   .sm-logo {
-    position: static;
+    position: relative;
     transform: none;
     order: -1;
     margin-right: auto;
+    left: 0;
   }
 
   .sm-toggle {

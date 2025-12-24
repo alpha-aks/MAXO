@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // import { Search } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import BenoyMenu from './components/BenoyMenu';
+import MobileMenu from './components/MobileMenu';
 import finalLogo from './assets/finalemaxologo.png';
 import ArchitectContact from './components/ArchitectContact';
 import AboutUs from './components/AboutUs';
@@ -493,48 +494,106 @@ function HeaderWrapper() {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        style={{ position: 'fixed', top: isMobile ? '16px' : '20px', left: isMobile ? '24px' : '40px', zIndex: 60 }}
-      >
-        <a href="/" style={{ display: 'block' }}>
-          <motion.img src={finalLogo} alt="MAXO" layoutId="brand-logo" style={{ width: isMobile ? '100px' : '140px', height: 'auto' }} />
-        </a>
-      </motion.div>
+      {isMobile && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          style={{ position: 'fixed', top: isMobile ? '16px' : '20px', left: isMobile ? '24px' : '40px', zIndex: 60 }}
+        >
+          <a href="/" style={{ display: 'block' }}>
+            <motion.img src={finalLogo} alt="MAXO" layoutId="brand-logo" style={{ width: isMobile ? '100px' : '140px', height: 'auto' }} />
+          </a>
+        </motion.div>
+      )}
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.05 }}
-        style={{ position: 'fixed', top: '16px', right: '16px', zIndex: 999 }}
-      >
-        <button
-          onClick={() => setIsMenuOpen(true)}
-          aria-label="Open menu"
+      {/* Left shutter button for desktop pages */}
+      {!isMobile && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           style={{
-            background: 'rgba(0,0,0,0.6)',
-            border: 'none',
-            color: 'white',
-            cursor: 'pointer',
-            padding: '10px',
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: '40px',
+            backgroundColor: '#000',
+            zIndex: 60,
             display: 'flex',
-            flexDirection: 'column',
-            gap: '6px',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: '50%',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+            borderRight: '1px solid rgba(255, 255, 255, 0.08)'
           }}
         >
-          <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-          <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-          <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
-        </button>
-      </motion.div>
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: 0,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              height: '100%'
+            }}
+          >
+            <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
+            <span style={{ width: '2px', height: '20px', backgroundColor: 'white' }} />
+          </button>
+        </motion.div>
+      )}
 
-      <BenoyMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {isMobile && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.05 }}
+          style={{ position: 'fixed', top: '16px', right: '16px', zIndex: 999 }}
+        >
+          <button
+            onClick={() => setIsMenuOpen((s) => !s)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            style={{
+              background: 'rgba(0,0,0,0.6)',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '10px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+            }}
+          >
+            {isMenuOpen ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <>
+                <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+                <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+                <span style={{ width: '18px', height: '2px', backgroundColor: 'white', borderRadius: '2px' }} />
+              </>
+            )}
+          </button>
+        </motion.div>
+      )}
+
+      {isMobile ? (
+        <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      ) : (
+        <BenoyMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      )}
     </>
   );
 }
