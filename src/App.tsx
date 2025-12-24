@@ -191,7 +191,7 @@ export function MaxoLanding() {
         style={{
           position: isPreloading ? 'absolute' : 'fixed',
           top: isPreloading ? 0 : 0,
-          left: isPreloading ? 0 : (isMobile ? '30px' : '40px'),
+          left: isPreloading ? 0 : (isMobile ? '16px' : '40px'),
           right: isPreloading ? 0 : 0,
           bottom: isPreloading ? 0 : 'auto',
           display: 'flex',
@@ -200,7 +200,7 @@ export function MaxoLanding() {
           zIndex: 50,
           pointerEvents: 'none',
           height: isPreloading ? '100vh' : 'auto',
-          padding: isPreloading ? 0 : (isMobile ? '20px 24px' : '30px 60px'),
+          padding: isPreloading ? 0 : (isMobile ? '20px 16px' : '30px 60px'),
         }}
         transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
       >
@@ -209,7 +209,7 @@ export function MaxoLanding() {
           alt="MAXO"
           layoutId="brand-logo"
           style={{
-            width: isPreloading ? (isMobile ? '220px' : '340px') : (isMobile ? '100px' : '140px'),
+            width: isPreloading ? (isMobile ? '220px' : '340px') : (isMobile ? '140px' : '140px'),
             height: 'auto',
           }}
         />
@@ -508,10 +508,10 @@ function HeaderWrapper() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          style={{ position: 'fixed', top: isMobile ? '16px' : '20px', left: isMobile ? '24px' : '40px', zIndex: 60 }}
+          style={{ position: 'fixed', top: isMobile ? '16px' : '20px', left: isMobile ? '16px' : '40px', zIndex: 60 }}
         >
           <a href="/" style={{ display: 'block' }}>
-            <motion.img src={finalLogo} alt="MAXO" layoutId="brand-logo" style={{ width: isMobile ? '100px' : '140px', height: 'auto' }} />
+            <motion.img src={finalLogo} alt="MAXO" layoutId="brand-logo" style={{ width: isMobile ? '140px' : '140px', height: 'auto' }} />
           </a>
         </motion.div>
       )}
