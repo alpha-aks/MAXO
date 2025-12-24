@@ -29,8 +29,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           transition={{ type: 'tween', duration: 0.28 }}
           role="dialog"
           aria-modal="true"
-          className="fixed left-0 top-0 z-[9999] bg-black text-white"
-          style={{ width: '100vw', height: '100dvh', touchAction: 'none', right: 0, bottom: 0, transform: 'none' }}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: 'black',
+            color: 'white',
+            touchAction: 'none',
+            width: '100%',
+            height: '100%',
+            minHeight: '100vh',
+          }}
           onClick={onClose}
         >
           <div className="w-full h-full flex flex-col justify-between" onClick={(e) => e.stopPropagation()}>
