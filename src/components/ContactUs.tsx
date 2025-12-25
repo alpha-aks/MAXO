@@ -1,0 +1,207 @@
+import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail } from 'lucide-react';
+// import { useLocation, useNavigate } from 'react-router-dom';
+import Footer from './Footer';
+import StaggeredMenu from './StaggeredMenu';
+
+export default function ContactUs({ navigateTo }: { navigateTo: (page: string) => void }) {
+  // const location = useLocation();
+  // const navigate = useNavigate();
+
+  const menuItems = [
+    { label: 'About', ariaLabel: 'About', link: '/about' },
+    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
+    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
+    { label: 'News', ariaLabel: 'News', link: '/news' },
+    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
+  ];
+
+  const contactInfo = [
+   {
+      icon: MapPin,
+      title: 'Visit Our Studio',
+      details: [
+        '1215, Maple Trade Centre',
+        'Surdhara Circle, Maple Trade Ctr Rd',
+        'Thaltej, Ahmedabad, Gujarat 380052'
+      ]
+    },
+    {
+      icon: Phone,
+      title: 'Call Us',
+      details: [
+        'Main: +91 7778881060',
+        'Projects: +91 9227001016'
+      ]
+    },
+    {
+      icon: Mail,
+      title: 'Email Us',
+      details: [
+        'info@maxo.co.in',
+        'projects@maxo.co.in'
+      ]
+    }
+  ];
+
+  return (
+    <div style={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
+      {/* Navigation */}
+      <StaggeredMenu 
+        items={menuItems} 
+        position="left"
+        colors={['#333', '#111', '#000']}
+        menuButtonColor="white"
+        openMenuButtonColor="white"
+        accentColor="#888"
+      />
+
+      {/* Hero Section */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        style={{
+          padding: '120px 40px 80px',
+          textAlign: 'center',
+          background: 'linear-gradient(135deg, rgba(245,245,245,0.9) 0%, rgba(230,230,230,0.9) 100%)'
+        }}
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          style={{
+            fontSize: '4rem',
+            fontWeight: 300,
+            lineHeight: 1.1,
+            margin: '0 0 30px 0'
+          }}
+        >
+          Contact <span style={{ fontWeight: 'bold' }}>Us</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          style={{
+            fontSize: '1.2rem',
+            color: 'rgba(0, 0, 0, 0.8)',
+            maxWidth: '800px',
+            margin: '0 auto',
+            lineHeight: 1.6
+          }}
+        >
+          Ready to start your next project? We'd love to hear from you. 
+          Get in touch to discuss how we can bring your vision to life.
+        </motion.p>
+      </motion.section>
+
+      {/* Contact Info & Map */}
+      <section style={{ padding: '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
+        <style>{`
+          @media (max-width: 768px) {
+            .contact-grid {
+              grid-template-columns: 1fr !important;
+              gap: 50px !important;
+            }
+          }
+        `}</style>
+        <div className="contact-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '80px',
+          alignItems: 'flex-start'
+        }}>
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: 600,
+              margin: '0 0 40px 0'
+            }}>
+              Get in Touch
+            </h2>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+              {contactInfo.map((info, index) => {
+                const IconComponent = info.icon;
+                return (
+                  <motion.div
+                    key={info.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
+                    style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}
+                  >
+                    <div style={{
+                      padding: '12px',
+                      borderRadius: '8px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.1)'
+                    }}>
+                      <IconComponent size={24} style={{ color: 'rgba(0, 0, 0, 0.8)' }} />
+                    </div>
+                    <div>
+                      <h3 style={{
+                        fontSize: '1.1rem',
+                        fontWeight: 600,
+                        margin: '0 0 10px 0'
+                      }}>
+                        {info.title}
+                      </h3>
+                      <div style={{ color: 'rgba(0, 0, 0, 0.7)' }}>
+                        {info.details.map((detail, detailIndex) => (
+                          <p key={detailIndex} style={{ margin: '5px 0', fontSize: '0.95rem' }}>
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Map Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: 600,
+              margin: '0 0 30px 0'
+            }}>
+              Find Us On Map
+            </h2>
+            <div style={{
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
+              height: '400px',
+              width: '100%'
+            }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9274388828677!2d72.5271944!3d23.0703149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84c92e10c001%3A0xc6cc67f0cf7f8e8c!2s1205%2C%20Maple%20Trade%20Centre%2C%20Thaltej%2C%20Ahmedabad%2C%20Gujarat%20380052!5e0!3m2!1sen!2sin!4v1640000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, display: 'block' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Footer navigateTo={navigateTo} />
+    </div>
+  );
+}
