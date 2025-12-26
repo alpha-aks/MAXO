@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { Search } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import StaggeredMenu from './components/StaggeredMenu';
 import ArchitectContact from './components/ArchitectContact';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
@@ -89,14 +88,6 @@ export function MaxoLanding() {
       document.body.style.overflow = 'unset';
     };
   }, [isPreloading]);
-
-  const menuItems = [
-    { label: 'About', ariaLabel: 'About', link: '/about' },
-    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
-    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
-    { label: 'News', ariaLabel: 'News', link: '/news' },
-    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
-  ];
 
   return (
     <div style={{ position: 'relative', width: '100%', backgroundColor: 'black', color: 'white', fontFamily: 'sans-serif', minHeight: '100vh' }}>
