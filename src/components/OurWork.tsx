@@ -247,7 +247,7 @@ export default function OurWork() {
         <div className="ourwork-header-content">
           <span className="ourwork-label">Our Services</span>
           <h1 className="ourwork-title">
-            Architectural <span className="italic">Excellence</span>
+            Our <span className="italic">Expertise</span>
           </h1>
           <p className="ourwork-subtitle">
             We bring visionary designs to life through innovative architecture and sustainable solutions.

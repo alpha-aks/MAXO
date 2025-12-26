@@ -39,8 +39,7 @@ export default function WorkGallery({ isMobile }: { isMobile?: boolean }) {
       <div style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ paddingLeft: isMobile ? '24px' : '5vw', marginBottom: '60px' }}>
-           <h2 style={{ color: '#333', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1rem' }}>Selected Works</h2>
-           <h1 style={{ color: '#111', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5vw, 6rem)', margin: 0, lineHeight: 1 }}>Architectural<br/>Excellence</h1>
+          <h1 style={{ color: '#111', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5vw, 6rem)', margin: 0, lineHeight: 1 }}>Our<br/>Expertise</h1>
         </div>
 
         {/* Rows Container */}
