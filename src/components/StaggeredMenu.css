@@ -156,6 +156,11 @@
   height: 2px;
   background: currentColor;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 1px black;
+}
+
+.sm-social-btn svg {
+  filter: drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black);
 }
 
 .staggered-menu-panel {
