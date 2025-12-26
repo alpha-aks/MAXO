@@ -179,7 +179,7 @@ export function MaxoLanding() {
     </div>
 
     {/* Second Section: Modern About Section */}
-    <div style={{ position: 'sticky', top: 0, zIndex: 30, backgroundColor: 'white', width: '100%' }}>
+    <div style={{ position: 'relative', backgroundColor: 'white', width: '100%' }}>
       {/* Background Image for Second Div */}
       <div style={{
         position: 'absolute',
