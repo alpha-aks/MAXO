@@ -191,8 +191,8 @@ export function MaxoLanding() {
     </div>
 
     {/* Fourth Section: Dome Gallery */}
-    <div style={{ height: '800px', width: '100%', position: 'relative', overflow: 'hidden', backgroundColor: '#1a1a1a' }}>
-      <DomeGallery overlayBlurColor="#222222" />
+    <div style={{ height: '800px', width: '100%', position: 'relative', overflow: 'hidden', backgroundColor: '#000' }}>
+      <DomeGallery overlayBlurColor="#000" />
     </div>
 
     {/* Fifth Section: Footer */}

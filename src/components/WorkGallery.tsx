@@ -39,7 +39,7 @@ export default function WorkGallery({ isMobile }: { isMobile?: boolean }) {
       <div style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ paddingLeft: isMobile ? '24px' : '5vw', marginBottom: '60px' }}>
-          <h1 style={{ color: '#111', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5vw, 6rem)', margin: 0, lineHeight: 1 }}>Our<br/>Expertise</h1>
+            <h1 style={{ color: '#111', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5vw, 6rem)', margin: 0, lineHeight: 1 }}>Our Expertise</h1>
         </div>
 
         {/* Rows Container */}

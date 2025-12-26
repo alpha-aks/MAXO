@@ -78,10 +78,10 @@ export default function AboutModern({ isMobile }: { isMobile: boolean }) {
           {/* --- LEFT COLUMN: CARD SWAP --- */}
           <div style={{ position: 'relative', height: isMobile ? '340px' : '600px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
              <CardSwap width={isMobile ? 360 : 400} height={isMobile ? 200 : 500} cardDistance={40} verticalDistance={50}>
-                <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop')" }} />
-                <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop')" }} />
-                <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2670&auto=format&fit=crop')" }} />
-               <Card style={{ backgroundImage: "url('https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=2400&auto=format&fit=crop')" }} />
+               <Card style={{ backgroundImage: "url('/OPTION_2.png')" }} />
+               <Card style={{ backgroundImage: "url('/Scene%208_2.png')" }} />
+               <Card style={{ backgroundImage: "url('/SFH_Evening_View_1.jpg')" }} />
+               <Card style={{ backgroundImage: "url('/sfh2.png')" }} />
              </CardSwap>
           </div>
 
