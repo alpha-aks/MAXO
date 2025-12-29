@@ -85,7 +85,7 @@ export default function WorkCategoryPage() {
 
   return (
     <div className="project-page">
-      <button onClick={() => navigate(-1)} className="back-button">
+      <button onClick={() => navigate('/work')} className="back-button">
         ← Back
       </button>
 

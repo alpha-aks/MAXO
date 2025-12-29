@@ -22,6 +22,8 @@ export default function WorkProjectPage() {
   const navigate = useNavigate();
   const { categoryUid, projectUid } = useParams();
 
+  const backHref = categoryUid ? `/work/${categoryUid}` : '/work';
+
   const client = useMemo(() => createPrismicClient(), []);
   const [project, setProject] = useState<ProjectDoc | null>(null);
   const [loading, setLoading] = useState(true);
@@ -67,7 +69,7 @@ export default function WorkProjectPage() {
   if (loading) {
     return (
       <div className="work-project" style={{ padding: '2rem' }}>
-        <button onClick={() => navigate(-1)} className="back-button">
+        <button onClick={() => navigate(backHref)} className="back-button">
           ← Back
         </button>
         <p>Loading...</p>
@@ -78,7 +80,7 @@ export default function WorkProjectPage() {
   if (error || !project) {
     return (
       <div className="work-project" style={{ padding: '2rem' }}>
-        <button onClick={() => navigate(-1)} className="back-button">
+        <button onClick={() => navigate(backHref)} className="back-button">
           ← Back
         </button>
         <p style={{ color: '#b00020' }}>{error || 'Not found'}</p>
@@ -116,7 +118,7 @@ export default function WorkProjectPage() {
             <button
               type="button"
               className="work-return"
-              onClick={() => navigate(categoryUid ? `/work/${categoryUid}` : '/work')}
+              onClick={() => navigate(backHref)}
             >
               <span className="work-return-arrow">←</span>
               <span>Return to categories</span>
