@@ -289,7 +289,7 @@ function AppRoutes() {
         <Route path="/about" element={<PageWrapper><AboutUs /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactWithNav /></PageWrapper>} />
         <Route path="/work" element={<PageWrapper><OurWorkWithNav /></PageWrapper>} />
-        <Route path="/work/:categoryUid" element={<PageWrapper><WorkCategoryPage /></PageWrapper>} />
+           <Route path="/work/:categoryUid" element={<WorkCategoryPage />} />
         <Route path="/work/:categoryUid/:projectUid" element={<WorkProjectPage />} />
         <Route path="/projects" element={<Navigate to="/work" replace />} />
         <Route path="/projects/:categoryUid" element={<LegacyProjectsRedirect />} />
