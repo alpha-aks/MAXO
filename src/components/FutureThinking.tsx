@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lightbulb, Zap, Globe, Cpu, Leaf, Users } from 'lucide-react';
 // import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,6 +8,15 @@ import StaggeredMenu from './StaggeredMenu';
 export default function FutureThinking({ navigateTo }: { navigateTo: (page: string) => void }) {
   // const location = useLocation();
   // const navigate = useNavigate();
+
+  const [isMobile, setIsMobile] = useState(() => (typeof window === 'undefined' ? false : window.innerWidth <= 768));
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const heroBgUrl = '/future-contact-bg.png';
 
@@ -97,7 +106,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         style={{
-          padding: '120px 40px 80px',
+          padding: isMobile ? '96px 20px 56px' : '120px 40px 80px',
           textAlign: 'center',
           color: 'white',
           backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("${heroBgUrl}")`,
@@ -111,7 +120,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           style={{
-            fontSize: '4rem',
+            fontSize: isMobile ? '2.6rem' : '4rem',
             fontWeight: 300,
             lineHeight: 1.1,
             margin: '0 0 30px 0'
@@ -124,7 +133,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
           style={{
-            fontSize: '1.2rem',
+            fontSize: isMobile ? '1rem' : '1.2rem',
             color: 'rgba(255, 255, 255, 0.9)',
             maxWidth: '800px',
             margin: '0 auto',
@@ -137,7 +146,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
       </motion.section>
 
       {/* Innovation Areas */}
-      <section style={{ padding: '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
+      <section style={{ padding: isMobile ? '56px 20px' : '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -154,8 +163,8 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '30px'
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: isMobile ? '20px' : '30px'
         }}>
           {innovations.map((innovation, index) => {
             const IconComponent = innovation.icon;
@@ -166,7 +175,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 + index * 0.1, duration: 0.8 }}
                 style={{
-                  padding: '30px',
+                  padding: isMobile ? '24px' : '30px',
                   borderRadius: '12px',
                   backgroundColor: 'rgba(0, 0, 0, 0.05)',
                   border: '1px solid rgba(0, 0, 0, 0.1)',
@@ -221,7 +230,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
 
       {/* Future Vision Statement */}
       <section style={{ 
-        padding: '80px 40px', 
+        padding: isMobile ? '56px 20px' : '80px 40px', 
         backgroundColor: 'rgba(255, 255, 255, 0.9)',
         textAlign: 'center'
       }}>
@@ -243,7 +252,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 0.8 }}
             style={{
-              fontSize: '1.3rem',
+              fontSize: isMobile ? '1.1rem' : '1.3rem',
               lineHeight: 1.7,
               color: 'rgba(0, 0, 0, 0.8)',
               fontStyle: 'italic',
@@ -259,7 +268,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
       </section>
 
       {/* Insights & Research */}
-      <section style={{ padding: '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
+      <section style={{ padding: isMobile ? '56px 20px' : '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -285,7 +294,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2 + index * 0.2, duration: 0.8 }}
               style={{
-                padding: '40px',
+                padding: isMobile ? '24px' : '40px',
                 borderRadius: '12px',
                 backgroundColor: 'rgba(0, 0, 0, 0.05)',
                 border: '1px solid rgba(0, 0, 0, 0.1)'
