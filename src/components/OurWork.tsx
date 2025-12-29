@@ -1,123 +1,79 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { asImageSrc } from '@prismicio/helpers';
 import StaggeredMenu from './StaggeredMenu';
+import { createPrismicClient } from '../prismicClient';
 import './OurWork.css';
 
-// Project data with images
-const projectItems = [
+type CategoryCard = {
+  id: string;
+  uid: string;
+  title: string;
+  image: string;
+  description: string;
+};
+
+// Fallback data (used if Prismic isn't configured yet)
+const fallbackCategoryItems: CategoryCard[] = [
   {
-    id: 1,
+    id: '1',
+    uid: 'commercial-architecture',
     title: 'Commercial Architecture',
     image: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop',
     description: 'Creating innovative commercial spaces that inspire productivity and collaboration.',
-    links: [
-      { id: 1, name: 'Office Towers' },
-      { id: 2, name: 'Retail Spaces' },
-      { id: 3, name: 'Mixed-Use' },
-      { id: 4, name: 'Corporate HQ' }
-    ]
   },
   {
-    id: 2,
+    id: '2',
+    uid: 'residential-design',
     title: 'Residential Design',
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop',
     description: 'Crafting homes that blend luxury with functionality and sustainable living.',
-    links: [
-      { id: 1, name: 'Luxury Villas' },
-      { id: 2, name: 'Apartments' },
-      { id: 3, name: 'Townhouses' },
-      { id: 4, name: 'Penthouses' }
-    ]
   },
   {
-    id: 3,
+    id: '3',
+    uid: 'cultural-public',
     title: 'Cultural & Public',
     image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2707&auto=format&fit=crop',
     description: 'Designing museums, galleries, and public spaces that enrich communities.',
-    links: [
-      { id: 1, name: 'Museums' },
-      { id: 2, name: 'Galleries' },
-      { id: 3, name: 'Libraries' },
-      { id: 4, name: 'Civic Centers' }
-    ]
   },
   {
-    id: 4,
+    id: '4',
+    uid: 'hospitality',
     title: 'Hospitality',
     image: 'https://images.unsplash.com/photo-1555636222-cae831e670b3?q=80&w=2677&auto=format&fit=crop',
     description: 'Creating memorable hospitality experiences through thoughtful architecture.',
-    links: [
-      { id: 1, name: 'Hotels' },
-      { id: 2, name: 'Resorts' },
-      { id: 3, name: 'Restaurants' },
-      { id: 4, name: 'Spas' }
-    ]
   },
   {
-    id: 5,
+    id: '5',
+    uid: 'urban-planning',
     title: 'Urban Planning',
     image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?q=80&w=2670&auto=format&fit=crop',
     description: 'Innovative urban planning for sustainable and vibrant cities.',
-    links: [
-      { id: 1, name: 'City Centers' },
-      { id: 2, name: 'Parks' },
-      { id: 3, name: 'Transit Hubs' },
-      { id: 4, name: 'Public Squares' }
-    ]
   },
   {
-    id: 6,
+    id: '6',
+    uid: 'educational-facilities',
     title: 'Educational Facilities',
     image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2670&auto=format&fit=crop',
     description: 'Designing schools and universities that foster learning and growth.',
-    links: [
-      { id: 1, name: 'Schools' },
-      { id: 2, name: 'Colleges' },
-      { id: 3, name: 'Universities' },
-      { id: 4, name: 'Research Centers' }
-    ]
   },
   {
-    id: 7,
+    id: '7',
+    uid: 'healthcare',
     title: 'Healthcare',
     image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2670&auto=format&fit=crop',
     description: 'Modern healthcare facilities designed for wellness and efficiency.',
-    links: [
-      { id: 1, name: 'Hospitals' },
-      { id: 2, name: 'Clinics' },
-      { id: 3, name: 'Medical Offices' },
-      { id: 4, name: 'Wellness Centers' }
-    ]
   },
   {
-    id: 8,
+    id: '8',
+    uid: 'recreational-spaces',
     title: 'Recreational Spaces',
     image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2670&auto=format&fit=crop',
     description: 'Spaces for leisure, sports, and recreation for all ages.',
-    links: [
-      { id: 1, name: 'Sports Complexes' },
-      { id: 2, name: 'Playgrounds' },
-      { id: 3, name: 'Community Centers' },
-      { id: 4, name: 'Arenas' }
-    ]
   }
 ];
-
-// Tag component
-const Tag = ({ name, isHovered }: { name: string; isHovered: boolean }) => (
-  <motion.span
-    className="ourwork-tag"
-    whileHover={{ scale: 1.05, backgroundColor: '#000', color: '#fff' }}
-    animate={{ 
-      backgroundColor: isHovered ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.05)',
-    }}
-    transition={{ duration: 0.3 }}
-  >
-    {name}
-  </motion.span>
-);
 
 // Project Card component
 const ProjectCard = ({ 
@@ -127,7 +83,7 @@ const ProjectCard = ({
   onLeave, 
   onRedirect
 }: { 
-  item: typeof projectItems[0]; 
+  item: CategoryCard;
   isHovered: boolean;
   onHover: () => void;
   onLeave: () => void;
@@ -179,8 +135,10 @@ const ProjectCard = ({
 
 
 export default function OurWork() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [items, setItems] = useState<CategoryCard[]>(fallbackCategoryItems);
   const navigate = useNavigate();
+  const client = useMemo(() => createPrismicClient(), []);
 
   const menuItems = [
     { label: 'About', ariaLabel: 'About', link: '/about' },
@@ -190,39 +148,51 @@ export default function OurWork() {
     { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
   ];
 
-  // Redirect handler for each project
-  const handleRedirect = (item: typeof projectItems[0]) => {
-    let slug = '';
-    switch (item.title) {
-      case 'Commercial Architecture':
-        slug = 'commercial-architecture';
-        break;
-      case 'Residential Design':
-        slug = 'residential-design';
-        break;
-      case 'Cultural & Public':
-        slug = 'cultural-public';
-        break;
-      case 'Hospitality':
-        slug = 'hospitality';
-        break;
-      case 'Urban Planning':
-        slug = 'urban-planning';
-        break;
-      case 'Educational Facilities':
-        slug = 'educational-facilities';
-        break;
-      case 'Healthcare':
-        slug = 'healthcare';
-        break;
-      case 'Recreational Spaces':
-        slug = 'recreational-spaces';
-        break;
-      default:
-        slug = '';
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadCategories() {
+      try {
+        if (!client) return;
+        const docs = await client.getAllByType('work_category', {
+          orderings: {
+            field: 'my.work_category.order',
+            direction: 'asc',
+          },
+          pageSize: 100,
+        });
+
+        const mapped = docs
+          .map((doc: any) => {
+            const uid = doc.uid as string | null;
+            if (!uid) return null;
+            return {
+              id: String(doc.id),
+              uid,
+              title: (doc.data?.title as string) || uid,
+              description: (doc.data?.description as string) || '',
+              image: asImageSrc(doc.data?.card_image) || fallbackCategoryItems[0].image,
+            } satisfies CategoryCard;
+          })
+          .filter(Boolean) as CategoryCard[];
+
+        if (!cancelled && mapped.length) {
+          setItems(mapped);
+        }
+      } catch {
+        // Keep fallback data if Prismic fails
+      }
     }
-    const target = slug ? `/projects/${slug}` : '/work';
-    navigate(target);
+
+    loadCategories();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [client]);
+
+  const handleRedirect = (item: CategoryCard) => {
+    navigate(`/work/${item.uid}`);
   };
 
   return (
@@ -257,7 +227,7 @@ export default function OurWork() {
 
       {/* Projects Grid */}
       <div className="ourwork-grid ourwork-grid-4cols">
-        {projectItems.map((item) => (
+        {items.map((item) => (
           <div className="ourwork-item" key={item.id}>
             {/* Title with dot */}
             <div className="ourwork-item-header">
@@ -272,16 +242,6 @@ export default function OurWork() {
               onLeave={() => setHoveredId(null)}
               onRedirect={() => handleRedirect(item)}
             />
-            {/* Tags */}
-            <div className="ourwork-tags">
-              {item.links.map((link) => (
-                <Tag
-                  key={link.id}
-                  name={link.name}
-                  isHovered={hoveredId === item.id}
-                />
-              ))}
-            </div>
           </div>
         ))}
       </div>

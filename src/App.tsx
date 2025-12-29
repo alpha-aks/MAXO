@@ -13,6 +13,8 @@ import WorkGallery from './components/WorkGallery';
 import DomeGallery from './components/DomeGallery';
 import Footer from './components/Footer';
 import SharedHeader from './components/SharedHeader';
+import WorkCategoryPage from './components/work/WorkCategoryPage';
+import WorkProjectPage from './components/work/WorkProjectPage';
 
 
 
@@ -272,15 +274,7 @@ function AppRoutes() {
     return <FutureThinking navigateTo={navigateTo} />;
   }
 
-  // Lazy load project pages
-  const CommercialArchitecture = React.lazy(() => import('./components/projects/CommercialArchitecture'));
-  const ResidentialDesign = React.lazy(() => import('./components/projects/ResidentialDesign'));
-  const CulturalPublic = React.lazy(() => import('./components/projects/CulturalPublic'));
-  const Hospitality = React.lazy(() => import('./components/projects/Hospitality'));
-  const UrbanPlanning = React.lazy(() => import('./components/projects/UrbanPlanning'));
-  const EducationalFacilities = React.lazy(() => import('./components/projects/EducationalFacilities'));
-  const Healthcare = React.lazy(() => import('./components/projects/Healthcare'));
-  const RecreationalSpaces = React.lazy(() => import('./components/projects/RecreationalSpaces'));
+  // Legacy project pages are kept in the repo, but routing is now Prismic-driven under /work/:categoryUid
   const AllProject = React.lazy(() => import('./components/projects/allproject'));
 
   return (
@@ -290,17 +284,11 @@ function AppRoutes() {
         <Route path="/about" element={<PageWrapper><AboutUs /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactWithNav /></PageWrapper>} />
         <Route path="/work" element={<PageWrapper><OurWorkWithNav /></PageWrapper>} />
+        <Route path="/work/:categoryUid" element={<PageWrapper><WorkCategoryPage /></PageWrapper>} />
+        <Route path="/work/:categoryUid/:projectUid" element={<WorkProjectPage />} />
         <Route path="/news" element={<PageWrapper><NewsWithNav /></PageWrapper>} />
         <Route path="/future" element={<PageWrapper><FutureWithNav /></PageWrapper>} />
         <Route path="/architect" element={<PageWrapper><ArchitectContact /></PageWrapper>} />
-        <Route path="/projects/commercial-architecture" element={<PageWrapper><CommercialArchitecture /></PageWrapper>} />
-        <Route path="/projects/residential-design" element={<PageWrapper><ResidentialDesign /></PageWrapper>} />
-        <Route path="/projects/cultural-public" element={<PageWrapper><CulturalPublic /></PageWrapper>} />
-        <Route path="/projects/hospitality" element={<PageWrapper><Hospitality /></PageWrapper>} />
-        <Route path="/projects/urban-planning" element={<PageWrapper><UrbanPlanning /></PageWrapper>} />
-        <Route path="/projects/educational-facilities" element={<PageWrapper><EducationalFacilities /></PageWrapper>} />
-        <Route path="/projects/healthcare" element={<PageWrapper><Healthcare /></PageWrapper>} />
-        <Route path="/projects/recreational-spaces" element={<PageWrapper><RecreationalSpaces /></PageWrapper>} />
         <Route path="/allproject" element={<PageWrapper><AllProject /></PageWrapper>} />
       </Routes>
     </Suspense>
