@@ -15,66 +15,6 @@ type CategoryCard = {
   description: string;
 };
 
-// Fallback data (used if Prismic isn't configured yet)
-const fallbackCategoryItems: CategoryCard[] = [
-  {
-    id: '1',
-    uid: 'commercial-architecture',
-    title: 'Commercial Architecture',
-    image: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop',
-    description: 'Creating innovative commercial spaces that inspire productivity and collaboration.',
-  },
-  {
-    id: '2',
-    uid: 'residential-design',
-    title: 'Residential Design',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop',
-    description: 'Crafting homes that blend luxury with functionality and sustainable living.',
-  },
-  {
-    id: '3',
-    uid: 'cultural-public',
-    title: 'Cultural & Public',
-    image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2707&auto=format&fit=crop',
-    description: 'Designing museums, galleries, and public spaces that enrich communities.',
-  },
-  {
-    id: '4',
-    uid: 'hospitality',
-    title: 'Hospitality',
-    image: 'https://images.unsplash.com/photo-1555636222-cae831e670b3?q=80&w=2677&auto=format&fit=crop',
-    description: 'Creating memorable hospitality experiences through thoughtful architecture.',
-  },
-  {
-    id: '5',
-    uid: 'urban-planning',
-    title: 'Urban Planning',
-    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?q=80&w=2670&auto=format&fit=crop',
-    description: 'Innovative urban planning for sustainable and vibrant cities.',
-  },
-  {
-    id: '6',
-    uid: 'educational-facilities',
-    title: 'Educational Facilities',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2670&auto=format&fit=crop',
-    description: 'Designing schools and universities that foster learning and growth.',
-  },
-  {
-    id: '7',
-    uid: 'healthcare',
-    title: 'Healthcare',
-    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2670&auto=format&fit=crop',
-    description: 'Modern healthcare facilities designed for wellness and efficiency.',
-  },
-  {
-    id: '8',
-    uid: 'recreational-spaces',
-    title: 'Recreational Spaces',
-    image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2670&auto=format&fit=crop',
-    description: 'Spaces for leisure, sports, and recreation for all ages.',
-  }
-];
-
 // Project Card component
 const ProjectCard = ({ 
   item, 
@@ -102,7 +42,7 @@ const ProjectCard = ({
   >
     <div className="ourwork-card-image-wrapper">
       <motion.img
-        src={item.image}
+        src={item.image || 'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop'}
         alt={item.title}
         className="ourwork-card-image"
         animate={{ scale: isHovered ? 1.08 : 1 }}
@@ -136,7 +76,9 @@ const ProjectCard = ({
 
 export default function OurWork() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [items, setItems] = useState<CategoryCard[]>(fallbackCategoryItems);
+  const [items, setItems] = useState<CategoryCard[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const navigate = useNavigate();
   const client = useMemo(() => createPrismicClient(), []);
 
@@ -153,7 +95,12 @@ export default function OurWork() {
 
     async function loadCategories() {
       try {
-        if (!client) return;
+        setLoading(true);
+        setLoadError(null);
+
+        if (!client) {
+          throw new Error('Prismic is not configured. Set VITE_PRISMIC_REPO_NAME on Vercel.');
+        }
         const docs = await client.getAllByType('work_category', {
           orderings: {
             field: 'my.work_category.order',
@@ -171,16 +118,23 @@ export default function OurWork() {
               uid,
               title: (doc.data?.title as string) || uid,
               description: (doc.data?.description as string) || '',
-              image: asImageSrc(doc.data?.card_image) || fallbackCategoryItems[0].image,
+              image: asImageSrc(doc.data?.card_image) || '',
             } satisfies CategoryCard;
           })
           .filter(Boolean) as CategoryCard[];
 
-        if (!cancelled && mapped.length) {
+        if (!cancelled) {
           setItems(mapped);
         }
-      } catch {
-        // Keep fallback data if Prismic fails
+      } catch (e) {
+        if (!cancelled) {
+          setItems([]);
+          setLoadError(e instanceof Error ? e.message : 'Failed to load categories');
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     }
 
@@ -227,6 +181,20 @@ export default function OurWork() {
 
       {/* Projects Grid */}
       <div className="ourwork-grid ourwork-grid-4cols">
+        {loading ? (
+          <p style={{ gridColumn: '1 / -1', color: 'rgba(0,0,0,0.6)' }}>Loading categories...</p>
+        ) : null}
+
+        {!loading && loadError ? (
+          <p style={{ gridColumn: '1 / -1', color: '#b00020' }}>{loadError}</p>
+        ) : null}
+
+        {!loading && !loadError && items.length === 0 ? (
+          <p style={{ gridColumn: '1 / -1', color: 'rgba(0,0,0,0.6)' }}>
+            No categories found in Prismic yet.
+          </p>
+        ) : null}
+
         {items.map((item) => (
           <div className="ourwork-item" key={item.id}>
             {/* Title with dot */}

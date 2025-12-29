@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { Search } from 'lucide-react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom';
 import ArchitectContact from './components/ArchitectContact';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
@@ -244,6 +244,12 @@ function AppRoutes() {
     return <OurWork />;
   }
 
+  function LegacyProjectsRedirect() {
+    const { categoryUid } = useParams();
+    const target = categoryUid ? `/work/${categoryUid}` : '/work';
+    return <Navigate to={target} replace />;
+  }
+
   function NewsWithNav() {
     const nav = useNavigate();
     const navigateTo = (page: string) => {
@@ -274,8 +280,7 @@ function AppRoutes() {
     return <FutureThinking navigateTo={navigateTo} />;
   }
 
-  // Legacy project pages are kept in the repo, but routing is now Prismic-driven under /work/:categoryUid
-  const AllProject = React.lazy(() => import('./components/projects/allproject'));
+  // Legacy pages are kept in the repo, but routing is now Prismic-driven under /work/:categoryUid
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -286,10 +291,12 @@ function AppRoutes() {
         <Route path="/work" element={<PageWrapper><OurWorkWithNav /></PageWrapper>} />
         <Route path="/work/:categoryUid" element={<PageWrapper><WorkCategoryPage /></PageWrapper>} />
         <Route path="/work/:categoryUid/:projectUid" element={<WorkProjectPage />} />
+        <Route path="/projects" element={<Navigate to="/work" replace />} />
+        <Route path="/projects/:categoryUid" element={<LegacyProjectsRedirect />} />
+        <Route path="/allproject" element={<Navigate to="/work" replace />} />
         <Route path="/news" element={<PageWrapper><NewsWithNav /></PageWrapper>} />
         <Route path="/future" element={<PageWrapper><FutureWithNav /></PageWrapper>} />
         <Route path="/architect" element={<PageWrapper><ArchitectContact /></PageWrapper>} />
-        <Route path="/allproject" element={<PageWrapper><AllProject /></PageWrapper>} />
       </Routes>
     </Suspense>
   );
