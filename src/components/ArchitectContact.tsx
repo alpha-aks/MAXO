@@ -60,7 +60,7 @@ export default function ArchitectContact() {
     display: 'flex',
     // SWITCH LAYOUT BASED ON SCREEN SIZE
     flexDirection: isMobile ? 'column' as const : 'row' as const, 
-    fontFamily: '"Inter", sans-serif',
+    fontFamily: 'var(--font-primary)',
     overflow: isMobile ? 'auto' : 'hidden'
   };
 
@@ -104,7 +104,6 @@ export default function ArchitectContact() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
         body { margin: 0; background: #030610; }
         input:focus, select:focus { border-color: white !important; }
       `}</style>
