@@ -308,6 +308,12 @@
     border-radius: 1px;
   }
 
+  /* When the mobile menu is open (full width), move the handle to the right edge */
+  .staggered-menu-wrapper[data-open="true"] .sm-edge-zone {
+    left: calc(100vw - var(--sm-handle-width));
+    right: auto;
+  }
+
   .sm-panel-inner {
     padding: 20px;
   }
@@ -335,9 +341,81 @@
 }
 
 .staggered-menu-wrapper[data-open="true"] .sm-menu-home img {
-  width: 96px;
+  width: 128px;
   height: auto;
   display: block;
+}
+
+/* Right-side meta (desktop only) */
+.sm-menu-desktop-right {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .staggered-menu-wrapper[data-open="true"] .sm-menu-desktop-right {
+    display: block;
+  }
+
+  .staggered-menu-wrapper[data-open="true"] .sm-menu-address {
+    position: fixed;
+    top: 22px;
+    right: 24px;
+    z-index: 20010;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+    max-width: 380px;
+    pointer-events: auto;
+  }
+
+  .sm-menu-address-title {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+  }
+
+  .sm-menu-address-lines {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .staggered-menu-wrapper[data-open="true"] .sm-menu-bottom {
+    position: fixed;
+    right: 24px;
+    bottom: 22px;
+    z-index: 20010;
+    text-align: right;
+    pointer-events: auto;
+  }
+
+  .sm-menu-links {
+    display: flex;
+    gap: 18px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .sm-menu-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .sm-menu-links a:hover {
+    color: #fff;
+  }
+
+  .sm-menu-email {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .sm-menu-email:hover {
+    color: #fff;
+  }
 }
 
 @media (max-width: 768px) {
@@ -369,7 +447,7 @@
   }
 
   .staggered-menu-wrapper[data-open="true"] .sm-menu-home img {
-    width: 84px;
+    width: 104px;
   }
 }
 

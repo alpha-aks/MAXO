@@ -335,6 +335,15 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     [closeMenu, navigate]
   );
 
+  const handleRouteClick = useCallback(
+    (path: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      closeMenu();
+      navigate(path);
+    },
+    [closeMenu, navigate]
+  );
+
   const resolvedLogoUrl = logoUrl || '/maxo logo.png';
 
   React.useEffect(() => {
@@ -395,6 +404,25 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           <a href="/" className="sm-menu-home" aria-label="Home" onClick={handleHomeClick}>
             <img src={resolvedLogoUrl} alt="Home" />
           </a>
+
+          <div className="sm-menu-desktop-right" aria-hidden={!open}>
+            <div className="sm-menu-address">
+              <div className="sm-menu-address-title">HEADQUARTERS</div>
+              <div className="sm-menu-address-lines">
+                <div>1215, Maple Trade Centre, Surdhara Circle</div>
+                <div>Maple Trade Ctr Rd, Thaltej</div>
+                <div>Ahmedabad, Gujarat 380052</div>
+              </div>
+            </div>
+            <div className="sm-menu-bottom">
+              <div className="sm-menu-links">
+                <a href="/contact" onClick={handleRouteClick('/contact')}>Contact</a>
+                <a href="/privacy-policy" onClick={handleRouteClick('/privacy-policy')}>Privacy Policy</a>
+              </div>
+              <a className="sm-menu-email" href="mailto:info@maxo.co.in">info@maxo.co.in</a>
+            </div>
+          </div>
+
           <button
             type="button"
             className="sm-mobile-close"

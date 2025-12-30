@@ -223,6 +223,16 @@ function AppRoutes() {
     );
   }
 
+  function PrivacyPolicyPage() {
+    return (
+      <PageWrapper>
+        <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh', padding: '120px 20px 80px' }}>
+          <h1 style={{ margin: 0, fontWeight: 600, fontSize: '2.2rem' }}>Privacy Policy</h1>
+        </div>
+      </PageWrapper>
+    );
+  }
+
   // Wrapper components that provide a `navigateTo` helper via `useNavigate`.
   function ContactWithNav() {
     const nav = useNavigate();
@@ -287,6 +297,7 @@ function AppRoutes() {
         <Route path="/" element={<MaxoLanding />} />
         <Route path="/about" element={<PageWrapper><AboutUs /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactWithNav /></PageWrapper>} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/work" element={<PageWrapper><OurWorkWithNav /></PageWrapper>} />
            <Route path="/work/:categoryUid" element={<WorkCategoryPage />} />
         <Route path="/work/:categoryUid/:projectUid" element={<WorkProjectPage />} />
