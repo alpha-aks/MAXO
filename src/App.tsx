@@ -92,7 +92,7 @@ export function MaxoLanding() {
   }, [isPreloading]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', backgroundColor: 'black', color: 'white', fontFamily: 'sans-serif', minHeight: '100vh' }}>
+    <div style={{ position: 'relative', width: '100%', backgroundColor: 'black', color: 'white', minHeight: '100vh' }}>
       
       {/* Main Landing Container - Full Screen */}
       <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', backgroundColor: 'black' }}>

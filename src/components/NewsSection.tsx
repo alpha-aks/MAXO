@@ -47,7 +47,7 @@ export default function NewsSection({ isMobile }: { isMobile?: boolean }) {
               
               {/* Left: Meta Data */}
               <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: '16px', alignItems: isMobile ? 'center' : 'flex-start' }}>
-                <span style={{ fontSize: '12px', fontWeight: 700, color: '#999', fontFamily: 'monospace' }}>{item.date}</span>
+                <span style={{ fontSize: '12px', fontWeight: 700, color: '#999' }}>{item.date}</span>
                 <span style={{ paddingLeft: '12px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', display: 'inline-block', width: 'fit-content' }}>
                   {item.category}
                 </span>

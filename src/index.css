@@ -46,6 +46,11 @@ body,
   height: 100%;
 }
 
+html,
+body {
+  font-family: var(--font-primary);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
