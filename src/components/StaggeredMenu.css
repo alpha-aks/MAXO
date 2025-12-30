@@ -53,29 +53,20 @@
   cursor: pointer;
   padding: 0;
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) scaleX(1);
+  transform-origin: left center;
   transition: transform 0.25s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: auto;
 }
 
-/* Hover interaction: make the black bar grow a bit wider */
-.sm-edge-zone:hover {
-  width: calc(var(--sm-edge-zone-width) + 12px);
-}
-
-/* And nudge the bar so it feels like it “slides out” */
+/* Hover interaction: nudge + slightly widen the black bar */
 .sm-edge-zone:hover .sm-edge-toggle {
-  transform: translateX(6px);
+  transform: translateX(6px) scaleX(1.18);
 }
 
 .staggered-menu-wrapper[data-position="right"] .sm-edge-zone:hover .sm-edge-toggle {
-  transform: translateX(-6px);
-}
-
-@media (max-width: 768px) {
-  .sm-edge-zone:hover {
-    width: var(--sm-edge-zone-width);
-  }
+  transform-origin: right center;
+  transform: translateX(-6px) scaleX(1.18);
 }
 
 .staggered-menu-wrapper[data-position="right"] .sm-edge-toggle {
