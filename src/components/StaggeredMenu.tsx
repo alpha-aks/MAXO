@@ -153,10 +153,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     // Move the edge bar (handle) with the drawer so it feels attached.
     if (edgeZone) {
-      // Slide the edge/handle to the outer edge of the open panel.
-      // Keeping it OUTSIDE the panel prevents it from covering address/mail content.
       const panelWidth = panel.getBoundingClientRect().width;
-      const delta = Math.max(0, panelWidth);
+      const edgeWidth = edgeZone.getBoundingClientRect().width;
+      // Keep the bar ON the panel edge (inside), so you don't see the grey page behind it.
+      const delta = Math.max(0, panelWidth - edgeWidth);
       const targetX = position === 'right' ? -delta : delta;
       tl.to(
         edgeZone,
