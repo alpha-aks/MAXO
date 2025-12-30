@@ -1,5 +1,5 @@
 .work-project {
-  background: #fff;
+  background: #e8e8e8;
   min-height: 100vh;
   color: #000;
 }
@@ -74,7 +74,6 @@
   border: none;
   background: transparent;
   color: #111;
-  cursor: pointer;
   font-size: 14px;
   line-height: 1;
 }

@@ -1,13 +1,11 @@
 # Fonts
 
-This project is configured to use **Chronicle Display** site-wide.
+This project is configured to use **Halyard Display Book** site-wide.
 
-To enable it locally and in production, place your licensed font files in this folder with these exact names:
+To enable it locally and in production, place your licensed font file in this folder with this exact name:
 
-- `ChronicleDisplay-Regular.woff2` (weight 400, normal)
-- `ChronicleDisplay-Italic.woff2` (weight 400, italic)
-- `ChronicleDisplay-Bold.woff2` (weight 700, normal)
+- `HalyardDisplay-Book.woff2` (weight 400, normal)
 
 The global font stack is defined in `src/index.css` using `@font-face` and the CSS variable `--font-primary`.
 
-Note: Chronicle Display is a commercial font. Do not commit font binaries unless your license permits redistribution.
+Note: Halyard Display is a commercial font. Do not commit font binaries unless your license permits redistribution.

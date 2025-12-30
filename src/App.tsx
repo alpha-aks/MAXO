@@ -121,32 +121,31 @@ export function MaxoLanding() {
         style={{
           position: 'absolute',
           top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.35)',
+          left: 'calc(-1 * var(--sm-safe-gutter-left, 0px))',
+          width: 'calc(100% + var(--sm-safe-gutter-left, 0px))',
+          height: '100%',
+          backgroundColor: isPreloading ? 'transparent' : 'rgba(0,0,0,0.35)',
           zIndex: 10,
           pointerEvents: 'none',
         }}
       />
 
-      {/* ----------------------------------------------------
-          LAYER 2: Dark Overlay
-      ----------------------------------------------------- */}
+      {/* Full-screen preloader dark overlay */}
       <AnimatePresence>
         {isPreloading && (
           <motion.div
             initial={{ y: 0, opacity: 1 }}
-            exit={{ y: '-100%' }} // Slides UP
+            exit={{ y: '-100%' }}
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
             style={{
-              position: 'absolute',
+              position: 'fixed',
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
+              width: '100vw',
+              height: '100vh',
               backgroundColor: 'rgba(0,0,0,0.6)',
-              zIndex: 40
+              zIndex: 40,
+              pointerEvents: 'none'
             }}
           />
         )}
@@ -181,7 +180,7 @@ export function MaxoLanding() {
     </div>
 
     {/* Second Section: Modern About Section */}
-    <div style={{ position: 'relative', backgroundColor: 'white', width: '100%' }}>
+    <div style={{ position: 'relative', backgroundColor: '#e8e8e8', width: '100%' }}>
       <div style={{ position: 'relative' }}>
         <AboutModern isMobile={isMobile} />
       </div>

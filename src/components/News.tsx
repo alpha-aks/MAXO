@@ -97,7 +97,7 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
   const featuredArticle = newsArticles.find(article => article.featured);
 
   return (
-    <div style={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
       {/* Navigation */}
       <StaggeredMenu 
         items={menuItems} 

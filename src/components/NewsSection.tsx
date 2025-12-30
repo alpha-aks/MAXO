@@ -35,7 +35,7 @@ export default function NewsSection({ isMobile }: { isMobile?: boolean }) {
             transition={{ duration: 0.6, delay: i * 0.1 }}
             viewport={{ once: true }}
             style={{ borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '48px', paddingBottom: '48px', cursor: 'pointer', paddingLeft: '16px', paddingRight: '16px' }}
-            whileHover={{ backgroundColor: '#ffffff', transition: { duration: 0.3 } }}
+            whileHover={{ backgroundColor: '#e8e8e8', transition: { duration: 0.3 } }}
           >
             <div style={{ 
               display: isMobile ? 'flex' : 'grid', 

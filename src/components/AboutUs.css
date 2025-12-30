@@ -118,7 +118,7 @@
 /* Story Section */
 .about-story {
   padding: 140px 80px;
-  background-color: #fff;
+  background-color: #e8e8e8;
   color: #000;
   overflow: hidden;
 }
@@ -302,7 +302,7 @@
 /* Team Section */
 .about-team {
   padding: 140px 80px;
-  background-color: #fff;
+  background-color: #e8e8e8;
   color: #000;
 }
 
@@ -586,7 +586,7 @@
 
   .about-value-item {
     padding: 20px;
-    background-color: #fff;
+    background-color: #e8e8e8;
     border-radius: 12px;
     border-top: 2px solid #000;
   }

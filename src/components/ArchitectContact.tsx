@@ -184,7 +184,7 @@ export default function ArchitectContact() {
               </div>
 
               <button style={{ 
-                marginTop: '16px', padding: '16px', backgroundColor: 'white', color: 'black', fontWeight: 600, 
+                marginTop: '16px', padding: '16px', backgroundColor: '#e8e8e8', color: 'black', fontWeight: 600, 
                 fontSize: '0.85rem', textTransform: 'uppercase', border: 'none', width: '100%', borderRadius: '6px'
               }}>
                 Initialize Project

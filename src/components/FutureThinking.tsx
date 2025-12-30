@@ -81,7 +81,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
   ];
 
   return (
-    <div style={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
       {/* Navigation */}
       <StaggeredMenu 
         items={[

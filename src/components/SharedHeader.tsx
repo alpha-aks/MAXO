@@ -62,50 +62,55 @@ export default function SharedHeader({ isMobile, isPreloading = false }: { isMob
       </div>
 
       {/* Menu */}
-      {!isPreloading && (
-        <>
-          <div 
-            style={{ 
-              position: 'fixed', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              height: '20px', 
-              zIndex: 999,
-            }}
-            onMouseEnter={() => setIsMenuVisible(true)}
-          />
+      <>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '20px',
+            zIndex: 999,
+            pointerEvents: isPreloading ? 'none' : 'auto'
+          }}
+          onMouseEnter={() => {
+            if (!isPreloading) setIsMenuVisible(true);
+          }}
+        />
 
-          <motion.div
-            animate={{ y: (isMenuVisible || isMenuOpen) ? 0 : -100 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            style={{ 
-              position: 'fixed', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              zIndex: 100,
-              pointerEvents: 'none' 
-            }}
-          >
-            <StaggeredMenu 
-              items={menuItems} 
-              socialItems={[
-                { label: 'Instagram', link: 'https://instagram.com' },
-                { label: 'Twitter', link: 'https://twitter.com' },
-                { label: 'YouTube', link: 'https://youtube.com' }
-              ]}
-              position="left"
-              colors={['#333', '#111', '#000']}
-              menuButtonColor="black"
-              openMenuButtonColor="white"
-              accentColor="#888"
-              onMenuOpen={() => setIsMenuOpen(true)}
-              onMenuClose={() => setIsMenuOpen(false)}
-            />
-          </motion.div>
-        </>
-      )}
+        <motion.div
+          initial={false}
+          animate={{
+            opacity: isPreloading ? 0 : 1,
+            x: isPreloading ? -24 : 0
+          }}
+          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: isPreloading ? 0 : 0.15 }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            zIndex: 20000,
+            pointerEvents: isPreloading ? 'none' : 'auto'
+          }}
+        >
+          <StaggeredMenu
+            items={menuItems}
+            socialItems={[
+              { label: 'Instagram', link: 'https://instagram.com' },
+              { label: 'Twitter', link: 'https://twitter.com' },
+              { label: 'YouTube', link: 'https://youtube.com' }
+            ]}
+            position="left"
+            colors={['#333', '#111', '#000']}
+            menuButtonColor="black"
+            openMenuButtonColor="white"
+            accentColor="#888"
+            onMenuOpen={() => setIsMenuOpen(true)}
+            onMenuClose={() => setIsMenuOpen(false)}
+          />
+        </motion.div>
+      </>
     </>
   );
 }

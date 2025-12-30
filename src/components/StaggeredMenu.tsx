@@ -1,7 +1,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, Youtube, MessageCircle, Share2, Twitter } from 'lucide-react';
+import { Instagram, Twitter, Youtube } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './StaggeredMenu.css';
 
 export interface StaggeredMenuItem {
@@ -49,10 +49,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   isFixed = false,
   closeOnClickAway = true,
   onMenuOpen,
-  onMenuClose
+  onMenuClose,
+  logoUrl
 }: StaggeredMenuProps) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [socialOpen, setSocialOpen] = useState(false);
   const openRef = useRef(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -61,7 +62,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   // Hamburger lines refs
   const line1Ref = useRef<HTMLSpanElement | null>(null);
   const line2Ref = useRef<HTMLSpanElement | null>(null);
-  const line3Ref = useRef<HTMLSpanElement | null>(null);
 
   const openTlRef = useRef<gsap.core.Timeline | null>(null);
   const closeTweenRef = useRef<gsap.core.Tween | null>(null);
@@ -76,9 +76,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       const preContainer = preLayersRef.current;
       const l1 = line1Ref.current;
       const l2 = line2Ref.current;
-      const l3 = line3Ref.current;
       
-      if (!panel || !l1 || !l2 || !l3) return;
+      if (!panel || !l1 || !l2) return;
 
       let preLayers: HTMLElement[] = [];
       if (preContainer) {
@@ -89,10 +88,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       const offscreen = position === 'left' ? -100 : 100;
       gsap.set([panel, ...preLayers], { xPercent: offscreen });
       
-      // Initial hamburger state
-      gsap.set(l1, { y: -8, transformOrigin: '50% 50%' });
-      gsap.set(l2, { y: 0, opacity: 1, transformOrigin: '50% 50%' });
-      gsap.set(l3, { y: 8, transformOrigin: '50% 50%' });
+      // Initial "pause bars" state
+      gsap.set(l1, { x: -3, rotate: 0, transformOrigin: '50% 50%' });
+      gsap.set(l2, { x: 3, rotate: 0, transformOrigin: '50% 50%' });
       
       if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
     });
@@ -263,21 +261,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     });
   }, [position]);
 
-  const animateIcon = useCallback((opening: boolean) => {
+  const animateIcon = useCallback((_opening: boolean) => {
     const l1 = line1Ref.current;
     const l2 = line2Ref.current;
-    const l3 = line3Ref.current;
-    if (!l1 || !l2 || !l3) return;
-    
-    if (opening) {
-      gsap.to(l1, { y: 0, rotate: 45, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
-      gsap.to(l2, { opacity: 0, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
-      gsap.to(l3, { y: 0, rotate: -45, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
-    } else {
-      gsap.to(l1, { y: -8, rotate: 0, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
-      gsap.to(l2, { opacity: 1, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
-      gsap.to(l3, { y: 8, rotate: 0, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
-    }
+    if (!l1 || !l2) return;
+    gsap.to(l1, { x: -3, rotate: 0, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
+    gsap.to(l2, { x: 3, rotate: 0, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
   }, []);
 
   const animateColor = useCallback(
@@ -337,10 +326,24 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }
   }, [playClose, animateIcon, animateColor, onMenuClose]);
 
+  const handleHomeClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      closeMenu();
+      navigate('/');
+    },
+    [closeMenu, navigate]
+  );
+
+  const resolvedLogoUrl = logoUrl || '/maxo logo.png';
+
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
     const handleClickOutside = (event: MouseEvent) => {
+      if (toggleBtnRef.current && toggleBtnRef.current.contains(event.target as Node)) {
+        return;
+      }
       if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
         closeMenu();
       }
@@ -370,71 +373,36 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           return arr.map((c, i) => <div key={i} className="sm-prelayer" style={{ background: c }} />);
         })()}
       </div>
-      <header className="staggered-menu-header" aria-label="Main navigation header">
+      <div className="sm-edge-zone" aria-hidden={false}>
         <button
           ref={toggleBtnRef}
-          className="sm-toggle liquid-glass-btn"
+          className="sm-edge-toggle"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="staggered-menu-panel"
           onClick={toggleMenu}
           type="button"
         >
-          <span className="sm-icon hamburger" aria-hidden="true">
-            <span ref={line1Ref} className="sm-icon-line" />
-            <span ref={line2Ref} className="sm-icon-line" />
-            <span ref={line3Ref} className="sm-icon-line" />
+          <span className="sm-edge-icon" aria-hidden="true">
+            <span ref={line1Ref} className="sm-edge-line" />
+            <span ref={line2Ref} className="sm-edge-line" />
           </span>
         </button>
-
-        <div className="sm-logo" aria-label="Logo" style={{ display: 'none' }}>
-          <a href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-            <motion.h1
-              layoutId="brand-logo"
-              transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-              style={{
-                fontSize: '1.5rem',
-                fontWeight: 900,
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                margin: 0,
-                color: menuButtonColor
-              }}
-            >
-                MAXO
-            </motion.h1>
-          </a>
-        </div>
-
-        <div className="sm-social-wrapper">
-            <AnimatePresence>
-                {socialOpen && (
-                    <motion.div 
-                        className="sm-social-expanded liquid-glass-panel"
-                        initial={{ opacity: 0, x: 20, scale: 0.9 }}
-                        animate={{ opacity: 1, x: 0, scale: 1 }}
-                        exit={{ opacity: 0, x: 20, scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <a href="https://instagram.com" target="_blank" rel="noreferrer" className="sm-social-icon"><Instagram size={20} /></a>
-                        <a href="https://youtube.com" target="_blank" rel="noreferrer" className="sm-social-icon"><Youtube size={20} /></a>
-                        <a href="https://whatsapp.com" target="_blank" rel="noreferrer" className="sm-social-icon"><MessageCircle size={20} /></a>
-                        <a href="#" className="sm-social-icon"><Share2 size={20} /></a>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-            <button 
-                className="sm-toggle liquid-glass-btn sm-social-btn" 
-                onClick={() => setSocialOpen(!socialOpen)}
-                style={{ color: menuButtonColor }}
-            >
-                <Share2 size={20} />
-            </button>
-        </div>
-      </header>
+      </div>
 
       <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>
         <div className="sm-panel-inner">
+          <a href="/" className="sm-menu-home" aria-label="Home" onClick={handleHomeClick}>
+            <img src={resolvedLogoUrl} alt="Home" />
+          </a>
+          <button
+            type="button"
+            className="sm-mobile-close"
+            onClick={closeMenu}
+            aria-label="Close menu"
+          >
+            Close
+          </button>
           <ul className="sm-panel-list" role="list" data-numbering={displayItemNumbering || undefined}>
             {items && items.length ? (
               items.map((it, idx) => (

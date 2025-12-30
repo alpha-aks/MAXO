@@ -1,9 +1,8 @@
 /* OurWork Component Styles */
-
 .ourwork-section {
   width: 100%;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: #e8e8e8;
   color: #000;
   padding-bottom: 100px;
 }
@@ -11,6 +10,7 @@
 /* Header */
 .ourwork-header {
   padding: 140px 80px 80px;
+  background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 

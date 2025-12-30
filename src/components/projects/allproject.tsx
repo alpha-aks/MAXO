@@ -106,7 +106,7 @@ const AllProject = () => {
 
   return (
     <div style={{ 
-      backgroundColor: '#fff', 
+      backgroundColor: '#e8e8e8', 
       minHeight: '100vh', 
       padding: '2rem',
       color: '#000'
