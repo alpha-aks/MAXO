@@ -24,11 +24,14 @@ const EducationalFacilities = () => {
 
   return (
     <div className="project-page">
-      <button 
-        onClick={() => navigate(-1)} 
-        className="back-button"
+      <button
+        onClick={() => navigate('/work')}
+        className="return-to-work"
+        aria-label="Return to Work"
+        type="button"
       >
-        ← Back
+        <span className="return-to-work-arrow">←</span>
+        <span>Return to Work</span>
       </button>
 
       <section className="project-section">

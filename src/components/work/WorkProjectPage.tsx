@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PrismicRichText } from '@prismicio/react';
 import { asImageSrc } from '@prismicio/helpers';
 import { createPrismicClient } from '../../prismicClient';
+import StaggeredMenu from '../StaggeredMenu';
 import './WorkProjectPage.css';
 
 type ProjectDoc = {
@@ -27,6 +28,14 @@ export default function WorkProjectPage() {
   const { categoryUid, projectUid } = useParams();
 
   const backHref = categoryUid ? `/work/${categoryUid}` : '/work';
+
+  const menuItems = [
+    { label: 'About', ariaLabel: 'About', link: '/about' },
+    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
+    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
+    { label: 'News', ariaLabel: 'News', link: '/news' },
+    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
+  ];
 
   const client = useMemo(() => createPrismicClient(), []);
   const [project, setProject] = useState<ProjectDoc | null>(null);
@@ -87,8 +96,23 @@ export default function WorkProjectPage() {
   if (loading) {
     return (
       <div className="work-project" style={{ padding: '2rem' }}>
-        <button onClick={() => navigate(backHref)} className="back-button">
-          ← Back
+        <StaggeredMenu
+          items={menuItems}
+          position="left"
+          colors={['#fff', '#fff', '#fff']}
+          menuButtonColor="#000"
+          openMenuButtonColor="#000"
+          accentColor="#888"
+          isFixed
+        />
+        <button
+          onClick={() => navigate('/work')}
+          className="return-to-work"
+          aria-label="Return to Work"
+          type="button"
+        >
+          <span className="return-to-work-arrow">←</span>
+          <span>Return to Work</span>
         </button>
         <p>Loading...</p>
       </div>
@@ -98,8 +122,23 @@ export default function WorkProjectPage() {
   if (error || !project) {
     return (
       <div className="work-project" style={{ padding: '2rem' }}>
-        <button onClick={() => navigate(backHref)} className="back-button">
-          ← Back
+        <StaggeredMenu
+          items={menuItems}
+          position="left"
+          colors={['#fff', '#fff', '#fff']}
+          menuButtonColor="#000"
+          openMenuButtonColor="#000"
+          accentColor="#888"
+          isFixed
+        />
+        <button
+          onClick={() => navigate('/work')}
+          className="return-to-work"
+          aria-label="Return to Work"
+          type="button"
+        >
+          <span className="return-to-work-arrow">←</span>
+          <span>Return to Work</span>
         </button>
         <p style={{ color: '#b00020' }}>{error || 'Not found'}</p>
       </div>
@@ -146,6 +185,15 @@ export default function WorkProjectPage() {
 
   return (
     <div className="work-project">
+      <StaggeredMenu
+        items={menuItems}
+        position="left"
+        colors={['#fff', '#fff', '#fff']}
+        menuButtonColor="#000"
+        openMenuButtonColor="#000"
+        accentColor="#888"
+        isFixed
+      />
       <div className="work-hero">
         {heroUrl ? <div className="work-hero-bg" style={{ backgroundImage: `url(${heroUrl})` }} /> : null}
         <div className="work-hero-overlay" />

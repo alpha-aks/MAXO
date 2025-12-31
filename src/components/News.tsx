@@ -102,9 +102,9 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
       <StaggeredMenu 
         items={menuItems} 
         position="left"
-        colors={['#333', '#111', '#000']}
+        colors={['#fff', '#fff', '#fff']}
         menuButtonColor="white"
-        openMenuButtonColor="white"
+        openMenuButtonColor="black"
         accentColor="#888"
       />
 

@@ -377,7 +377,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     [closeMenu, navigate]
   );
 
-  const resolvedLogoUrl = logoUrl || '/maxo logo.png';
+  const resolvedLogoUrl = logoUrl || '/blacmaxologo.png';
 
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;

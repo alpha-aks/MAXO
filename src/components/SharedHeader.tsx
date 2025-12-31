@@ -102,9 +102,9 @@ export default function SharedHeader({ isMobile, isPreloading = false }: { isMob
               { label: 'YouTube', link: 'https://youtube.com' }
             ]}
             position="left"
-            colors={['#333', '#111', '#000']}
+            colors={['#fff', '#fff', '#fff']}
             menuButtonColor="black"
-            openMenuButtonColor="white"
+            openMenuButtonColor="black"
             accentColor="#888"
             onMenuOpen={() => setIsMenuOpen(true)}
             onMenuClose={() => setIsMenuOpen(false)}

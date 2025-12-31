@@ -26,6 +26,34 @@
   touch-action: manipulation;
 }
 
+.return-to-work {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.return-to-work:hover {
+  opacity: 0.75;
+}
+
+.return-to-work-arrow {
+  font-size: 18px;
+  line-height: 1;
+}
+
 .back-button:hover,
 .back-button:active {
   background-color: #333333;

@@ -155,9 +155,9 @@ export default function OurWork() {
       <StaggeredMenu 
         items={menuItems} 
         position="left"
-        colors={['#333', '#111', '#000']}
+        colors={['#fff', '#fff', '#fff']}
         menuButtonColor="#000"
-        openMenuButtonColor="white"
+        openMenuButtonColor="#000"
         accentColor="#888"
       />
 

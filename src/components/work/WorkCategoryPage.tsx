@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import * as prismic from '@prismicio/client';
 import { asImageSrc } from '@prismicio/helpers';
 import { createPrismicClient } from '../../prismicClient';
+import StaggeredMenu from '../StaggeredMenu';
 import '../projects/projects.css';
 
 type CategoryDoc = {
@@ -28,6 +29,14 @@ type ProjectDoc = {
 export default function WorkCategoryPage() {
   const navigate = useNavigate();
   const { categoryUid } = useParams();
+
+  const menuItems = [
+    { label: 'About', ariaLabel: 'About', link: '/about' },
+    { label: 'Our Work', ariaLabel: 'Our Work', link: '/work' },
+    { label: 'Future Thinking', ariaLabel: 'Future Thinking', link: '/future' },
+    { label: 'News', ariaLabel: 'News', link: '/news' },
+    { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
+  ];
 
   const client = useMemo(() => createPrismicClient(), []);
   const [category, setCategory] = useState<CategoryDoc | null>(null);
@@ -85,8 +94,24 @@ export default function WorkCategoryPage() {
 
   return (
     <div className="project-page">
-      <button onClick={() => navigate('/work')} className="back-button">
-        ← Back
+      <StaggeredMenu
+        items={menuItems}
+        position="left"
+        colors={['#fff', '#fff', '#fff']}
+        menuButtonColor="#000"
+        openMenuButtonColor="#000"
+        accentColor="#888"
+        isFixed
+      />
+
+      <button
+        onClick={() => navigate('/work')}
+        className="return-to-work"
+        aria-label="Return to Work"
+        type="button"
+      >
+        <span className="return-to-work-arrow">←</span>
+        <span>Return to Work</span>
       </button>
 
       <section className="project-section">

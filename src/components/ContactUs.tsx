@@ -62,9 +62,9 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
       <StaggeredMenu 
         items={menuItems} 
         position="left"
-        colors={['#333', '#111', '#000']}
+        colors={['#fff', '#fff', '#fff']}
         menuButtonColor="white"
-        openMenuButtonColor="white"
+        openMenuButtonColor="black"
         accentColor="#888"
       />
 

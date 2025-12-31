@@ -92,12 +92,14 @@ const AllProject = () => {
         padding: '2rem',
         color: '#fff'
       }}>
-        <button 
-          onClick={() => navigate(-1)} 
-          className="back-button"
-          style={{ marginBottom: '2rem' }}
+        <button
+          onClick={() => navigate('/work')}
+          className="return-to-work"
+          aria-label="Return to Work"
+          type="button"
         >
-          ← Back
+          <span className="return-to-work-arrow">←</span>
+          <span>Return to Work</span>
         </button>
         <p style={{ textAlign: 'center', fontSize: '1.2rem' }}>No project selected</p>
       </div>
@@ -111,12 +113,14 @@ const AllProject = () => {
       padding: '2rem',
       color: '#000'
     }}>
-      <button 
-        onClick={() => navigate(-1)} 
-        className="back-button"
-        style={{ marginBottom: '3rem' }}
+      <button
+        onClick={() => navigate('/work')}
+        className="return-to-work"
+        aria-label="Return to Work"
+        type="button"
       >
-        ← Back
+        <span className="return-to-work-arrow">←</span>
+        <span>Return to Work</span>
       </button>
 
       <div 

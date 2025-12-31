@@ -92,9 +92,9 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
           { label: 'Contact', ariaLabel: 'Contact', link: '/contact' },
         ]} 
         position="left"
-        colors={['#333', '#111', '#000']}
+        colors={['#fff', '#fff', '#fff']}
         menuButtonColor="white"
-        openMenuButtonColor="white"
+        openMenuButtonColor="black"
         accentColor="#888"
       />
 
