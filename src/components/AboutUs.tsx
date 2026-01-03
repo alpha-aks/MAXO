@@ -1,9 +1,11 @@
 import { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import TiltedCard, { Orb } from './TiltedCard';
 import StaggeredMenu from './StaggeredMenu';
 import './AboutUs.css';
+import Footer from './Footer';
 
 // Easing curves for premium feel
 const transition = { duration: 1.2, ease: [0.33, 1, 0.68, 1] as const };
@@ -40,6 +42,12 @@ export default function AboutUs() {
   const storyRef = useRef(null);
 
   const [isTablet, setIsTablet] = useState(false);
+
+  const navigate = useNavigate();
+  const navigateTo = (page: string) => {
+    // Accept both 'contact' and '/contact'
+    navigate(page.startsWith('/') ? page : `/${page}`);
+  };
 
   useEffect(() => {
     const checkDevice = () => {
@@ -329,7 +337,7 @@ export default function AboutUs() {
       </section>
 
       {/* Footer */}
-      
+       <Footer navigateTo={navigateTo} />
     </div>
   );
 }
