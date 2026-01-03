@@ -377,7 +377,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   );
 
   const resolvedLogoUrl = logoUrl || '/blacmaxologo.png';
+  
+  const [isAndroid, setIsAndroid] = useState(false);
 
+  React.useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      setIsAndroid(/Android/i.test(navigator.userAgent));
+    }
+  }, []);
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
@@ -434,7 +441,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>
         <div className="sm-panel-inner">
           <a href="/" className="sm-menu-home" aria-label="Home" onClick={handleHomeClick}>
-            <img src={resolvedLogoUrl} alt="Home" style={{ width: '360px', height: 'auto', display: 'block' }} />
+            {!isAndroid && (
+              <img src={resolvedLogoUrl} alt="Home" style={{ width: '360px', height: 'auto', display: 'block' }} />
+            )}
           </a>
 
           <div className="sm-menu-desktop-right" aria-hidden={!open}>
