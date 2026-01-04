@@ -442,7 +442,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <div className="sm-panel-inner">
           <a href="/" className="sm-menu-home" aria-label="Home" onClick={handleHomeClick}>
             {!isAndroid && (
-              <img src={resolvedLogoUrl} alt="Home" style={{ width: '360px', height: 'auto', display: 'block' }} />
+              <img
+                src={resolvedLogoUrl}
+                alt="Home"
+                style={{ height: '150px', width: '650px', objectFit: 'contain', display: 'block' }}
+              />
             )}
           </a>
 
@@ -494,16 +498,39 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               <h3 className="sm-socials-title">Socials</h3>
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => {
-                   const lowerLabel = s.label.toLowerCase();
-                  let socialText = s.label;
-                  if (lowerLabel.includes('instagram')) socialText = 'Instagram';
-                  else if (lowerLabel.includes('linkedin')) socialText = 'LinkedIn';
-                  else if (lowerLabel.includes('whatsapp')) socialText = 'WhatsApp';
+                  const lowerLabel = s.label.toLowerCase();
+                  let iconSrc: string | null = null;
+                  let altText = s.label;
+                  if (lowerLabel.includes('instagram')) {
+                    iconSrc = '/instagram-svgrepo-com.svg';
+                    altText = 'Instagram';
+                  } else if (lowerLabel.includes('linkedin')) {
+                    iconSrc = '/linkedin-round-svgrepo-com.svg';
+                    altText = 'LinkedIn';
+                  } else if (lowerLabel.includes('whatsapp')) {
+                    iconSrc = '/whatsapp-svgrepo-com.svg';
+                    altText = 'WhatsApp';
+                  }
 
                   return (
                     <li key={s.label + i} className="sm-socials-item">
-                      <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link" aria-label={s.label}>
-                        {socialText}
+                      <a
+                        href={s.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="sm-socials-link"
+                        aria-label={s.label}
+                      >
+                        {iconSrc ? (
+                          <img
+                            src={iconSrc}
+                            alt={altText}
+                            className="sm-socials-icon"
+                            style={{ width: 24, height: 24, display: 'inline-block' }}
+                          />
+                        ) : (
+                          altText
+                        )}
                       </a>
                     </li>
                   );
