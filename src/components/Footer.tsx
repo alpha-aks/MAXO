@@ -41,11 +41,11 @@ export default function Footer({ navigateTo, isMobile }: { navigateTo?: (page: s
       }}>
         <div>
           <h5 style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.2em', color: '#666', marginBottom: '24px', textTransform: 'uppercase', margin: 0 }}>Contact</h5>
-          <p style={{ fontSize: mobile ? '18px' : '20px', fontWeight: 300, lineHeight: 1.8, margin: 0 }}>info@maxo.co.in<br />+91 7778881060</p>
+          <p style={{ fontSize: mobile ? '18px' : '20px', fontWeight: 300, lineHeight: 1.8, margin: 0 }}>info@maxo.co.in<br />+91 92270 01016</p>
         </div>
         <div style={{ textAlign: mobile ? 'left' : 'right' }}>
           <h5 style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.2em', color: '#666', marginBottom: '24px', textTransform: 'uppercase', margin: 0 }}>Headquarters</h5>
-          <p style={{ fontSize: mobile ? '18px' : '20px', fontWeight: 300, lineHeight: 1.8, margin: 0 }}>1215, Maple Trade Centre, Surdhara Circle<br /> Maple Trade Ctr Rd, Thaltej<br /> Ahmedabad, Gujarat 380052</p>
+          <p style={{ fontSize: mobile ? '18px' : '20px', fontWeight: 300, lineHeight: 1.8, margin: 0 }}>1215, Maple Trade Centre,<br /> Thaltej, Ahmedabad,<br />Gujarat, India 380052</p>
         </div>
       </div>
       <motion.div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: 'auto', paddingTop: '32px' }} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
@@ -82,7 +82,7 @@ export default function Footer({ navigateTo, isMobile }: { navigateTo?: (page: s
             Instagram
           </motion.a>
           <motion.a 
-            href="https://www.linkedin.com/in/divya-patel-20?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+            href="https://www.linkedin.com/company/maxo12/" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ cursor: 'pointer', color: '#666', textDecoration: 'none' }} 

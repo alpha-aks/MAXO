@@ -33,25 +33,23 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
       icon: MapPin,
       title: 'Visit Our Studio',
       details: [
-        '1215, Maple Trade Centre',
-        'Surdhara Circle, Maple Trade Ctr Rd',
-        'Thaltej, Ahmedabad, Gujarat 380052'
+        '1215, Maple Trade Centre,',
+        'Thaltej, Ahmedabad, ',
+        'Gujarat, India 380052'
       ]
     },
     {
       icon: Phone,
       title: 'Call Us',
       details: [
-        'Main: +91 7778881060',
-        'Projects: +91 9227001016'
+        'Main: +91 92270 01016'
       ]
     },
     {
       icon: Mail,
       title: 'Email Us',
       details: [
-        'info@maxo.co.in',
-        'projects@maxo.co.in'
+        'info@maxo.co.in'
       ]
     }
   ];
@@ -204,7 +202,7 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
               width: '100%'
             }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9274388828677!2d72.5271944!3d23.0703149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84c92e10c001%3A0xc6cc67f0cf7f8e8c!2s1205%2C%20Maple%20Trade%20Centre%2C%20Thaltej%2C%20Ahmedabad%2C%20Gujarat%20380052!5e0!3m2!1sen!2sin!4v1640000000000"
+                src="https://www.google.com/maps?q=1215,+Maple+Trade+Centre,+Thaltej,+Ahmedabad,+Gujarat,+India+380052&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0, display: 'block' }}

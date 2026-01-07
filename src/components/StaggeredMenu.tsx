@@ -454,17 +454,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <div className="sm-menu-address">
               <div className="sm-menu-address-title">HEADQUARTERS</div>
               <div className="sm-menu-address-lines">
-                <div>1215, Maple Trade Centre, Surdhara Circle</div>
-                <div>Maple Trade Ctr Rd, Thaltej</div>
-                <div>Ahmedabad, Gujarat 380052</div>
+                <div> 1215, Maple Trade Centre, </div>
+                <div> Thaltej, Ahmedabad, </div>
+                <div> Gujarat, India 380052 </div>
               </div>
             </div>
             <div className="sm-menu-bottom">
+               <a className="sm-menu-email" href="mailto:career@maxo.co.in">Career opportunities</a> <br />
+              <a className="sm-menu-email" href="mailto:career@maxo.co.in">career@maxo.co.in</a><br /><br />
               <div className="sm-menu-links">
                 <a href="/contact" onClick={handleRouteClick('/contact')}>Contact</a>
                 <a href="/privacy-policy" onClick={handleRouteClick('/privacy-policy')}>Privacy Policy</a>
               </div>
-              <a className="sm-menu-email" href="mailto:info@maxo.co.in">info@maxo.co.in</a>
+              <a className="sm-menu-email" href="mailto:studio@maxo.co.in">studio@maxo.co.in</a>
             </div>
           </div>
 
@@ -510,11 +512,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                   } else if (lowerLabel.includes('linkedin')) {
                     iconSrc = 'https://i.pinimg.com/736x/e2/08/24/e2082469443d595e3b6edb0e91439529.jpg';
                     altText = 'LinkedIn';
-                    redirectUrl = 'https://www.linkedin.com/in/divya-patel-20?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app';
+                    redirectUrl = 'https://www.linkedin.com/company/maxo12/';
                   } else if (lowerLabel.includes('whatsapp')) {
                     iconSrc = 'https://i.pinimg.com/736x/76/11/f0/7611f02494be1e121a6f6a391d3eafdc.jpg';
                     altText = 'WhatsApp';
-                    redirectUrl = 'https://wa.me/917778881060';
+                    redirectUrl = 'https://wa.me/919227001016';
                   }
 
                   return (
