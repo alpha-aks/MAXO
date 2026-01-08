@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Linkedin, Instagram } from 'lucide-react';
 import { Orb } from './TiltedCard';
 import StaggeredMenu from './StaggeredMenu';
 import './AboutUs.css';
@@ -203,7 +203,6 @@ export default function AboutUs() {
               <motion.h2 variants={fadeInUp} className="about-story-title">
                 Redefining Architecture
                 <br />
-                <span style={{ fontStyle: 'italic' }}>Since 1999</span>
               </motion.h2>
             </motion.div>
             
@@ -287,15 +286,15 @@ export default function AboutUs() {
             className="about-team-content"
             style={{ 
               display: 'flex', 
-              alignItems: 'center', 
-              gap: '4rem',
-              maxWidth: '1200px',
+              alignItems: 'flex-start', 
+              gap: '3rem',
+              maxWidth: '1400px',
               margin: '0 auto',
               flexDirection: window.innerWidth < 768 ? 'column' : 'row'
             }}
           >
-            {/* Image Section */}
-            <div style={{ flex: '0 0 300px' }}>
+            {/* Image Section - Left */}
+            <div style={{ flex: '0 0 300px', textAlign: 'center' }}>
               <img 
                 src="/founder.jpeg"
                 alt="Divya"
@@ -303,13 +302,73 @@ export default function AboutUs() {
                   width: '100%',
                   height: '400px',
                   objectFit: 'cover',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  marginBottom: '1.5rem'
                 }}
               />
+              
+              {/* Social Icons */}
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                <a 
+                  href="https://www.linkedin.com/company/maxo12/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '2px solid #333',
+                    color: '#333',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#333';
+                    e.currentTarget.style.color = '#fff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = '#333';
+                  }}
+                >
+                  <Linkedin size={20} />
+                </a>
+                
+                <a 
+                  href="https://www.instagram.com/maxo.co.in/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '2px solid #333',
+                    color: '#333',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#333';
+                    e.currentTarget.style.color = '#fff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = '#333';
+                  }}
+                >
+                  <Instagram size={20} />
+                </a>
+              </div>
             </div>
             
-            {/* Text Section */}
-            <div style={{ flex: '1' }}>
+            {/* First Paragraph - Middle */}
+            <div style={{ flex: '1', minWidth: '250px' }}>
               <h3 style={{ 
                 fontSize: '2.5rem', 
                 fontWeight: '600', 
@@ -331,10 +390,20 @@ export default function AboutUs() {
               <p style={{ 
                 fontSize: '1rem', 
                 lineHeight: '1.6', 
-                color: '#555',
-                maxWidth: '500px'
+                color: '#555'
               }}>
-                Divya has experienced architecture and art across diverse cultures through extensive travel, bringing a global perspective to design, one that emphasizes boundless creative and technological possibilities within art, architecture, and design. He seamlessly blends innovative design thinking with diverse research methodologies, while challenging existing disciplinary boundaries and contributing to emerging spatial design practice and knowledge.<br /><br /> Divya pursued his Bachelor's in architecture degree in 2014, after which he worked in India as an architect, then he decided to pursue Masters in architecture from Bartlett School of Architecture, London. Subsequently, he worked as an architect and urban designer at Benoy, London for three years, before establishing MAXO Architects & Designers in 2024.
+                Divya has experienced architecture and art across diverse cultures through extensive travel, bringing a global perspective to design, one that emphasizes boundless creative and technological possibilities within art, architecture, and design. He seamlessly blends innovative design thinking with diverse research methodologies, while challenging existing disciplinary boundaries and contributing to emerging spatial design practice and knowledge.
+              </p>
+            </div>
+            
+            {/* Second Paragraph - Right */}
+            <div style={{ flex: '1', minWidth: '250px' }}>
+              <p style={{ 
+                fontSize: '1rem', 
+                lineHeight: '1.6', 
+                color: '#555'
+              }}>
+               <br /> <br /> <br /> <br /><br /> <br /> Divya pursued his Bachelor's in architecture degree in 2014, after which he worked in India as an architect, then he decided to pursue Masters in architecture from Bartlett School of Architecture, London. Subsequently, he worked as an architect and urban designer at Benoy, London for three years, before establishing MAXO Architects & Designers in 2024.
               </p>
             </div>
           </motion.div>
