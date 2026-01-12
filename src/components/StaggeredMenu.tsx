@@ -460,12 +460,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               </div>
             </div>
             <div className="sm-menu-bottom">
-               <a className="sm-menu-email" href="mailto:career@maxo.co.in">Career opportunities</a> <br />
-              <a className="sm-menu-email" href="mailto:career@maxo.co.in">career@maxo.co.in</a><br /><br />
-              <div className="sm-menu-links">
-                <a href="/contact" onClick={handleRouteClick('/contact')}>Contact</a>
-                <a href="/privacy-policy" onClick={handleRouteClick('/privacy-policy')}>Privacy Policy</a>
-              </div>
               <a className="sm-menu-email" href="mailto:studio@maxo.co.in">studio@maxo.co.in</a>
             </div>
           </div>
@@ -545,6 +539,23 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               </ul>
             </div>
           )}
+          
+          {/* Left Side Bottom - Social Media and Privacy */}
+          <div className="sm-left-bottom" aria-hidden={!open}>
+            <div className="sm-left-socials">
+              <a href="https://www.instagram.com/maxo.co.in/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <img src="https://i.pinimg.com/736x/0e/84/d5/0e84d5926187e7a3b785febd3a55bf1d.jpg" alt="Instagram" style={{ width: 22, height: 22 }} />
+              </a>
+              <a href="https://www.linkedin.com/company/maxo12/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <img src="https://i.pinimg.com/736x/e2/08/24/e2082469443d595e3b6edb0e91439529.jpg" alt="LinkedIn" style={{ width: 22, height: 22 }} />
+              </a>
+              <a href="https://wa.me/919227001016" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <img src="https://i.pinimg.com/736x/76/11/f0/7611f02494be1e121a6f6a391d3eafdc.jpg" alt="WhatsApp" style={{ width: 22, height: 22 }} />
+              </a>
+            </div>
+            <a href="/contact" onClick={handleRouteClick('/contact')} className="sm-privacy-link">Contact</a>
+            <a href="/privacy-policy" onClick={handleRouteClick('/privacy-policy')} className="sm-privacy-link">Privacy Policy</a>
+          </div>
         </div>
       </aside>
     </div>

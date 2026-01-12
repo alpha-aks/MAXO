@@ -181,9 +181,10 @@ export default function AboutUs() {
             className="about-story-image-wrapper"
           >
             <img
-              src="/home.gif"
+              src="https://images.prismic.io/maxo-architecture/aWTxhwIvOtkhBUBk_homecopy.gif?auto=format,compress&w=800&q=70"
               alt="Architecture Design"
               className="about-story-image"
+              loading="lazy"
             />
           </motion.div>
 
@@ -287,21 +288,22 @@ export default function AboutUs() {
             className="about-team-content"
             style={{ 
               display: 'flex', 
-              alignItems: 'center', 
+              alignItems: 'stretch', 
               gap: '4rem',
-              maxWidth: '1200px',
+              maxWidth: '1400px',
               margin: '0 auto',
+              minHeight: '600px',
               flexDirection: window.innerWidth < 768 ? 'column' : 'row'
             }}
           >
             {/* Image Section */}
-            <div style={{ flex: '0 0 300px' }}>
+            <div style={{ flex: '0 0 350px' }}>
               <img 
                 src="/founder.jpeg"
                 alt="Divya"
                 style={{
                   width: '100%',
-                  height: '400px',
+                  height: '100%',
                   objectFit: 'cover',
                   borderRadius: '8px'
                 }}
@@ -309,9 +311,9 @@ export default function AboutUs() {
             </div>
             
             {/* Text Section */}
-            <div style={{ flex: '1' }}>
+            <div style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <h3 style={{ 
-                fontSize: '2.5rem', 
+                fontSize: '3rem', 
                 fontWeight: '600', 
                 marginBottom: '0.5rem',
                 color: '#333'
@@ -328,14 +330,51 @@ export default function AboutUs() {
                 Founder & Principal Architect
               </p>
               
-              <p style={{ 
-                fontSize: '1rem', 
-                lineHeight: '1.6', 
-                color: '#555',
-                maxWidth: '500px'
-              }}>
-                Divya has experienced architecture and art across diverse cultures through extensive travel, bringing a global perspective to design, one that emphasizes boundless creative and technological possibilities within art, architecture, and design. He seamlessly blends innovative design thinking with diverse research methodologies, while challenging existing disciplinary boundaries and contributing to emerging spatial design practice and knowledge.<br /><br /> Divya pursued his Bachelor's in architecture degree in 2014, after which he worked in India as an architect, then he decided to pursue Masters in architecture from Bartlett School of Architecture, London. Subsequently, he worked as an architect and urban designer at Benoy, London for three years, before establishing MAXO Architects & Designers in 2024.
-              </p>
+              <div style={{ display: 'flex', gap: '3rem', width: '100%' }}>
+                {/* Left Passage */}
+                <p style={{ 
+                  fontSize: '1rem', 
+                  lineHeight: '1.8', 
+                  color: '#555',
+                  textAlign: 'justify',
+                  flex: '1'
+                }}>
+                  Divya has experienced architecture and art across diverse cultures through extensive travel, bringing a global perspective to design that emphasizes boundless creative and technological possibilities within art, architecture, and design. He seamlessly blends innovative design thinking with diverse research methodologies, while challenging existing disciplinary boundaries and contributing to emerging spatial design practice and knowledge.
+                </p>
+                
+                {/* Right Passage with LinkedIn */}
+                <div style={{ flex: '1' }}>
+                  <p style={{ 
+                    fontSize: '1rem', 
+                    lineHeight: '1.8', 
+                    color: '#555',
+                    textAlign: 'justify'
+                  }}>
+                    Divya pursued his Bachelor's in architecture degree in 2014, after which he worked in India as an architect. He then decided to pursue a Master's in architecture from Bartlett School of Architecture, London. Subsequently, he worked as an architect and urban designer at Benoy, London for three years, before establishing MAXO Architects & Designers in 2024.
+                  </p>
+                  
+                  {/* LinkedIn Link */}
+                  <a 
+                    href="https://www.linkedin.com/company/maxo12/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ 
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      marginTop: '1rem',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <img 
+                      src="https://i.pinimg.com/736x/e2/08/24/e2082469443d595e3b6edb0e91439529.jpg" 
+                      alt="LinkedIn" 
+                      style={{ width: '24px', height: '24px' }}
+                    />
+                    <span style={{ color: '#0077B5', fontWeight: '500' }}>Connect on LinkedIn</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

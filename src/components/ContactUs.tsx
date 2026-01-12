@@ -42,7 +42,7 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
       icon: Phone,
       title: 'Call Us',
       details: [
-        'Main: +91 92270 01016'
+        '+91 92270 01016'
       ]
     },
     {

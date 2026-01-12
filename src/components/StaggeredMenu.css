@@ -519,6 +519,7 @@
 .sm-socials {
   margin-top: 20px;
   align-self: flex-start; /* Align to left */
+  display: none; /* Hide original social section since we have it in left-bottom */
 }
 
 .sm-socials-title {
@@ -550,6 +551,45 @@
 
 .sm-socials-link:hover {
   color: var(--sm-accent, #5227FF);
+}
+
+/* Left Side Bottom Section */
+.sm-left-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.sm-left-socials {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.sm-left-socials a {
+  display: flex;
+  transition: opacity 0.3s ease;
+}
+
+.sm-left-socials a:hover {
+  opacity: 0.7;
+}
+
+.sm-privacy-link {
+  color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.sm-privacy-link:hover {
+  color: #000;
 }
 
 @media (max-width: 768px) {
@@ -584,5 +624,10 @@
   
   .sm-panel-list[data-numbering] .sm-panel-item::before {
     display: none;
+  }
+  
+  .sm-left-bottom {
+    left: 20px;
+    bottom: 20px;
   }
 }

@@ -116,7 +116,6 @@ function Card({ project }: { project: any }) {
       </div>
       <div style={{ position: 'absolute', bottom: '20px', left: '20px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
         <h3 style={{ color: 'white', fontSize: 'clamp(1rem, 2vw, 1.3rem)', margin: 0 }}>{project.title}</h3>
-        <p style={{ color: '#ddd', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>{project.loc}</p>
       </div>
     </div>
   );

@@ -23,6 +23,11 @@ export function MaxoLanding() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
   
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Trigger transition when assets are loaded
   useEffect(() => {
     // Pause video initially to "freeze" until loaded
@@ -208,6 +213,11 @@ function AppRoutes() {
   // Helper wrapper to include SharedHeader on non-landing pages
   function PageWrapper({ children }: { children: React.ReactNode }) {
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+    
+    useEffect(() => {
+      // Scroll to top when page loads
+      window.scrollTo(0, 0);
+    }, []);
     
     useEffect(() => {
       const update = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);

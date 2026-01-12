@@ -228,45 +228,6 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
         </div>
       </section>
 
-      {/* Future Vision Statement */}
-      <section style={{ 
-        padding: isMobile ? '56px 20px' : '80px 40px', 
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        textAlign: 'center'
-      }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            style={{
-              fontSize: '2.5rem',
-              fontWeight: 300,
-              margin: '0 0 40px 0'
-            }}
-          >
-            Our <span style={{ fontWeight: 'bold' }}>Vision</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 0.8 }}
-            style={{
-              fontSize: isMobile ? '1.1rem' : '1.3rem',
-              lineHeight: 1.7,
-              color: 'rgba(0, 0, 0, 0.8)',
-              fontStyle: 'italic',
-              margin: 0
-            }}
-          >
-            "We envision a future where design seamlessly integrates with technology, 
-            sustainability, and human well-being. Our goal is to create spaces that not only 
-            respond to current needs but anticipate and adapt to the evolving ways we live, 
-            work, and interact with our environment."
-          </motion.p>
-        </div>
-      </section>
-
       {/* Insights & Research */}
       <section style={{ padding: isMobile ? '56px 20px' : '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
         <motion.h2

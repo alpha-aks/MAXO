@@ -29,8 +29,7 @@
 .return-to-work {
   position: fixed;
   top: 22px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 100px;
   z-index: 50;
   display: inline-flex;
   align-items: center;
@@ -47,6 +46,15 @@
 
 .return-to-work:hover {
   opacity: 0.75;
+}
+
+/* Return to Work - Mobile adjustments */
+@media (max-width: 768px) {
+  .return-to-work {
+    right: 20px;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
 }
 
 .return-to-work-arrow {
