@@ -355,7 +355,7 @@ export default function AboutUs() {
                   
                   {/* LinkedIn Link */}
                   <a 
-                    href="https://www.linkedin.com/company/maxo12/" 
+                    href="https://www.linkedin.com/in/divya-patel-20/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     style={{ 
@@ -375,6 +375,446 @@ export default function AboutUs() {
                   </a>
                 </div>
               </div>
+            </div>
+          </motion.div>
+
+          {/* Recommendations */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ marginTop: '6rem' }}
+          >
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h2 className="about-story-title" style={{ marginTop: '1rem' }}>
+               Recognized by Global Architectural Professionals
+              </h2>
+            </div>
+
+            <div style={{ 
+              overflow: 'hidden',
+              width: '100%',
+              position: 'relative'
+            }}>
+              <motion.div 
+                style={{ 
+                  display: 'flex', 
+                  gap: '2rem',
+                  width: 'max-content'
+                }}
+                animate={{
+                  x: [0, -1200]
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 20,
+                    ease: "linear"
+                  }
+                }}
+              >
+              {/* Recommendation Card 1 */}
+              <div
+                style={{
+                  background: '#fff',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  border: '1px solid #f0f0f0',
+                  minWidth: '350px',
+                  flex: '0 0 auto'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img 
+                    src="https://i.pinimg.com/736x/c1/73/07/c17307b4b023eb5f22cc1966e43f477f.jpg" 
+                    alt="Recommender"
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
+                      Dhruval Shah
+                    </h4>
+                  </div>
+                </div>
+                {/* Company Box */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  background: '#f8f9fa',
+                  borderRadius: '6px',
+                  marginBottom: '1rem',
+                  border: '1px solid #e9ecef'
+                }}>
+                  <img 
+                    src="https://iili.io/fU6BbAx.jpg" 
+                    alt="Zaha Hadid Architects"
+                    style={{ width: '20px', height: '20px', borderRadius: '4px', objectFit: 'contain' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: '500' }}>Zaha Hadid Architects</span>
+                </div>
+                <a 
+                  href="https://www.linkedin.com/in/divya-patel-20/details/recommendations/?detailScreenTabIndex=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontSize: '0.95rem',
+                    color: '#0077B5',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  View Recommendation
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+
+              {/* Recommendation Card 2 */}
+              <div
+                style={{
+                  background: '#fff',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  border: '1px solid #f0f0f0',
+                  minWidth: '350px',
+                  flex: '0 0 auto'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img 
+                    src="https://i.pinimg.com/736x/8f/c4/08/8fc408b601f0b00f2cc54aaa1672adf8.jpg" 
+                    alt="Recommender"
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
+                      Lydia Kyprioti
+                    </h4>
+                  </div>
+                </div>
+                {/* Company Box */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  background: '#f8f9fa',
+                  borderRadius: '6px',
+                  marginBottom: '1rem',
+                  border: '1px solid #e9ecef'
+                }}>
+                  <img 
+                    src="https://iili.io/fU6BmwQ.jpg" 
+                    alt="BIG - Bjarke Ingels Group"
+                    style={{ width: '20px', height: '20px', borderRadius: '4px', objectFit: 'contain' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: '500' }}>BIG - Bjarke Ingels Group</span>
+                </div>
+                <a 
+                  href="https://www.linkedin.com/in/divya-patel-20/details/recommendations/?detailScreenTabIndex=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontSize: '0.95rem',
+                    color: '#0077B5',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  View Recommendation
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+
+              {/* Recommendation Card 3 */}
+              <div
+                style={{
+                  background: '#fff',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  border: '1px solid #f0f0f0',
+                  minWidth: '350px',
+                  flex: '0 0 auto'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img 
+                    src="https://i.pinimg.com/736x/75/c4/ca/75c4ca1390fc7c0d6e6663129cad965d.jpg" 
+                    alt="Recommender"
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
+                      Sashank Pilla
+                    </h4>                    
+                  </div>
+                </div>
+                {/* Company Box */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  background: '#f8f9fa',
+                  borderRadius: '6px',
+                  marginBottom: '1rem',
+                  border: '1px solid #e9ecef'
+                }}>
+                  <img 
+                    src="https://iili.io/fU6BZ8b.jpg" 
+                    alt="Foster + Partners"
+                    style={{ width: '20px', height: '20px', borderRadius: '4px', objectFit: 'contain' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: '500' }}>Foster + Partners</span>
+                </div>
+                <a 
+                  href="https://www.linkedin.com/in/divya-patel-20/details/recommendations/?detailScreenTabIndex=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontSize: '0.95rem',
+                    color: '#0077B5',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  View Recommendation
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+
+              {/* Duplicate cards for seamless loop */}
+              <div
+                style={{
+                  background: '#fff',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  border: '1px solid #f0f0f0',
+                  minWidth: '350px',
+                  flex: '0 0 auto'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img 
+                    src="https://i.pinimg.com/736x/c1/73/07/c17307b4b023eb5f22cc1966e43f477f.jpg" 
+                    alt="Recommender"
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
+                      Dhruval Shah
+                    </h4>
+                  </div>
+                </div>
+                {/* Company Box */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  background: '#f8f9fa',
+                  borderRadius: '6px',
+                  marginBottom: '1rem',
+                  border: '1px solid #e9ecef'
+                }}>
+                  <img 
+                    src="https://iili.io/fU6BbAx.jpg" 
+                    alt="Zaha Hadid Architects"
+                    style={{ width: '20px', height: '20px', borderRadius: '4px', objectFit: 'contain' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: '500' }}>Zaha Hadid Architects</span>
+                </div>
+                <a 
+                  href="https://www.linkedin.com/in/divya-patel-20/details/recommendations/?detailScreenTabIndex=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontSize: '0.95rem',
+                    color: '#0077B5',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  View Recommendation
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+
+              <div
+                style={{
+                  background: '#fff',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  border: '1px solid #f0f0f0',
+                  minWidth: '350px',
+                  flex: '0 0 auto'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img 
+                    src="https://i.pinimg.com/736x/8f/c4/08/8fc408b601f0b00f2cc54aaa1672adf8.jpg" 
+                    alt="Recommender"
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
+                      Lydia Kyprioti
+                    </h4>
+                  </div>
+                </div>
+                {/* Company Box */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  background: '#f8f9fa',
+                  borderRadius: '6px',
+                  marginBottom: '1rem',
+                  border: '1px solid #e9ecef'
+                }}>
+                  <img 
+                    src="https://iili.io/fU6BmwQ.jpg" 
+                    alt="BIG - Bjarke Ingels Group"
+                    style={{ width: '20px', height: '20px', borderRadius: '4px', objectFit: 'contain' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: '500' }}>BIG - Bjarke Ingels Group</span>
+                </div>
+                <a 
+                  href="https://www.linkedin.com/in/divya-patel-20/details/recommendations/?detailScreenTabIndex=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontSize: '0.95rem',
+                    color: '#0077B5',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  View Recommendation
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+
+              <div
+                style={{
+                  background: '#fff',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  border: '1px solid #f0f0f0',
+                  minWidth: '350px',
+                  flex: '0 0 auto'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img 
+                    src="https://i.pinimg.com/736x/75/c4/ca/75c4ca1390fc7c0d6e6663129cad965d.jpg" 
+                    alt="Recommender"
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
+                      Sashank Pilla
+                    </h4>                    
+                  </div>
+                </div>
+                {/* Company Box */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  background: '#f8f9fa',
+                  borderRadius: '6px',
+                  marginBottom: '1rem',
+                  border: '1px solid #e9ecef'
+                }}>
+                  <img 
+                    src="https://iili.io/fU6BZ8b.jpg" 
+                    alt="Foster + Partners"
+                    style={{ width: '20px', height: '20px', borderRadius: '4px', objectFit: 'contain' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: '500' }}>Foster + Partners</span>
+                </div>
+                <a 
+                  href="https://www.linkedin.com/in/divya-patel-20/details/recommendations/?detailScreenTabIndex=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontSize: '0.95rem',
+                    color: '#0077B5',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  View Recommendation
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+            </motion.div>
             </div>
           </motion.div>
         </div>
