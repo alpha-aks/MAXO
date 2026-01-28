@@ -308,12 +308,23 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
         try {
           const mappedInsights = response.results.map((doc: any) => {
             if (!doc || !doc.data) return null;
+            
+            // Helper function to extract text from RichText or plain text
+            const getText = (field: any): string => {
+              if (!field) return '';
+              if (typeof field === 'string') return field;
+              if (Array.isArray(field)) {
+                return field.map((block: any) => block.text || '').join(' ');
+              }
+              return '';
+            };
+            
             return {
               id: doc.id,
-              title: doc.data.title || '',
+              title: getText(doc.data.title),
               date: doc.data.date || '',
-              content: doc.data.content || '',
-              description: doc.data.description || '',
+              content: getText(doc.data.content),
+              description: getText(doc.data.description),
               author: doc.data.author || '',
               image: doc.data.image?.url || '',
               data: doc.data
