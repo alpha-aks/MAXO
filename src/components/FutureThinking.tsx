@@ -12,185 +12,213 @@ const InsightModal: React.FC<{
   onClose: () => void;
   isMobile: boolean;
 }> = ({ insight, isOpen, onClose, isMobile }) => {
-  // Don't render anything if modal is not open or no insight selected
   if (!isOpen || !insight) return null;
 
   return (
-        <div
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: '#fff',
+          width: '95%',
+          height: '95vh',
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1.3fr 0.7fr',
+          gap: isMobile ? '0' : '50px',
+          padding: isMobile ? '40px 20px' : '60px 80px',
+          overflowY: 'auto',
+          maxWidth: '1400px',
+          position: 'relative'
+        }}
+      >
+        {/* Close Button */}
+        <button
           onClick={onClose}
           style={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            zIndex: 1000,
+            top: '30px',
+            right: '30px',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            zIndex: 1010,
+            padding: '8px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: 0,
-            animation: 'fadeIn 0.3s ease-in'
+            transition: 'transform 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
           }}
         >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: '#fff',
-              borderRadius: 0,
-              width: '100%',
-              height: '100%',
-              display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-              overflow: 'hidden'
-            }}
-          >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              style={{
-                position: 'fixed',
-                top: '30px',
-                right: '30px',
-                background: 'rgba(0, 0, 0, 0.6)',
-                border: 'none',
-                borderRadius: '50%',
-                width: '50px',
-                height: '50px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                zIndex: 1002,
-                color: 'white',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
-                e.currentTarget.style.transform = 'scale(1.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.6)';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              <X size={24} />
-            </button>
+          <X size={32} color="black" />
+        </button>
 
-            {/* Left Side - Content */}
-            {!isMobile && (
-              <div style={{ 
-                padding: '60px 60px 60px 80px', 
-                display: 'flex', 
-                flexDirection: 'column',
-                overflowY: 'auto',
-                backgroundColor: '#fafafa'
-              }}>
-                <div style={{ marginBottom: '30px' }}>
-                  <span style={{
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    fontSize: '0.9rem',
-                    fontWeight: '500',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px'
-                  }}>
-                    {insight.date || insight.data?.date}
-                  </span>
-                </div>
+        {/* LEFT SIDE: Content */}
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? '20px' : '0' }}>
+          <span style={{ 
+            fontSize: '0.9rem', 
+            color: '#666', 
+            marginBottom: '20px',
+            fontWeight: '500',
+            letterSpacing: '1px',
+            textTransform: 'uppercase'
+          }}>
+            {insight.date || insight.data?.date}
+          </span>
+          
+          <h1 style={{ 
+            fontSize: isMobile ? '2rem' : '3.5rem', 
+            fontWeight: 'bold', 
+            lineHeight: 1.1, 
+            marginBottom: '30px',
+            maxWidth: '600px',
+            color: '#000'
+          }}>
+            {insight.title || insight.data?.title}
+          </h1>
 
-                <h1 style={{
-                  fontSize: '3rem',
-                  fontWeight: 600,
-                  margin: '0 0 30px 0',
-                  lineHeight: 1.3,
-                  color: '#000'
-                }}>
-                  {insight.title || insight.data?.title}
-                </h1>
-
-                {(insight.description || insight.data?.description) && (
-                  <div style={{
-                    padding: '24px',
-                    backgroundColor: '#fff',
-                    borderRadius: '8px',
-                    marginBottom: '30px',
-                    borderLeft: '5px solid #000'
-                  }}>
-                    <p style={{
-                      fontSize: '1.1rem',
-                      lineHeight: 1.7,
-                      color: 'rgba(0, 0, 0, 0.8)',
-                      margin: 0,
-                      fontWeight: '500'
-                    }}>
-                      {insight.description || insight.data?.description}
-                    </p>
-                  </div>
-                )}
-
-                <p style={{
-                  fontSize: '1.05rem',
-                  lineHeight: 1.8,
-                  color: 'rgba(0, 0, 0, 0.8)',
-                  marginBottom: '40px',
-                  flex: 1
-                }}>
-                  {insight.content || insight.data?.content}
-                </p>
-
-                <div style={{
-                  paddingTop: '30px',
-                  borderTop: '2px solid rgba(0, 0, 0, 0.1)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center'
-                }}>
-                  <p style={{
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    fontSize: '1rem',
-                    fontStyle: 'italic',
-                    margin: 0,
-                    flex: 1
-                  }}>
-                    — {insight.author || insight.data?.author}
-                  </p>
-                  {(insight.link || insight.data?.link) && (
-                    <a
-                      href={insight.link || insight.data?.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontSize: '0.9rem',
-                        color: '#0077B5',
-                        textDecoration: 'none',
-                        fontWeight: '500',
-                        marginLeft: '20px',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      Read More →
-                    </a>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Right Side - Image (or Full Content on Mobile) */}
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              backgroundColor: '#e0e0e0',
-              overflowY: 'auto'
+          {(insight.description || insight.data?.description) && (
+            <p style={{
+              fontSize: '1.1rem',
+              lineHeight: 1.7,
+              color: '#333',
+              maxWidth: '550px',
+              marginBottom: '20px',
+              fontWeight: '500'
             }}>
-              {/* Main Image */}
-              <div style={{
-                height: isMobile ? '40vh' : '100%',
-                backgroundColor: '#e0e0e0',
-                overflow: 'hidden'
-              }}>
-                <img
-                  src={insight.image || insight.data?.image?.url || 'https://via.placeholder.com/500x600?text=Insight'}
-                  alt={insight.title || insight.data?.title}
+              {insight.description || insight.data?.description}
+            </p>
+          )}
+
+          <p style={{
+            fontSize: '1rem',
+            lineHeight: 1.7,
+            color: '#444',
+            maxWidth: '550px',
+            marginBottom: '40px'
+          }}>
+            {insight.content || insight.data?.content}
+          </p>
+
+          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            {(insight.link || insight.data?.link) && (
+              <a
+                href={insight.link || insight.data?.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  padding: '12px 30px',
+                  backgroundColor: '#000',
+                  color: '#fff',
+                  border: 'none',
+                  fontSize: '0.9rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'opacity 0.2s',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  (e.target as HTMLAnchorElement).style.opacity = '0.8';
+                }}
+                onMouseLeave={(e) => {
+                  (e.target as HTMLAnchorElement).style.opacity = '1';
+                }}
+              >
+                VIEW MORE
+              </a>
+            )}
+            <p style={{
+              color: 'rgba(0, 0, 0, 0.6)',
+              fontSize: '0.95rem',
+              fontStyle: 'italic',
+              margin: 0
+            }}>
+              — {insight.author || insight.data?.author}
+            </p>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE: 3 Image Stack */}
+        {!isMobile && (
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateRows: 'repeat(3, 1fr)', 
+            gap: '20px',
+            height: '100%'
+          }}>
+            {[0, 1, 2].map((i) => (
+              <div 
+                key={i}
+                style={{ 
+                  backgroundColor: '#e0e0e0',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  cursor: 'pointer',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.02)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              >
+                <img 
+                  src={insight.image || insight.data?.image?.url || 'https://via.placeholder.com/400x300?text=Research'} 
+                  alt={`Design detail ${i + 1}`}
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover'
+                  }} 
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Mobile: Image below content */}
+        {isMobile && (
+          <div style={{
+            gridColumn: '1',
+            display: 'grid',
+            gridTemplateRows: 'repeat(3, 150px)',
+            gap: '15px',
+            marginTop: '30px'
+          }}>
+            {[0, 1, 2].map((i) => (
+              <div 
+                key={i}
+                style={{
+                  backgroundColor: '#e0e0e0',
+                  borderRadius: '4px',
+                  overflow: 'hidden'
+                }}
+              >
+                <img 
+                  src={insight.image || insight.data?.image?.url}
+                  alt={`Design detail ${i + 1}`}
                   style={{
                     width: '100%',
                     height: '100%',
@@ -198,105 +226,11 @@ const InsightModal: React.FC<{
                   }}
                 />
               </div>
-            </div>
-
-            {/* Mobile Layout - Content Below Image */}
-            {isMobile && (
-              <div style={{
-                gridColumn: '1',
-                padding: '40px 24px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                overflowY: 'auto',
-                backgroundColor: '#fafafa'
-              }}>
-                <div style={{ marginBottom: '20px' }}>
-                  <span style={{
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    fontSize: '0.85rem',
-                    fontWeight: '500',
-                    textTransform: 'uppercase'
-                  }}>
-                    {insight.date || insight.data?.date}
-                  </span>
-                </div>
-
-                <h2 style={{
-                  fontSize: '2rem',
-                  fontWeight: 600,
-                  margin: '0 0 20px 0',
-                  lineHeight: 1.4,
-                  color: '#000'
-                }}>
-                  {insight.title || insight.data?.title}
-                </h2>
-
-                {(insight.description || insight.data?.description) && (
-                  <div style={{
-                    padding: '16px',
-                    backgroundColor: '#fff',
-                    borderRadius: '8px',
-                    marginBottom: '20px',
-                    borderLeft: '4px solid #000'
-                  }}>
-                    <p style={{
-                      fontSize: '0.95rem',
-                      lineHeight: 1.6,
-                      color: 'rgba(0, 0, 0, 0.8)',
-                      margin: 0
-                    }}>
-                      {insight.description || insight.data?.description}
-                    </p>
-                  </div>
-                )}
-
-                <p style={{
-                  fontSize: '0.95rem',
-                  lineHeight: 1.6,
-                  color: 'rgba(0, 0, 0, 0.8)',
-                  marginBottom: '30px'
-                }}>
-                  {insight.content || insight.data?.content}
-                </p>
-
-                <div style={{
-                  paddingTop: '20px',
-                  borderTop: '1px solid #e0e0e0',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center'
-                }}>
-                  <p style={{
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    fontSize: '0.85rem',
-                    fontStyle: 'italic',
-                    margin: 0,
-                    flex: 1
-                  }}>
-                    — {insight.author || insight.data?.author}
-                  </p>
-                  {(insight.link || insight.data?.link) && (
-                    <a
-                      href={insight.link || insight.data?.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontSize: '0.75rem',
-                        color: '#0077B5',
-                        textDecoration: 'none',
-                        fontWeight: '500',
-                        marginLeft: '12px',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      Read More →
-                    </a>
-                  )}
-                </div>
-              </div>
-            )}
+            ))}
           </div>
-        </div>
+        )}
+      </div>
+    </div>
   );
 };
 
