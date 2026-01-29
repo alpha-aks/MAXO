@@ -181,7 +181,7 @@ export default function AboutUs() {
             className="about-story-image-wrapper"
           >
             <img
-              src="https://images.prismic.io/maxo-architecture/aWTxhwIvOtkhBUBk_homecopy.gif?auto=format,compress&w=800&q=70&frame=1"
+              src="https://iili.io/fskfXzN.md.jpg"
               alt="Architecture Design"
               className="about-story-image"
               loading="lazy"
