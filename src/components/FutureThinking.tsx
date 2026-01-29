@@ -578,7 +578,13 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
           {(prismaticInsights.length > 0 ? prismaticInsights : insights).map((insight: any) => (
             <article
               key={insight.id || insight.title}
-              onClick={() => setSelectedInsight(insight)}
+              onClick={() => {
+                // Store insight in sessionStorage for the detail page
+                sessionStorage.setItem('researchInsights', JSON.stringify(
+                  prismaticInsights.length > 0 ? prismaticInsights : insights
+                ));
+                navigate(`/future/insight/${insight.id || insight.title?.toLowerCase().replace(/\s+/g, '-')}`);
+              }}
               style={{
                 borderRadius: '12px',
                 backgroundColor: 'rgba(0, 0, 0, 0.05)',

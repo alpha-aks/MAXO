@@ -22,6 +22,7 @@ export default function ResearchInsightPage() {
   const [insight, setInsight] = useState<Insight | null>(null);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [showImages, setShowImages] = useState(false);
 
   useEffect(() => {
     // Scroll to top
@@ -111,6 +112,12 @@ export default function ResearchInsightPage() {
     );
   }
 
+  const contentParagraphs = (insight.content || insight.data?.content || '')
+    .split('\n\n')
+    .filter((paragraph: string) => paragraph.trim().length > 0);
+
+  const imageCount = Math.min(Math.max(contentParagraphs.length, 3), 8);
+
   return (
     <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
       {/* Navigation */}
@@ -157,91 +164,165 @@ export default function ResearchInsightPage() {
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-        {/* Header */}
-        <div style={{ marginBottom: '60px' }}>
-          <span style={{
-            fontSize: '0.9rem',
-            color: '#666',
-            fontWeight: '500',
-            letterSpacing: '1px',
-            textTransform: 'uppercase'
-          }}>
-            {insight.date}
-          </span>
-          
-          <h1 style={{
-            fontSize: isMobile ? '2rem' : '3.5rem',
-            fontWeight: 'bold',
-            lineHeight: 1.1,
-            marginTop: '20px',
-            marginBottom: '30px',
-            color: '#000'
-          }}>
-            {insight.title}
-          </h1>
-
-          <p style={{
-            fontSize: '1rem',
-            color: 'rgba(0, 0, 0, 0.6)',
-            fontStyle: 'italic'
-          }}>
-            By {insight.author}
-          </p>
-        </div>
-
-        {/* Featured Image */}
         <div style={{
-          width: '100%',
-          height: isMobile ? '300px' : '500px',
-          marginBottom: '60px',
-          borderRadius: '8px',
-          overflow: 'hidden',
-          backgroundColor: '#ddd'
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1.1fr 0.9fr',
+          gap: isMobile ? '24px' : '48px',
+          alignItems: 'stretch',
+          marginBottom: isMobile ? '32px' : '60px'
         }}>
-          <img
-            src={insight.image || insight.data?.image?.url}
-            alt={insight.title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover'
-            }}
-          />
-        </div>
-
-        {/* Description Box */}
-        {(insight.description || insight.data?.description) && (
+          {/* Left: Text */}
           <div style={{
-            padding: '24px',
-            backgroundColor: '#f0f0f0',
-            borderLeft: '5px solid #000',
-            marginBottom: '40px',
-            borderRadius: '4px'
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start'
           }}>
-            <p style={{
-              fontSize: '1.1rem',
-              lineHeight: 1.7,
-              color: '#333',
-              margin: 0,
-              fontWeight: '500'
+            <span style={{
+              fontSize: '0.9rem',
+              color: '#666',
+              fontWeight: '500',
+              letterSpacing: '1px',
+              textTransform: 'uppercase'
             }}>
-              {insight.description || insight.data?.description}
-            </p>
-          </div>
-        )}
+              {insight.date}
+            </span>
 
-        {/* Main Content */}
-        <div style={{
-          fontSize: '1.05rem',
-          lineHeight: 1.8,
-          color: '#444',
-          marginBottom: '60px'
-        }}>
-          {(insight.content || insight.data?.content)?.split('\n\n').map((paragraph: string, index: number) => (
-            <p key={index} style={{ marginBottom: '20px' }}>
-              {paragraph}
+            <h1 style={{
+              fontSize: isMobile ? '2rem' : '3.2rem',
+              fontWeight: 'bold',
+              lineHeight: 1.1,
+              marginTop: '18px',
+              marginBottom: '18px',
+              color: '#000'
+            }}>
+              {insight.title}
+            </h1>
+
+            <p style={{
+              fontSize: '1rem',
+              color: 'rgba(0, 0, 0, 0.6)',
+              fontStyle: 'italic',
+              marginBottom: '24px'
+            }}>
+              By {insight.author}
             </p>
-          ))}
+
+            {(insight.description || insight.data?.description) && (
+              <p style={{
+                fontSize: '1.1rem',
+                lineHeight: 1.7,
+                color: '#333',
+                marginBottom: '24px',
+                fontWeight: '500'
+              }}>
+                {insight.description || insight.data?.description}
+              </p>
+            )}
+
+            <div style={{
+              fontSize: '1.05rem',
+              lineHeight: 1.8,
+              color: '#444'
+            }}>
+              {contentParagraphs.map((paragraph: string, index: number) => (
+                <p key={index} style={{ marginBottom: '20px' }}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: 16:9 Image */}
+          <div style={{
+            width: '100%',
+            height: '100%',
+            minHeight: isMobile ? '220px' : '420px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            backgroundColor: '#ddd',
+            aspectRatio: '16 / 9'
+          }}>
+            <img
+              src={insight.image || insight.data?.image?.url}
+              alt={insight.title}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* View More Images */}
+        <div style={{ marginBottom: '60px' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '24px'
+          }}>
+            <button
+              onClick={() => setShowImages((prev) => !prev)}
+              style={{
+                padding: '12px 32px',
+                backgroundColor: '#000',
+                color: '#fff',
+                border: 'none',
+                fontSize: '0.95rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'opacity 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '0.8';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '1';
+              }}
+            >
+              {showImages ? 'HIDE IMAGES' : 'VIEW MORE IMAGES'}
+            </button>
+          </div>
+
+          {showImages && (
+            <div>
+              <h2 style={{
+                fontSize: '1.6rem',
+                fontWeight: 600,
+                marginBottom: '20px'
+              }}>
+                View more images
+              </h2>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+                gap: '16px'
+              }}>
+                {Array.from({ length: imageCount }).map((_, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      width: '100%',
+                      aspectRatio: '16 / 9',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                      backgroundColor: '#ddd'
+                    }}
+                  >
+                    <img
+                      src={insight.image || insight.data?.image?.url}
+                      alt={`${insight.title} ${i + 1}`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Call to Action */}
