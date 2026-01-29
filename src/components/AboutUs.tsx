@@ -328,13 +328,18 @@ export default function AboutUs() {
                 Founder & Principal Architect
               </p>
               
-              <div style={{ display: 'flex', gap: '3rem', width: '100%' }}>
+              <div style={{ 
+                display: 'flex', 
+                gap: window.innerWidth < 768 ? '2rem' : '3rem', 
+                width: '100%',
+                flexDirection: window.innerWidth < 768 ? 'column' : 'row'
+              }}>
                 {/* Left Passage */}
                 <p style={{ 
                   fontSize: '1rem', 
                   lineHeight: '1.8', 
                   color: '#555',
-                  textAlign: 'justify',
+                  textAlign: window.innerWidth > 768 ? 'justify' : 'left',
                   flex: '1'
                 }}>
                   Divya has experienced architecture and art across diverse cultures through extensive travel, bringing a global perspective to design that emphasizes boundless creative and technological possibilities within art, architecture, and design. He seamlessly blends innovative design thinking with diverse research methodologies, while challenging existing disciplinary boundaries and contributing to emerging spatial design practice and knowledge.
@@ -346,7 +351,7 @@ export default function AboutUs() {
                     fontSize: '1rem', 
                     lineHeight: '1.8', 
                     color: '#555',
-                    textAlign: 'justify'
+                    textAlign: window.innerWidth > 768 ? 'justify' : 'left'
                   }}>
                     Divya pursued his Bachelor's in architecture degree in 2014, after which he worked in India as an architect. He then decided to pursue a Master's in architecture from Bartlett School of Architecture, London. Subsequently, he worked as an architect and urban designer at Benoy, London for three years, before establishing MAXO Architects & Designers in 2024.
                   </p>
@@ -827,15 +832,14 @@ export default function AboutUs() {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                   <img 
-                    src="https://media.licdn.com/dms/image/v2/D5603AQH8_rAL8jCBYg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1704197325848?e=2147483647&v=beta&t=u9M8H_3N_t7v5KZ_zVvX3X5s3X5s3X5s" 
-                    alt="Shivani Rastogi"
+                    src="https://freeimage.host/i/fgRkZKX" 
+                    alt="Recommender"
                     style={{
                       width: '60px',
                       height: '60px',
                       borderRadius: '50%',
                       objectFit: 'cover'
                     }}
-                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/60x60?text=SR'; }}
                   />
                   <div>
                     <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>
