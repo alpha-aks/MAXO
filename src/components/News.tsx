@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Footer from './Footer';
 import StaggeredMenu from './StaggeredMenu';
+import { color } from 'three/tsl';
 
 export default function News({ navigateTo }: { navigateTo: (page: string) => void }) {
   const [isMobile, setIsMobile] = useState(() => (typeof window === 'undefined' ? false : window.innerWidth <= 768));
