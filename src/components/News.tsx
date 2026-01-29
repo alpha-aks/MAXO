@@ -47,7 +47,7 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
           padding: isMobile ? '96px 20px 56px' : '120px 40px 80px',
           textAlign: 'center',
           color: 'white',
-          backgroundImage: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("${heroBgUrl}"),
+         backgroundImage: 'linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("' + heroBgUrl + '")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
