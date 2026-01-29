@@ -1,12 +1,11 @@
 const projects = [
-  { id: '01', title: 'Commercial Architecture', loc: 'Tokyo, Japan', img: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop' },
-  { id: '02', title: 'Residential Design', loc: 'Oslo, Norway', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop' },
-  { id: '03', title: 'Cultural & Public', loc: 'Berlin, Germany', img: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2707&auto=format&fit=crop' },
-  { id: '04', title: 'Hospitality', loc: 'Dubai, UAE', img: 'https://images.unsplash.com/photo-1555636222-cae831e670b3?q=80&w=2677&auto=format&fit=crop' },
-  { id: '05', title: 'Urban Planning', loc: 'New York, USA', img: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?q=80&w=2670&auto=format&fit=crop' },
-  { id: '06', title: 'Educational Facilities', loc: 'Singapore', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2670&auto=format&fit=crop' },
-  { id: '07', title: 'Healthcare', loc: 'Zurich, Switzerland', img: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2670&auto=format&fit=crop' },
-  { id: '08', title: 'Recreational Spaces', loc: 'Madrid, Spain', img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2670&auto=format&fit=crop' }
+  { id: '01', title: 'Architecture', loc: 'Tokyo, Japan', img: 'https://iili.io/figeAsp.jpg' },
+  { id: '02', title: 'Branded Environment', loc: 'Oslo, Norway', img: 'https://iili.io/figg0k7.jpg' },
+  { id: '03', title: 'Master Plan', loc: 'Berlin, Germany', img: 'https://iili.io/figb1yJ.jpg' },
+  { id: '04', title: 'Land Architecture', loc: 'Dubai, UAE', img: 'https://iili.io/figi3Kb.jpg' },
+  { id: '05', title: 'Product', loc: 'New York, USA', img: 'https://iili.io/figbMjR.jpg' },
+  { id: '06', title: 'Research', loc: 'Singapore', img: 'https://iili.io/figb0va.jpg' },
+  { id: '07', title: 'Interior Design', loc: 'Zurich, Switzerland', img: 'https://iili.io/figbGTv.jpg' }
 ];
 
 export default function WorkGallery() {
