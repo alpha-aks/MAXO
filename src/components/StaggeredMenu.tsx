@@ -460,7 +460,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               </div>
             </div>
             <div className="sm-menu-bottom">
-              <a className="sm-menu-email" href="mailto:studio@maxo.co.in">studio@maxo.co.in</a>
+              <div className="sm-menu-contact-section">
+                <div className="sm-menu-contact-label" style={{ color: 'black' }}><b>Career Opportunities</b></div>
+                <a className="sm-menu-email" href="mailto:career@maxo.co.in" style={{ color: 'black' }}>career@maxo.co.in</a>
+              </div>
+              <div className="sm-menu-contact-section">
+                <div className="sm-menu-contact-label" style={{ color: 'black' }}><b>Marketing and Press Enquiries</b></div>
+                <a className="sm-menu-email" href="mailto:info@maxo.co.in" style={{ color: 'black' }}>info@maxo.co.in</a>
+              </div>
             </div>
           </div>
 
