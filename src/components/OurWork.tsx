@@ -157,7 +157,7 @@ export default function OurWork() {
         description="Explore MAXO's portfolio of innovative architectural projects. From residential design to commercial architecture, urban planning, and sustainable solutions across diverse sectors."
         keywords="MAXO projects, architecture portfolio, residential architecture, commercial architecture, urban planning, architectural design projects, MAXO work"
         url="https://maxo.co.in/work"
-        image="https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"
+        image="https://maxo.co.in/WhatsApp%20Image%202026-01-30%20at%2011.30.04.jpeg"
       />
       
       {/* Navigation Menu */}

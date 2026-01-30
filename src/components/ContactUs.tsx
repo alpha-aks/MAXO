@@ -62,7 +62,7 @@ export default function ContactUs({ navigateTo }: { navigateTo: (page: string) =
         description="Contact MAXO Architects & Designers for your next project. Visit our studio in Ahmedabad, Gujarat or call us at +91 92270 01016. Let's bring your vision to life."
         keywords="contact MAXO, architecture consultation, Ahmedabad architects, hire architects, architecture services contact"
         url="https://maxo.co.in/contact"
-        image="https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"
+        image="https://maxo.co.in/WhatsApp%20Image%202026-01-30%20at%2011.30.04.jpeg"
       />
       
       {/* Navigation */}
