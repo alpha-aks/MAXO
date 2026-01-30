@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Orb } from './TiltedCard';
 import StaggeredMenu from './StaggeredMenu';
+import SEO from './SEO';
 import './AboutUs.css';
 import Footer from './Footer';
 
@@ -99,6 +100,13 @@ export default function AboutUs() {
 
   return (
     <div ref={containerRef} className="about-container">
+      <SEO 
+        title="About MAXO | Divya Patel - Founder & Principal Architect"
+        description="Meet Divya Patel, founder of MAXO Architects & Designers. With experience at Bartlett School of Architecture and Benoy London, we bring global design expertise and innovation to every project."
+        keywords="Divya Patel architect, MAXO founder, Bartlett School of Architecture, Benoy London, architectural firm about, architecture team"
+        url="https://maxo.co.in/about"
+        image="https://maxo.co.in/founder.jpeg"
+      />
       
       {/* Navigation Menu */}
       <StaggeredMenu 

@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { asImageSrc } from '@prismicio/helpers';
 import StaggeredMenu from './StaggeredMenu';
 import { createPrismicClient } from '../prismicClient';
+import SEO from './SEO';
 import './OurWork.css';
 
 type CategoryCard = {
@@ -151,6 +152,14 @@ export default function OurWork() {
 
   return (
     <section className="ourwork-section">
+      <SEO 
+        title="Our Work & Projects | MAXO Architects & Designers Portfolio"
+        description="Explore MAXO's portfolio of innovative architectural projects. From residential design to commercial architecture, urban planning, and sustainable solutions across diverse sectors."
+        keywords="MAXO projects, architecture portfolio, residential architecture, commercial architecture, urban planning, architectural design projects, MAXO work"
+        url="https://maxo.co.in/work"
+        image="https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"
+      />
+      
       {/* Navigation Menu */}
       <StaggeredMenu 
         items={menuItems} 

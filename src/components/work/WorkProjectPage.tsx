@@ -4,6 +4,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { asImageSrc } from '@prismicio/helpers';
 import { createPrismicClient } from '../../prismicClient';
 import StaggeredMenu from '../StaggeredMenu';
+import SEO from '../SEO';
 import './WorkProjectPage.css';
 
 type ProjectDoc = {
@@ -190,6 +191,14 @@ export default function WorkProjectPage() {
 
   return (
     <div className="work-project">
+      <SEO 
+        title={`${title || 'Project'} | MAXO Architects`}
+        description={summary || projectSummary || `Discover ${title || 'this project'} by MAXO Architects. ${address || ''} Expert architectural design and innovative solutions.`}
+        keywords={`MAXO ${title || 'project'}, ${categoryTitle || 'architecture'}, architectural design, ${address || ''}, ${tags.map(t => t.tag).join(', ')}`}
+        url={`https://maxo.co.in/work/${categoryUid}/${projectUid}`}
+        image={heroUrl || "https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"}
+      />
+      
       <StaggeredMenu
         items={menuItems}
         position="left"

@@ -712,4 +712,12 @@
   .about-team-title {
     font-size: 22px;
   }
+
+  /* Mobile-optimized recommendations carousel */
+  @media (max-width: 768px) {
+    .about-team-content {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 }

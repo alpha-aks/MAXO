@@ -4,6 +4,7 @@ import { Lightbulb, Zap, Globe, Cpu, Leaf, Users, X } from 'lucide-react';
 // import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import StaggeredMenu from './StaggeredMenu';
+import SEO from './SEO';
 import { createPrismicClient } from '../prismicClient';
 
 // Research Insight Modal Component 
@@ -426,6 +427,14 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
 
   return (
     <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
+      <SEO 
+        title="Future Thinking & Research | MAXO Architects"
+        description="Explore innovative research and future-forward thinking from MAXO. Discover cutting-edge insights in architecture, urban design, and sustainable spatial solutions."
+        keywords="architectural research, future thinking, innovation in architecture, design research, MAXO insights, urban design research"
+        url="https://maxo.co.in/future"
+        image="https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"
+      />
+      
       {/* Navigation */}
       <StaggeredMenu 
         items={[

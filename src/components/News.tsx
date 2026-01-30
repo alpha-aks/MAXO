@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Footer from './Footer';
 import StaggeredMenu from './StaggeredMenu';
+import SEO from './SEO';
 
 export default function News({ navigateTo }: { navigateTo: (page: string) => void }) {
   const [isMobile, setIsMobile] = useState(() => (typeof window === 'undefined' ? false : window.innerWidth <= 768));
@@ -27,6 +28,14 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
 
   return (
     <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
+      <SEO 
+        title="News & Updates | MAXO Architects & Designers"
+        description="Stay updated with the latest news, projects, and insights from MAXO Architects & Designers. Discover our recent work and architectural innovations."
+        keywords="MAXO news, architecture updates, design news, architectural projects, MAXO announcements"
+        url="https://maxo.co.in/news"
+        image="https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"
+      />
+      
       {/* Navigation */}
       <StaggeredMenu 
         items={menuItems} 

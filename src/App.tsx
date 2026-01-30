@@ -113,11 +113,11 @@ export function MaxoLanding() {
         src={isMobile ? "https://alphas.cdn.prismic.io/alphas/aTxyfXNYClf9oINE_Sky_to_Ground_Video_Generation.mp4" : "/MAXO_1.mp4"}
         style={{
           position: 'fixed',
-          top: 0,
+          top: isMobile ? '-10%' : 0,
           left: 0,
           width: '100%',
-          height: '100%',
-          objectFit: 'cover', // This is what removes black bars
+          height: isMobile ? '120%' : '100%',
+          objectFit: 'cover',
           zIndex: 0
         }}
       />

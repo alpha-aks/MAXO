@@ -4,6 +4,7 @@ import * as prismic from '@prismicio/client';
 import { asImageSrc } from '@prismicio/helpers';
 import { createPrismicClient } from '../../prismicClient';
 import StaggeredMenu from '../StaggeredMenu';
+import SEO from '../SEO';
 import '../projects/projects.css';
 
 type CategoryDoc = {
@@ -94,6 +95,14 @@ export default function WorkCategoryPage() {
 
   return (
     <div className="project-page">
+      <SEO 
+        title={`${title || 'Category'} Projects | MAXO Architects`}
+        description={description || `Explore MAXO's ${title || 'architectural'} projects. Innovative design solutions and expert architectural services.`}
+        keywords={`MAXO ${title || 'projects'}, ${title || 'architecture'}, architectural design, ${categoryUid}`}
+        url={`https://maxo.co.in/work/${categoryUid}`}
+        image="https://maxo.co.in/WhatsApp Image 2026-01-30 at 11.30.04.jpeg"
+      />
+      
       <StaggeredMenu
         items={menuItems}
         position="left"
