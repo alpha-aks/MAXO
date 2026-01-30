@@ -432,7 +432,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
         description="Explore innovative research and future-forward thinking from MAXO. Discover cutting-edge insights in architecture, urban design, and sustainable spatial solutions."
         keywords="architectural research, future thinking, innovation in architecture, design research, MAXO insights, urban design research"
         url="https://maxo.co.in/future"
-        image="https://maxo.co.in/WhatsApp%20Image%202026-01-30%20at%2011.30.04.jpeg"
+        image="https://maxo.co.in/maxo-logo.jpeg"
       />
       
       {/* Navigation */}

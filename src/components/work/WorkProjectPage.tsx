@@ -196,7 +196,7 @@ export default function WorkProjectPage() {
         description={summary || projectSummary || `Discover ${title || 'this project'} by MAXO Architects. ${address || ''} Expert architectural design and innovative solutions.`}
         keywords={`MAXO ${title || 'project'}, ${categoryTitle || 'architecture'}, architectural design, ${address || ''}, ${tags.map(t => t.tag).join(', ')}`}
         url={`https://maxo.co.in/work/${categoryUid}/${projectUid}`}
-        image={heroUrl || "https://maxo.co.in/WhatsApp%20Image%202026-01-30%20at%2011.30.04.jpeg"}
+        image={heroUrl || "https://maxo.co.in/maxo-logo.jpeg"}
       />
       
       <StaggeredMenu

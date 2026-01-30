@@ -100,7 +100,7 @@ export default function WorkCategoryPage() {
         description={description || `Explore MAXO's ${title || 'architectural'} projects. Innovative design solutions and expert architectural services.`}
         keywords={`MAXO ${title || 'projects'}, ${title || 'architecture'}, architectural design, ${categoryUid}`}
         url={`https://maxo.co.in/work/${categoryUid}`}
-        image="https://maxo.co.in/WhatsApp%20Image%202026-01-30%20at%2011.30.04.jpeg"
+        image="https://maxo.co.in/maxo-logo.jpeg"
       />
       
       <StaggeredMenu

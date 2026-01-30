@@ -33,7 +33,7 @@ export default function News({ navigateTo }: { navigateTo: (page: string) => voi
         description="Stay updated with the latest news, projects, and insights from MAXO Architects & Designers. Discover our recent work and architectural innovations."
         keywords="MAXO news, architecture updates, design news, architectural projects, MAXO announcements"
         url="https://maxo.co.in/news"
-        image="https://maxo.co.in/WhatsApp%20Image%202026-01-30%20at%2011.30.04.jpeg"
+        image="https://maxo.co.in/maxo-logo.jpeg"
       />
       
       {/* Navigation */}
