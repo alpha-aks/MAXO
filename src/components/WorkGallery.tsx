@@ -108,17 +108,17 @@ export default function WorkGallery() {
         @media (max-width: 768px) {
           .gallery-container {
             grid-template-columns: 1fr;
-            padding: 0;
-            gap: 24px;
-            /* Keeps the card small (65% width) */
-            width: 65%; 
-            /* Centers the cards */
+            padding: 0 16px;
+            gap: 32px;
+            /* Center with equal padding */
             margin-left: auto; 
             margin-right: auto;
+            max-width: calc(100% - 32px);
           }
           .section-header {
             /* Centers the header text */
-            padding-left: 0;
+            padding-left: 16px;
+            padding-right: 16px;
             text-align: center; 
             margin-bottom: 40px;
             margin-left: auto;

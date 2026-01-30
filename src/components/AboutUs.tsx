@@ -286,16 +286,17 @@ export default function AboutUs() {
             className="about-team-content"
             style={{ 
               display: 'flex', 
-              alignItems: 'stretch', 
-              gap: '4rem',
+              alignItems: window.innerWidth < 768 ? 'flex-start' : 'stretch', 
+              gap: window.innerWidth < 768 ? '1.5rem' : '4rem',
               maxWidth: '1400px',
               margin: '0 auto',
-              minHeight: '600px',
-              flexDirection: window.innerWidth < 768 ? 'column' : 'row'
+              minHeight: window.innerWidth < 768 ? 'auto' : '600px',
+              flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+              padding: window.innerWidth < 768 ? '0 20px' : '0'
             }}
           >
             {/* Image Section */}
-            <div style={{ flex: '0 0 350px' }}>
+            <div style={{ flex: window.innerWidth < 768 ? '0 0 100%' : '0 0 350px', height: window.innerWidth < 768 ? '300px' : '100%', flexShrink: 0 }}>
               <img 
                 src="/founder.jpeg"
                 alt="Divya"
@@ -303,15 +304,16 @@ export default function AboutUs() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  display: 'block'
                 }}
               />
             </div>
             
             {/* Text Section */}
-            <div style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: window.innerWidth < 768 ? '0 0' : '0' }}>
               <h3 style={{ 
-                fontSize: '3rem', 
+                fontSize: window.innerWidth < 768 ? '1.8rem' : '3rem', 
                 fontWeight: '600', 
                 marginBottom: '0.5rem',
                 color: '#333'
@@ -320,7 +322,7 @@ export default function AboutUs() {
               </h3>
               
               <p style={{ 
-                fontSize: '1.2rem', 
+                fontSize: window.innerWidth < 768 ? '1rem' : '1.2rem', 
                 fontWeight: '500', 
                 color: '#666',
                 marginBottom: '1.5rem'
@@ -330,17 +332,18 @@ export default function AboutUs() {
               
               <div style={{ 
                 display: 'flex', 
-                gap: window.innerWidth < 768 ? '2rem' : '3rem', 
+                gap: window.innerWidth < 768 ? '0' : '3rem', 
                 width: '100%',
                 flexDirection: window.innerWidth < 768 ? 'column' : 'row'
               }}>
                 {/* Left Passage */}
                 <p style={{ 
-                  fontSize: '1rem', 
+                  fontSize: window.innerWidth < 768 ? '0.95rem' : '1rem', 
                   lineHeight: '1.8', 
                   color: '#555',
                   textAlign: window.innerWidth > 768 ? 'justify' : 'left',
-                  flex: '1'
+                  flex: '1',
+                  marginBottom: window.innerWidth < 768 ? '1.5rem' : '0'
                 }}>
                   Divya has experienced architecture and art across diverse cultures through extensive travel, bringing a global perspective to design that emphasizes boundless creative and technological possibilities within art, architecture, and design. He seamlessly blends innovative design thinking with diverse research methodologies, while challenging existing disciplinary boundaries and contributing to emerging spatial design practice and knowledge.
                 </p>
@@ -348,7 +351,7 @@ export default function AboutUs() {
                 {/* Right Passage with LinkedIn */}
                 <div style={{ flex: '1' }}>
                   <p style={{ 
-                    fontSize: '1rem', 
+                    fontSize: window.innerWidth < 768 ? '0.95rem' : '1rem', 
                     lineHeight: '1.8', 
                     color: '#555',
                     textAlign: window.innerWidth > 768 ? 'justify' : 'left'
@@ -403,17 +406,17 @@ export default function AboutUs() {
               <motion.div 
                 style={{ 
                   display: 'flex', 
-                  gap: '2rem',
+                  gap: window.innerWidth < 768 ? '1rem' : '2rem',
                   width: 'max-content'
                 }}
                 animate={{
-                  x: [0, -1200]
+                  x: [0, window.innerWidth < 768 ? -700 : -1200]
                 }}
                 transition={{
                   x: {
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 20,
+                    duration: window.innerWidth < 768 ? 15 : 20,
                     ease: "linear"
                   }
                 }}
@@ -422,11 +425,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
@@ -489,11 +492,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
@@ -556,11 +559,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
@@ -623,11 +626,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
@@ -689,11 +692,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
@@ -755,11 +758,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
@@ -822,11 +825,11 @@ export default function AboutUs() {
               <div
                 style={{
                   background: '#fff',
-                  padding: '2rem',
+                  padding: window.innerWidth < 768 ? '1.5rem' : '2rem',
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   border: '1px solid #f0f0f0',
-                  minWidth: '350px',
+                  minWidth: window.innerWidth < 768 ? '280px' : '350px',
                   flex: '0 0 auto'
                 }}
               >
