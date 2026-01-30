@@ -238,7 +238,95 @@ function AppRoutes() {
     return (
       <PageWrapper>
         <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh', padding: '120px 20px 80px' }}>
-          <h1 style={{ margin: 0, fontWeight: 600, fontSize: '2.2rem' }}>Privacy Policy</h1>
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h1 style={{ margin: '0 0 40px 0', fontWeight: 600, fontSize: '2.2rem' }}>Privacy Policy</h1>
+            
+            <section style={{ marginBottom: '48px' }}>
+              <h2 style={{ fontSize: '1.8rem', fontWeight: 600, marginBottom: '20px' }}>Modern Slavery Statement</h2>
+              
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Introduction</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                MAXO is committed to conducting business responsibly, ethically, and in full respect of human rights. 
+                This statement outlines our approach to preventing modern slavery, forced labour, and human trafficking 
+                across our operations and supply chains, in line with globally recognised standards and applicable legislation.
+              </p>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                This policy has been prepared with the support of BrandBoosters, and all data associated with this policy 
+                and related compliance documentation is managed and maintained by BrandBoosters through their digital systems 
+                and governance processes.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Our Business</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                MAXO is a professional services organisation delivering integrated design, digital, and strategic solutions. 
+                We work with clients, partners, and suppliers across multiple regions and maintain high standards of integrity 
+                in all business activities.
+              </p>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                This policy applies to all employees, consultants, contractors, freelancers, and third parties working on 
+                behalf of MAXO.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Commitment to Ethical Practices</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                MAXO operates with a zero-tolerance approach to modern slavery and human trafficking. We are committed to:
+              </p>
+              <ul style={{ lineHeight: '1.7', marginBottom: '16px', paddingLeft: '24px' }}>
+                <li>Ethical and transparent business practices</li>
+                <li>Respect for freedom of employment and movement</li>
+                <li>Fair recruitment with no worker-paid fees</li>
+                <li>Prohibition of forced labour and document confiscation</li>
+                <li>Respect for freedom of association</li>
+              </ul>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                We expect the same standards from all suppliers and business partners.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Risk and Supply Chain Management</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                While the nature of our services presents a low inherent risk, MAXO recognises that modern slavery can exist 
+                across global supply chains. We remain vigilant and assess supplier practices to identify and mitigate potential 
+                risks where reasonably possible.
+              </p>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                Our supply chain primarily includes professional and operational service providers such as recruitment, 
+                facilities, printing, catering, and travel services.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Employment and Workplace Standards</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                MAXO is an equal opportunities employer committed to fair treatment, non-discrimination, and safe working 
+                conditions. Our internal policies support ethical conduct, transparency, and the ability for individuals to 
+                raise concerns without fear of retaliation.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Awareness and Responsibility</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                We promote ethical awareness through internal communication, onboarding, and ongoing engagement. All individuals 
+                working with MAXO are encouraged to act responsibly and report concerns relating to unethical or unlawful conduct.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Reporting and Enforcement</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                Where concerns relating to modern slavery or human rights violations are identified, MAXO reserves the right to 
+                investigate, report to relevant authorities, and suspend or terminate any associated business relationship.
+              </p>
+
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 600, marginTop: '32px', marginBottom: '16px' }}>Data Management and Policy Ownership</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                All policy-related data, compliance records, and associated documentation are managed and maintained by BrandBoosters. 
+                BrandBoosters supports MAXO in ensuring that data governance, updates, and policy alignment are handled responsibly 
+                and securely in accordance with applicable data protection and regulatory standards.
+              </p>
+              <p style={{ lineHeight: '1.7', marginBottom: '16px' }}>
+                For more information, visit{' '}
+                <a href="https://brandboosters.marketing" target="_blank" rel="noopener noreferrer" 
+                   style={{ color: '#000', textDecoration: 'underline' }}>
+                  Brandboosters.marketing
+                </a>.
+              </p>
+            </section>
+          </div>
         </div>
       </PageWrapper>
     );

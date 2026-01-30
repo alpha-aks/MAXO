@@ -1,14 +1,80 @@
-const projects = [
-  { id: '01', title: 'arch', loc: 'Tokyo, Japan', img: 'https://iili.io/figeAsp.jpg' },
-  { id: '02', title: 'branded envi', loc: 'Oslo, Norway', img: 'https://iili.io/figg0k7.jpg' },
-  { id: '03', title: 'Master Plan', loc: 'Berlin, Germany', img: 'https://iili.io/figb1yJ.jpg' },
-  { id: '04', title: 'land arch', loc: 'Dubai, UAE', img: 'https://iili.io/figi3Kb.jpg' },
-  { id: '05', title: 'Product', loc: 'New York, USA', img: 'https://iili.io/figbMjR.jpg' },
-  { id: '06', title: 'Research', loc: 'Singapore', img: 'https://iili.io/figb0va.jpg' },
-  { id: '07', title: 'Interior Design', loc: 'Zurich, Switzerland', img: 'https://iili.io/figbGTv.jpg' }
-];
+import { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { asImageSrc } from '@prismicio/helpers';
+import { createPrismicClient } from '../prismicClient';
+
+type CategoryCard = {
+  id: string;
+  uid: string;
+  title: string;
+  image: string;
+  description: string;
+};
 
 export default function WorkGallery() {
+  const [categories, setCategories] = useState<CategoryCard[]>([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const client = useMemo(() => createPrismicClient(), []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadCategories() {
+      try {
+        setLoading(true);
+
+        if (!client) {
+          throw new Error('Prismic is not configured.');
+        }
+
+        const docs = await client.getAllByType('work_category', {
+          orderings: {
+            field: 'my.work_category.order',
+            direction: 'asc',
+          },
+          pageSize: 100,
+        });
+
+        const mapped = docs
+          .map((doc: any) => {
+            const uid = doc.uid as string | null;
+            if (!uid) return null;
+            return {
+              id: String(doc.id),
+              uid,
+              title: (doc.data?.title as string) || uid,
+              description: (doc.data?.description as string) || '',
+              image: asImageSrc(doc.data?.card_image) || '',
+            } satisfies CategoryCard;
+          })
+          .filter(Boolean) as CategoryCard[];
+
+        if (!cancelled) {
+          setCategories(mapped);
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setCategories([]);
+          console.error('Failed to load categories:', e);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadCategories();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [client]);
+
+  const handleCardClick = (uid: string) => {
+    navigate(`/work/${uid}`);
+  };
   return (
     <section style={{ position: 'relative', zIndex: 40, backgroundColor: '#e8e8e8', padding: '100px 0', overflow: 'hidden' }}>
       
@@ -46,16 +112,17 @@ export default function WorkGallery() {
             gap: 24px;
             /* Keeps the card small (65% width) */
             width: 65%; 
-            /* Moves it to the LEFT (24px from edge) instead of center */
-            margin-left: 24px; 
+            /* Centers the cards */
+            margin-left: auto; 
             margin-right: auto;
           }
           .section-header {
-            /* Aligns text to the LEFT (24px from edge) */
-            padding-left: 24px;
-            text-align: left; 
+            /* Centers the header text */
+            padding-left: 0;
+            text-align: center; 
             margin-bottom: 40px;
-            margin-left: 0;
+            margin-left: auto;
+            margin-right: auto;
           }
         }
       `}</style>
@@ -82,18 +149,29 @@ export default function WorkGallery() {
         
         {/* Grid Container */}
         <div className="gallery-container">
-          {projects.map(p => (
-            <Card key={p.id} project={p} />
-          ))}
+          {loading ? (
+            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px', color: 'rgba(0,0,0,0.6)' }}>
+              Loading categories...
+            </div>
+          ) : categories.length === 0 ? (
+            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px', color: 'rgba(0,0,0,0.6)' }}>
+              No categories found in Prismic yet.
+            </div>
+          ) : (
+            categories.map(category => (
+              <Card key={category.id} project={category} onClick={() => handleCardClick(category.uid)} />
+            ))
+          )}
         </div>
       </div>
     </section>
   );
 }
 
-function Card({ project }: { project: any }) {
+function Card({ project, onClick }: { project: CategoryCard; onClick: () => void }) {
   return (
     <div
+      onClick={onClick}
       style={{ 
         width: '100%', 
         aspectRatio: '12/8', 
@@ -104,7 +182,7 @@ function Card({ project }: { project: any }) {
     >
       <div style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: '4px', boxShadow: '0 2px 12px rgba(0,0,0,0.15)', position: 'relative' }}>
         <img 
-          src={project.img} 
+          src={project.image || 'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop'} 
           alt={project.title} 
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} 
         />
