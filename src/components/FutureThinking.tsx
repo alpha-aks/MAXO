@@ -669,63 +669,39 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   {insight.title || insight.data?.title}
                 </h3>
 
-                {/* Description */}
-                {(insight.description || insight.data?.description) && (
-                  <p style={{
-                    fontSize: '0.9rem',
-                    lineHeight: 1.5,
-                    color: 'rgba(0, 0, 0, 0.7)',
-                    margin: '0 0 12px 0'
-                  }}>
-                    {insight.description || insight.data?.description}
-                  </p>
-                )}
-
-                <p style={{
-                  fontSize: '0.95rem',
-                  lineHeight: 1.6,
-                  color: 'rgba(0, 0, 0, 0.8)',
-                  margin: '0 0 20px 0',
-                  flex: 1,
-                  display: '-webkit-box',
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
-                }}>
-                  {insight.content || insight.data?.content}
-                </p>
-
-                {/* Read More Button */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  color: '#000',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  marginTop: 'auto',
-                  marginBottom: '12px',
-                  cursor: 'pointer',
-                  transition: 'gap 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.gap = '12px';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.gap = '8px';
-                }}>
-                  Read More
-                  <ArrowRight size={18} />
-                </div>
 
                 <p style={{
                   color: 'rgba(0, 0, 0, 0.6)',
                   fontSize: '0.85rem',
                   fontStyle: 'italic',
-                  margin: 0
+                  margin: '0 0 12px 0'
                 }}>
                   — {insight.author || insight.data?.author}
                 </p>
+
+                {/* Read More Button */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    color: '#000',
+                    fontSize: '0.9rem',
+                    fontWeight: '600',
+                    marginTop: 'auto',
+                    cursor: 'pointer',
+                    transition: 'gap 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.gap = '12px';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.gap = '8px';
+                  }}
+                >
+                  Read More
+                  <ArrowRight size={18} />
+                </div>
               </div>
             </article>
           ))}
