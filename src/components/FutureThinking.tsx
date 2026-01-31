@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lightbulb, Zap, Globe, Cpu, Leaf, Users, X } from 'lucide-react';
+import { Lightbulb, Zap, Globe, Cpu, Leaf, Users, X, ArrowRight } from 'lucide-react';
 // import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import StaggeredMenu from './StaggeredMenu';
@@ -686,10 +686,38 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   lineHeight: 1.6,
                   color: 'rgba(0, 0, 0, 0.8)',
                   margin: '0 0 20px 0',
-                  flex: 1
+                  flex: 1,
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
                 }}>
                   {insight.content || insight.data?.content}
                 </p>
+
+                {/* Read More Button */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  color: '#000',
+                  fontSize: '0.9rem',
+                  fontWeight: '600',
+                  marginTop: 'auto',
+                  marginBottom: '12px',
+                  cursor: 'pointer',
+                  transition: 'gap 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.gap = '12px';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.gap = '8px';
+                }}>
+                  Read More
+                  <ArrowRight size={18} />
+                </div>
+
                 <p style={{
                   color: 'rgba(0, 0, 0, 0.6)',
                   fontSize: '0.85rem',
