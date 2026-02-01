@@ -193,8 +193,8 @@ export default function WorkProjectPage() {
     <div className="work-project">
       <SEO 
         title={`${title || 'Project'} | MAXO Architects`}
-        description={summary || projectSummary || `Discover ${title || 'this project'} by MAXO Architects. ${address || ''} Expert architectural design and innovative solutions.`}
-        keywords={`MAXO ${title || 'project'}, ${categoryTitle || 'architecture'}, architectural design, ${address || ''}, ${tags.map(t => t.tag).join(', ')}`}
+        description={`Discover ${title || 'this project'} by MAXO Architects. ${address || ''} Expert architectural design and innovative solutions.`}
+        keywords={`MAXO ${title || 'project'}, ${categoryTitle || 'architecture'}, architectural design, ${address || ''}, ${Array.isArray(tags) ? tags.map(t => typeof t === 'string' ? t : t.tag || '').join(', ') : ''}`}
         url={`https://maxo.co.in/work/${categoryUid}/${projectUid}`}
         image={heroUrl || "https://maxo.co.in/maxo-logo.jpeg"}
       />

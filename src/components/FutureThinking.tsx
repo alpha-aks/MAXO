@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lightbulb, Zap, Globe, Cpu, Leaf, Users, X, ArrowRight } from 'lucide-react';
+import { Lightbulb, Zap, Globe, Cpu, Leaf, Users, X } from 'lucide-react';
 // import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import StaggeredMenu from './StaggeredMenu';
