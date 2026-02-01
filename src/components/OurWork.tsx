@@ -147,7 +147,12 @@ export default function OurWork() {
   }, [client]);
 
   const handleRedirect = (item: CategoryCard) => {
-    navigate(`/work/${item.uid}`);
+    // Redirect Research & Development to Future Thinking page
+    if (item.title?.toLowerCase().includes('research') && item.title?.toLowerCase().includes('development')) {
+      navigate('/future');
+    } else {
+      navigate(`/work/${item.uid}`);
+    }
   };
 
   return (
