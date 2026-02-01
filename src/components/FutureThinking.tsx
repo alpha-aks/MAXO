@@ -300,6 +300,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
               id: doc.id,
               title: getText(doc.data.title),
               date: doc.data.date || '',
+              summary: getText(doc.data.summary),
               content: getText(doc.data.content),
               description: getText(doc.data.description),
               author: doc.data.author || '',
@@ -682,7 +683,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   textOverflow: 'ellipsis',
                   flex: 1
                 }}>
-                  {(insight.description || insight.data?.description || insight.content || insight.data?.content || '').substring(0, 150)}
+                  {insight.summary || insight.data?.summary || (insight.description || insight.data?.description || insight.content || insight.data?.content || '').substring(0, 150)}
                 </p>
 
                 {/* Read more link */}
