@@ -675,6 +675,21 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   {insight.title || insight.data?.title}
                 </h3>
 
+                {/* Short Description */}
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: 1.5,
+                  color: 'rgba(0, 0, 0, 0.7)',
+                  margin: '0 0 16px 0',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  flex: 1
+                }}>
+                  {(insight.description || insight.data?.description || insight.content || insight.data?.content || '').slice(0, 120)}...
+                </p>
 
                 <p style={{
                   color: 'rgba(0, 0, 0, 0.6)',
