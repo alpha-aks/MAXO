@@ -644,27 +644,22 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                 flexDirection: 'column',
                 flex: 1
               }}>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  marginBottom: '20px',
-                  gap: '10px'
+                <span style={{
+                  color: 'rgba(0, 0, 0, 0.6)',
+                  fontSize: '0.8rem',
+                  fontWeight: '400',
+                  marginBottom: '16px',
+                  display: 'block'
                 }}>
-                  <span style={{
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    fontSize: '0.85rem',
-                    whiteSpace: 'nowrap',
-                    fontWeight: '500'
-                  }}>
-                    {insight.date || insight.data?.date}
-                  </span>
-                </div>
+                  {insight.date || insight.data?.date}
+                </span>
+                
                 <h3 style={{
-                  fontSize: isMobile ? '1.2rem' : '1.3rem',
-                  fontWeight: 600,
+                  fontSize: isMobile ? '1.4rem' : '1.6rem',
+                  fontWeight: 400,
                   margin: '0 0 16px 0',
-                  lineHeight: 1.4,
+                  lineHeight: 1.3,
+                  fontFamily: 'Georgia, serif',
                   display: '-webkit-box',
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',
@@ -674,55 +669,35 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   {insight.title || insight.data?.title}
                 </h3>
 
-                {/* Short Preview - 80 characters max */}
-                {(insight.description || insight.data?.description) && (
-                  <p style={{
-                    fontSize: '0.85rem',
-                    lineHeight: 1.4,
-                    color: 'rgba(0, 0, 0, 0.65)',
-                    margin: '0 0 16px 0',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    flex: 1
-                  }}>
-                    {(insight.description || insight.data?.description || '').slice(0, 80)}...
-                  </p>
-                )}
-
+                {/* Short summary text */}
                 <p style={{
-                  color: 'rgba(0, 0, 0, 0.6)',
-                  fontSize: '0.85rem',
-                  fontStyle: 'italic',
-                  margin: '0 0 12px 0'
+                  fontSize: '0.9rem',
+                  lineHeight: 1.6,
+                  color: 'rgba(0, 0, 0, 0.7)',
+                  margin: '0 0 auto 0',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  flex: 1
                 }}>
-                  — {insight.author || insight.data?.author}
+                  {(insight.description || insight.data?.description || insight.content || insight.data?.content || '').substring(0, 150)}
                 </p>
 
-                {/* Read More Button */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    color: '#000',
+                {/* Read more link */}
+                <div style={{
+                  marginTop: '20px',
+                  paddingTop: '16px'
+                }}>
+                  <span style={{
                     fontSize: '0.9rem',
-                    fontWeight: '600',
-                    marginTop: 'auto',
-                    cursor: 'pointer',
-                    transition: 'gap 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.gap = '12px';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.gap = '8px';
-                  }}
-                >
-                  Read More
-                  <ArrowRight size={18} />
+                    color: 'rgba(0, 0, 0, 0.8)',
+                    fontWeight: '400',
+                    cursor: 'pointer'
+                  }}>
+                    read more...
+                  </span>
                 </div>
               </div>
             </article>
