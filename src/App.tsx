@@ -16,6 +16,7 @@ import SharedHeader from './components/SharedHeader';
 import WorkCategoryPage from './components/work/WorkCategoryPage';
 import WorkProjectPage from './components/work/WorkProjectPage';
 import ResearchInsightPage from './components/ResearchInsightPage';
+import NotFound from './components/NotFound';
 
 
 
@@ -407,6 +408,7 @@ function AppRoutes() {
         <Route path="/future" element={<PageWrapper><FutureWithNav /></PageWrapper>} />
         <Route path="/future/insight/:insightId" element={<PageWrapper><ResearchInsightPage /></PageWrapper>} />
         <Route path="/architect" element={<PageWrapper><ArchitectContact /></PageWrapper>} />
+        <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
     </Suspense>
   );
