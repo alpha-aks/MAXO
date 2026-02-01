@@ -17,6 +17,83 @@ interface Insight {
   data?: any;
 }
 
+// Architecture-inspired Loading Component
+const ArchitectureLoader: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      backgroundColor: '#e8e8e8',
+      gap: '30px'
+    }}>
+      {/* Animated building blocks */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 40px)',
+        gap: '12px',
+        justifyContent: 'center'
+      }}>
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
+          <div
+            key={index}
+            style={{
+              width: '40px',
+              height: '40px',
+              backgroundColor: '#000',
+              borderRadius: '4px',
+              animation: `fadeInOut 1.2s ease-in-out infinite`,
+              animationDelay: `${index * 0.1}s`,
+              '@keyframes fadeInOut': {
+                '0%, 100%': { opacity: 0.2 },
+                '50%': { opacity: 1 }
+              }
+            } as any}
+          />
+        ))}
+      </div>
+      
+      {/* Animated blueprint lines */}
+      <svg width="120" height="120" viewBox="0 0 120 120" style={{ marginTop: '20px' }}>
+        <defs>
+          <style>{`
+            @keyframes drawLine {
+              0% {
+                stroke-dashoffset: 100;
+              }
+              100% {
+                stroke-dashoffset: 0;
+              }
+            }
+            .blueprint-line {
+              stroke: #000;
+              fill: none;
+              stroke-width: 2;
+              stroke-dasharray: 100;
+              animation: drawLine 2s ease-in-out infinite;
+            }
+          `}</style>
+        </defs>
+        <rect x="20" y="20" width="80" height="80" className="blueprint-line" />
+        <line x1="60" y1="20" x2="60" y2="100" className="blueprint-line" style={{ animationDelay: '0.3s' }} />
+        <line x1="20" y1="60" x2="100" y2="60" className="blueprint-line" style={{ animationDelay: '0.6s' }} />
+      </svg>
+      
+      <p style={{
+        fontSize: isMobile ? '0.9rem' : '1rem',
+        color: '#666',
+        fontWeight: '500',
+        letterSpacing: '2px',
+        textTransform: 'uppercase'
+      }}>
+        Loading Insights
+      </p>
+    </div>
+  );
+};
+
 export default function ResearchInsightPage() {
   const { insightId } = useParams<{ insightId: string }>();
   const navigate = useNavigate();
@@ -66,18 +143,7 @@ export default function ResearchInsightPage() {
   };
 
   if (loading) {
-    return (
-      <div style={{
-        backgroundColor: '#e8e8e8',
-        color: 'black',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <ArchitectureLoader isMobile={isMobile} />;
   }
 
   if (!insight) {
