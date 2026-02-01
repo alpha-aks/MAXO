@@ -226,27 +226,6 @@ export default function OurWork() {
             />
           </div>
         ))}
-
-        {/* Research & Development Card */}
-        <div className="ourwork-item" key="research-dev">
-          <div className="ourwork-item-header">
-            <span className="ourwork-dot" />
-            <h2 className="ourwork-item-title">Research & Development</h2>
-          </div>
-          <ProjectCard
-            item={{
-              id: 'research-dev',
-              uid: 'research-dev',
-              title: 'Research & Development',
-              image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-              description: ''
-            }}
-            isHovered={hoveredId === 'research-dev'}
-            onHover={() => setHoveredId('research-dev')}
-            onLeave={() => setHoveredId(null)}
-            onRedirect={() => navigate('/future')}
-          />
-        </div>
       </div>
 
       {/* View All Button */}
