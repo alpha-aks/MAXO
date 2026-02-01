@@ -12,6 +12,7 @@ interface Insight {
   description: string;
   author: string;
   image: string;
+  gallery?: any[];
   link?: string;
   data?: any;
 }
@@ -116,7 +117,16 @@ export default function ResearchInsightPage() {
     .split('\n\n')
     .filter((paragraph: string) => paragraph.trim().length > 0);
 
-  const imageCount = Math.min(Math.max(contentParagraphs.length, 3), 8);
+  const galleryImages = (insight.gallery || insight.data?.gallery || [])
+    .map((item: any) => {
+      // Handle different possible structures from Prismic
+      const imageUrl = item?.image?.url || item?.url || null;
+      console.log('Gallery item:', item, 'URL:', imageUrl);
+      return imageUrl;
+    })
+    .filter((url: string | null) => url !== null);
+  
+  const hasGalleryImages = galleryImages.length > 0;
 
   return (
     <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
@@ -255,75 +265,77 @@ export default function ResearchInsightPage() {
         </div>
 
         {/* View More Images */}
-        <div style={{ marginBottom: '60px' }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '24px'
-          }}>
-            <button
-              onClick={() => setShowImages((prev) => !prev)}
-              style={{
-                padding: '12px 32px',
-                backgroundColor: '#000',
-                color: '#fff',
-                border: 'none',
-                fontSize: '0.95rem',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'opacity 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '0.8';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = '1';
-              }}
-            >
-              {showImages ? 'HIDE IMAGES' : 'VIEW MORE IMAGES'}
-            </button>
-          </div>
+        {hasGalleryImages && (
+          <div style={{ marginBottom: '60px' }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '24px'
+            }}>
+              <button
+                onClick={() => setShowImages((prev) => !prev)}
+                style={{
+                  padding: '12px 32px',
+                  backgroundColor: '#000',
+                  color: '#fff',
+                  border: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'opacity 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.opacity = '0.8';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                }}
+              >
+                {showImages ? 'HIDE IMAGES' : 'VIEW MORE IMAGES'}
+              </button>
+            </div>
 
-          {showImages && (
-            <div>
-              <h2 style={{
-                fontSize: '1.6rem',
-                fontWeight: 600,
-                marginBottom: '20px'
-              }}>
-                View more images
-              </h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-                gap: '16px'
-              }}>
-                {Array.from({ length: imageCount }).map((_, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: '100%',
-                      aspectRatio: '16 / 9',
-                      borderRadius: '6px',
-                      overflow: 'hidden',
-                      backgroundColor: '#ddd'
-                    }}
-                  >
-                    <img
-                      src={insight.image || insight.data?.image?.url}
-                      alt={`${insight.title} ${i + 1}`}
+            {showImages && (
+              <div>
+                <h2 style={{
+                  fontSize: '1.6rem',
+                  fontWeight: 600,
+                  marginBottom: '20px'
+                }}>
+                  Gallery
+                </h2>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+                  gap: '16px'
+                }}>
+                  {galleryImages.map((imageUrl: string, i: number) => (
+                    <div
+                      key={i}
                       style={{
                         width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
+                        aspectRatio: '16 / 9',
+                        borderRadius: '6px',
+                        overflow: 'hidden',
+                        backgroundColor: '#ddd'
                       }}
-                    />
-                  </div>
-                ))}
+                    >
+                      <img
+                        src={imageUrl}
+                        alt={`${insight.title} gallery ${i + 1}`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         {/* Call to Action */}
         {(insight.link || insight.data?.link) && (

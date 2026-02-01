@@ -305,6 +305,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
               description: getText(doc.data.description),
               author: doc.data.author || '',
               image: doc.data.image?.url || '',
+              gallery: doc.data.gallery || [],
               data: doc.data
             };
           }).filter(Boolean);
@@ -568,7 +569,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
       </section>
 
       {/* Research & Insights Section */}
-      <section style={{ padding: isMobile ? '56px 20px' : '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
+      <section style={{ padding: isMobile ? '56px 20px' : '80px 80px', maxWidth: '1400px', margin: '0 auto' }}>
         <h2
           style={{
             fontSize: '2.5rem',
@@ -583,7 +584,8 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
         <div style={{
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-          gap: isMobile ? '30px' : '40px'
+          gap: isMobile ? '30px' : '40px',
+          alignItems: 'stretch'
         }}>
           {(prismaticInsights.length > 0 ? prismaticInsights : insights).map((insight: any) => (
             <article
