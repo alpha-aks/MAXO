@@ -306,6 +306,7 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
               author: doc.data.author || '',
               image: doc.data.image?.url || '',
               gallery: doc.data.gallery || [],
+              copyright: getText(doc.data.copyright),
               data: doc.data
             };
           }).filter(Boolean);

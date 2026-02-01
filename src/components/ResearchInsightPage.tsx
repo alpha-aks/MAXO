@@ -13,7 +13,7 @@ interface Insight {
   author: string;
   image: string;
   gallery?: any[];
-  link?: string;
+  copyright?: string;
   data?: any;
 }
 
@@ -277,8 +277,8 @@ export default function ResearchInsightPage() {
           </div>
         </div>
 
-        {/* Call to Action */}
-        {(insight.link || insight.data?.link) && (
+        {/* Copyright Section */}
+        {(insight.copyright || insight.data?.copyright) && (
           <div style={{
             padding: '40px',
             backgroundColor: '#f0f0f0',
@@ -286,33 +286,13 @@ export default function ResearchInsightPage() {
             textAlign: 'center',
             marginBottom: '60px'
           }}>
-            <p style={{ fontSize: '1rem', marginBottom: '20px', color: '#666' }}>
-              Learn more about this research insight
+            <p style={{ 
+              fontSize: '0.9rem', 
+              color: '#666',
+              lineHeight: 1.6
+            }}>
+              {insight.copyright || insight.data?.copyright}
             </p>
-            <a
-              href={insight.link || insight.data?.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '12px 40px',
-                backgroundColor: '#000',
-                color: '#fff',
-                textDecoration: 'none',
-                fontSize: '0.95rem',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'opacity 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLAnchorElement).style.opacity = '0.8';
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLAnchorElement).style.opacity = '1';
-              }}
-            >
-              VIEW FULL ARTICLE
-            </a>
           </div>
         )}
       </div>
