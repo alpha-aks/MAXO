@@ -588,7 +588,13 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
           gap: isMobile ? '30px' : '40px',
           alignItems: 'stretch'
         }}>
-          {(prismaticInsights.length > 0 ? prismaticInsights : insights).map((insight: any) => (
+          {((prismaticInsights.length > 0 ? prismaticInsights : insights)
+            .sort((a: any, b: any) => {
+              const dateA = new Date(a.date || 0).getTime();
+              const dateB = new Date(b.date || 0).getTime();
+              return dateB - dateA; // Newest first
+            })
+          ).map((insight: any) => (
             <article
               key={insight.id || insight.title}
               onClick={() => {
