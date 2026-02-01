@@ -664,7 +664,13 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   fontSize: isMobile ? '1.2rem' : '1.3rem',
                   fontWeight: 600,
                   margin: '0 0 16px 0',
-                  lineHeight: 1.4
+                  lineHeight: 1.4,
+                  display: '-webkit-box',
+                  WebkitLineClamp: 1,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxHeight: isMobile ? '1.4em' : '1.4em'
                 }}>
                   {insight.title || insight.data?.title}
                 </h3>
