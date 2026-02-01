@@ -122,12 +122,12 @@ export default function OurWork() {
               image: asImageSrc(doc.data?.card_image) || '',
             } satisfies CategoryCard;
           })
-          .filter(Boolean)
-          .filter((item: CategoryCard) => {
-            // Filter out Research & Development category from Our Work page
+          .filter((item): item is CategoryCard => {
+            // Remove null values and filter out Research & Development category
+            if (!item) return false;
             const title = item.title?.toLowerCase() || '';
             return !(title.includes('research') && title.includes('development'));
-          }) as CategoryCard[];
+          });
 
         if (!cancelled) {
           setItems(mapped);
