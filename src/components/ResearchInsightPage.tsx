@@ -23,7 +23,6 @@ export default function ResearchInsightPage() {
   const [insight, setInsight] = useState<Insight | null>(null);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [showImages, setShowImages] = useState(false);
 
   useEffect(() => {
     // Scroll to top
@@ -121,12 +120,15 @@ export default function ResearchInsightPage() {
     .map((item: any) => {
       // Handle different possible structures from Prismic
       const imageUrl = item?.image?.url || item?.url || null;
-      console.log('Gallery item:', item, 'URL:', imageUrl);
       return imageUrl;
     })
     .filter((url: string | null) => url !== null);
   
-  const hasGalleryImages = galleryImages.length > 0;
+  // Combine main image with gallery images for right side display
+  const allImages = [
+    insight.image || insight.data?.image?.url,
+    ...galleryImages
+  ].filter(Boolean);
 
   return (
     <div style={{ backgroundColor: '#e8e8e8', color: 'black', minHeight: '100vh' }}>
@@ -171,21 +173,22 @@ export default function ResearchInsightPage() {
       {/* Main Content */}
       <div style={{
         padding: isMobile ? '20px' : '60px 80px',
-        maxWidth: '1200px',
+        maxWidth: '1400px',
         margin: '0 auto'
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : '1.1fr 0.9fr',
-          gap: isMobile ? '24px' : '48px',
-          alignItems: 'stretch',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: isMobile ? '24px' : '60px',
+          alignItems: 'flex-start',
           marginBottom: isMobile ? '32px' : '60px'
         }}>
           {/* Left: Text */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
+            paddingRight: isMobile ? '0' : '20px'
           }}>
             <span style={{
               fontSize: '0.9rem',
@@ -242,100 +245,37 @@ export default function ResearchInsightPage() {
             </div>
           </div>
 
-          {/* Right: 16:9 Image */}
+          {/* Right: Images stacked vertically */}
           <div style={{
-            width: '100%',
-            height: '100%',
-            minHeight: isMobile ? '220px' : '420px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            backgroundColor: '#ddd',
-            aspectRatio: '16 / 9'
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            paddingLeft: isMobile ? '0' : '20px'
           }}>
-            <img
-              src={insight.image || insight.data?.image?.url}
-              alt={insight.title}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
-            />
-          </div>
-        </div>
-
-        {/* View More Images */}
-        {hasGalleryImages && (
-          <div style={{ marginBottom: '60px' }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginBottom: '24px'
-            }}>
-              <button
-                onClick={() => setShowImages((prev) => !prev)}
+            {allImages.map((imageUrl: string, index: number) => (
+              <div
+                key={index}
                 style={{
-                  padding: '12px 32px',
-                  backgroundColor: '#000',
-                  color: '#fff',
-                  border: 'none',
-                  fontSize: '0.95rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'opacity 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = '0.8';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = '1';
+                  width: '100%',
+                  aspectRatio: '16 / 9',
+                  borderRadius: '0px',
+                  overflow: 'hidden',
+                  backgroundColor: '#ddd'
                 }}
               >
-                {showImages ? 'HIDE IMAGES' : 'VIEW MORE IMAGES'}
-              </button>
-            </div>
-
-            {showImages && (
-              <div>
-                <h2 style={{
-                  fontSize: '1.6rem',
-                  fontWeight: 600,
-                  marginBottom: '20px'
-                }}>
-                  Gallery
-                </h2>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-                  gap: '16px'
-                }}>
-                  {galleryImages.map((imageUrl: string, i: number) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: '100%',
-                        aspectRatio: '16 / 9',
-                        borderRadius: '6px',
-                        overflow: 'hidden',
-                        backgroundColor: '#ddd'
-                      }}
-                    >
-                      <img
-                        src={imageUrl}
-                        alt={`${insight.title} gallery ${i + 1}`}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover'
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <img
+                  src={imageUrl}
+                  alt={`${insight.title} ${index + 1}`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
               </div>
-            )}
+            ))}
           </div>
-        )}
+        </div>
 
         {/* Call to Action */}
         {(insight.link || insight.data?.link) && (
