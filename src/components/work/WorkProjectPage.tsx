@@ -194,7 +194,7 @@ export default function WorkProjectPage() {
       <SEO 
         title={`${title || 'Project'} | MAXO Architects`}
         description={`Discover ${title || 'this project'} by MAXO Architects. ${address || ''} Expert architectural design and innovative solutions.`}
-        keywords={`MAXO ${title || 'project'}, ${categoryTitle || 'architecture'}, architectural design, ${address || ''}, ${Array.isArray(tags) ? tags.map(t => typeof t === 'string' ? t : t.tag || '').join(', ') : ''}`}
+        keywords={`MAXO ${title || 'project'}, ${categoryTitle || 'architecture'}, architectural design, ${address || ''}`}
         url={`https://maxo.co.in/work/${categoryUid}/${projectUid}`}
         image={heroUrl || "https://maxo.co.in/maxo-logo.jpeg"}
       />
