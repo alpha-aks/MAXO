@@ -234,7 +234,7 @@ export default function OurWork() {
               uid: 'research-dev',
               title: 'Research & Development',
               image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-              description: 'Exploring future thinking and innovative architectural insights'
+              description: ''
             }}
             isHovered={hoveredId === 'research-dev'}
             onHover={() => setHoveredId('research-dev')}
