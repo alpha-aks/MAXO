@@ -181,63 +181,6 @@ export default function NotFound() {
             Home
           </button>
         </div>
-
-        {/* Helpful Links */}
-        <div style={{
-          marginTop: '80px',
-          paddingTop: '60px',
-          borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-          maxWidth: '500px'
-        }}>
-          <p style={{
-            fontSize: '0.9rem',
-            color: '#666',
-            marginBottom: '20px',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            fontWeight: '500'
-          }}>
-            Explore Our Pages
-          </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '15px'
-          }}>
-            {[
-              { label: 'Home', link: '/' },
-              { label: 'About Us', link: '/about' },
-              { label: 'Our Work', link: '/work' },
-              { label: 'Future Thinking', link: '/future' },
-              { label: 'News', link: '/news' },
-              { label: 'Contact', link: '/contact' }
-            ].map((item) => (
-              <button
-                key={item.label}
-                onClick={() => navigate(item.link)}
-                style={{
-                  padding: '10px 15px',
-                  backgroundColor: 'transparent',
-                  color: '#333',
-                  border: 'none',
-                  fontSize: '0.95rem',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  transition: 'color 0.2s',
-                  fontWeight: '500'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#000';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#333';
-                }}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
       <Footer navigateTo={(page) => navigate(page.startsWith('/') ? page : `/${page}`)} />
