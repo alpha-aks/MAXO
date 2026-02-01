@@ -23,43 +23,51 @@ export default function NotFound() {
         accentColor="#888"
       />
 
-      {/* Main Content */}
+      {/* Main Content - Full Height */}
       <div style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '60px 40px',
-        textAlign: 'center'
+        padding: '40px',
+        textAlign: 'center',
+        width: '100%'
       }}>
-        {/* Large 404 Number with Blueprint Style */}
+        {/* Large 404 Number Centered */}
         <div style={{
           position: 'relative',
-          marginBottom: '40px'
+          marginBottom: '40px',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}>
           <h1 style={{
-            fontSize: '180px',
+            fontSize: '240px',
             fontWeight: '900',
             margin: '0',
             color: 'rgba(0, 0, 0, 0.08)',
-            lineHeight: 1,
-            letterSpacing: '-10px'
+            lineHeight: 0.9,
+            letterSpacing: '-20px',
+            position: 'relative',
+            zIndex: 1
           }}>
             404
           </h1>
           
           {/* Blueprint Grid Overlay */}
           <svg 
-            width="200" 
-            height="200" 
+            width="300" 
+            height="300" 
             viewBox="0 0 200 200" 
             style={{
               position: 'absolute',
+              opacity: 0.3,
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              opacity: 0.3
+              zIndex: 0
             }}
           >
             <defs>
@@ -107,8 +115,10 @@ export default function NotFound() {
         <h2 style={{
           fontSize: '2.5rem',
           fontWeight: '600',
-          margin: '0 0 20px 0',
-          color: '#000'
+          margin: '20px 0 20px 0',
+          color: '#000',
+          position: 'relative',
+          zIndex: 2
         }}>
           Page Not Found
         </h2>
@@ -119,7 +129,9 @@ export default function NotFound() {
           color: '#666',
           marginBottom: '40px',
           maxWidth: '500px',
-          lineHeight: 1.6
+          lineHeight: 1.6,
+          position: 'relative',
+          zIndex: 2
         }}>
           The page you're looking for doesn't exist or has been moved. Let's get you back on track.
         </p>
@@ -129,7 +141,9 @@ export default function NotFound() {
           display: 'flex',
           gap: '20px',
           justifyContent: 'center',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          position: 'relative',
+          zIndex: 2
         }}>
           <button
             onClick={() => navigate(-1)}
