@@ -666,30 +666,31 @@ export default function FutureThinking({ navigateTo }: { navigateTo: (page: stri
                   margin: '0 0 16px 0',
                   lineHeight: 1.4,
                   display: '-webkit-box',
-                  WebkitLineClamp: 1,
+                  WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',
                   overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  maxHeight: isMobile ? '1.4em' : '1.4em'
+                  textOverflow: 'ellipsis'
                 }}>
                   {insight.title || insight.data?.title}
                 </h3>
 
-                {/* Short Description */}
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: 1.5,
-                  color: 'rgba(0, 0, 0, 0.7)',
-                  margin: '0 0 16px 0',
-                  display: '-webkit-box',
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  flex: 1
-                }}>
-                  {(insight.description || insight.data?.description || insight.content || insight.data?.content || '').slice(0, 120)}...
-                </p>
+                {/* Short Preview - 80 characters max */}
+                {(insight.description || insight.data?.description) && (
+                  <p style={{
+                    fontSize: '0.85rem',
+                    lineHeight: 1.4,
+                    color: 'rgba(0, 0, 0, 0.65)',
+                    margin: '0 0 16px 0',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    flex: 1
+                  }}>
+                    {(insight.description || insight.data?.description || '').slice(0, 80)}...
+                  </p>
+                )}
 
                 <p style={{
                   color: 'rgba(0, 0, 0, 0.6)',
